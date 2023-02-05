@@ -1,4 +1,12 @@
+
 firstword
 321
 123.23
 f0urth
+.12
+.12.
+2..2
+
+word then 222
+
+?

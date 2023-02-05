@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="initial">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="public accessors to Token.java">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shank.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Shank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Shank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +30,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2L0wqC1rEjEC5aHDLE8JQmwn1FU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -38,7 +48,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -46,6 +64,26 @@
       <recent name="C:\Users\court\Desktop\cs\shank\shank\src\shank" />
       <recent name="C:\Users\court\Desktop\cs\shank\shank\src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Shank" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="shank.Shank" />
+      <module name="shank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="shank.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Shank" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -55,7 +93,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675021497171</updated>
-      <workItem from="1675021499244" duration="8378000" />
+      <workItem from="1675021499244" duration="10282000" />
+      <workItem from="1675557990308" duration="4440000" />
+      <workItem from="1675562775704" duration="4818000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -64,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675551754835</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="public accessors to Token.java">
+      <created>1675552691218</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675552691218</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,6 +131,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <MESSAGE value="public accessors to Token.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="public accessors to Token.java" />
   </component>
 </project>

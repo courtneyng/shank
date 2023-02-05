@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Shank {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         // Instantiate Lexer
         Lexer newLexer = new Lexer();
         ArrayList<Token> tokenList = new ArrayList<>();
@@ -19,7 +19,7 @@ public class Shank {
             //Goes through each line from file and puts it through lexer
             for(String line: lines){
                 newLexer.Lex(line);
-                System.out.println(" [" + Token.tokenType.ENDOFLINE + "]"); //prints end of line after line is finished
+                //System.out.println(" [" + Token.tokenType.ENDOFLINE + "]"); //prints end of line after line is finished
             }
         } catch(IOException exception){
             //If the file does not go through print error, %s prints the exception error
