@@ -1,1 +1,13 @@
-..
+firstword
+second word
+123 456
+321
+123.23
+f0urth
+
+word then 222 w00d
+
+?
+.22 6.0
+.333.
+2..2

@@ -16,7 +16,6 @@ public class Token {
         return this.value;
     }
 
-
     /**
      * To String Overload
      * @return
