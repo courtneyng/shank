@@ -28,7 +28,6 @@ public class Lexer {
                         }
                     }
                     else if (Character.isWhitespace(token)){
-                        expressionLine.append(") ");
                         state = "start";
                     }
                     else if (Character.isLetter(token)) {
@@ -92,6 +91,8 @@ public class Lexer {
                     }
                 }
             }
+
+
         }
         expressionLine.append(") " + Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
