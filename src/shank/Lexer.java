@@ -16,6 +16,7 @@ public class Lexer {
             // State Machine
             switch (state) {
                 case "start" -> {
+                    //First decimal case
                     if(token == '.'){
                         expressionLine.append(Token.tokenType.NUMBER + " (");
                         //System.out.print(token); testing purposes
@@ -27,14 +28,17 @@ public class Lexer {
                             state = "decimal";
                         }
                     }
+                    // white space or emptyline
                     else if (Character.isWhitespace(token)){
                         state = "start";
                     }
+                    // First token is letter
                     else if (Character.isLetter(token)) {
                         expressionLine.append(Token.tokenType.WORD + " (");
                         expressionLine.append(token);
                         state = "word";
                     }
+                    // First token is digit
                     else if (Character.isDigit(token)){
                         expressionLine.append(Token.tokenType.NUMBER + " (");
                         expressionLine.append(token);
@@ -46,7 +50,7 @@ public class Lexer {
                     }
 
                 }
-
+                // Word state
                 case "word" -> {
                     if (Character.isLetterOrDigit(token)) {
                         expressionLine.append(token);
@@ -58,6 +62,7 @@ public class Lexer {
                         state = "start";
                     }
                 }
+                // Decimal state
                 case "decimal" -> {
                     if (Character.isDigit(token)) {
                         //System.out.print(token); testing purposes
@@ -74,6 +79,7 @@ public class Lexer {
                         state = "start";
                     }
                 }
+                // Number state
                 case "number" -> {
                     if (Character.isDigit(token)) {
                         //expressionLine.append(token + "?");
