@@ -1,7 +1,6 @@
 package shank;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Lexer {
     HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
@@ -74,7 +73,7 @@ public class Lexer {
                     }
                     // First token is letter
                     else if (Character.isLetter(token)) {
-                        expressionLine.append(Token.tokenType.WORD + " (");
+                        expressionLine.append(Token.tokenType.IDENTIFIER + " (");
                         expressionLine.append(token);
                         state = "word";
                     }
