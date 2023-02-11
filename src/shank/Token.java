@@ -2,7 +2,14 @@ package shank;
 
 public class Token {
     enum tokenType{
-        WORD, NUMBER, ENDOFLINE
+        WORD, NUMBER, ENDOFLINE,
+        DEFINE, CONSTANTS, VARIABLES, OPEN_CURLY, CLOSE_CURLY,
+        INTEGER, REAL, BOOLEAN, CHARACTER, STRING, ARRAY,
+        FOR, FROM, TO, WRITE,
+        IF, ELSIF, ELSE, THEN, REPEAT, UNTIL,
+        EQUALS, NOTEQUAL, LESSTHAN, LESSOREQUAL, GREATERTHAN, GREATEROREQUAL,
+        PLUS, MINUS, MULTIPLY, DIVIDE, MOD,
+        NOT, OR
     }
 
     private tokenType type;

@@ -1,8 +1,48 @@
 package shank;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Lexer {
+    HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
 
     public void Lex(String inputLine) throws Exception {
+        // Setting up reserved words
+        knownWords.put("define", Token.tokenType.DEFINE);
+        knownWords.put("constants", Token.tokenType.CONSTANTS);
+        knownWords.put("variables", Token.tokenType.VARIABLES);
+        knownWords.put("{", Token.tokenType.OPEN_CURLY);
+        knownWords.put("}", Token.tokenType.CLOSE_CURLY);
+        knownWords.put("integer", Token.tokenType.INTEGER);
+        knownWords.put("real", Token.tokenType.REAL);
+        knownWords.put("boolean", Token.tokenType.BOOLEAN);
+        knownWords.put("character", Token.tokenType.CHARACTER);
+        knownWords.put("string", Token.tokenType.STRING);
+        knownWords.put("array", Token.tokenType.ARRAY);
+        knownWords.put("for", Token.tokenType.FOR);
+        knownWords.put("from", Token.tokenType.FROM);
+        knownWords.put("to", Token.tokenType.TO);
+        knownWords.put("write", Token.tokenType.WRITE);
+        knownWords.put("if", Token.tokenType.IF);
+        knownWords.put("elsif", Token.tokenType.ELSIF);
+        knownWords.put("else", Token.tokenType.ELSE);
+        knownWords.put("then", Token.tokenType.THEN);
+        knownWords.put("repeat", Token.tokenType.REPEAT);
+        knownWords.put("until", Token.tokenType.UNTIL);
+        knownWords.put("='", Token.tokenType.EQUALS);
+        knownWords.put("<>", Token.tokenType.NOTEQUAL);
+        knownWords.put("<", Token.tokenType.LESSTHAN);
+        knownWords.put("<=", Token.tokenType.LESSOREQUAL);
+        knownWords.put(">", Token.tokenType.GREATERTHAN);
+        knownWords.put(">=", Token.tokenType.GREATEROREQUAL);
+        knownWords.put("+", Token.tokenType.PLUS);
+        knownWords.put("-", Token.tokenType.MINUS);
+        knownWords.put("*", Token.tokenType.MULTIPLY);
+        knownWords.put("/", Token.tokenType.DIVIDE);
+        knownWords.put("mod", Token.tokenType.MOD);
+        knownWords.put("not", Token.tokenType.NOT);
+        knownWords.put("or", Token.tokenType.OR);
+
         char[] expression = inputLine.toCharArray();
         char token;
         String state = "start";
