@@ -51,16 +51,13 @@ public class Lexer {
         for(char i : expression){
             token = i;
 
-            //expressionLine.append(token);
             // State Machine
             switch (state) {
                 case "start" -> {
                     //First decimal case
                     if(token == '.'){
                         expressionLine.append(Token.tokenType.NUMBER + " (");
-                        //System.out.print(token); testing purposes
                         expressionLine.append(token);
-                        //expressionLine.append(hasDecimal); testing purposes
                         if (hasDecimal) throw new Exception("Already has decimal");
                         else { // if no decimal already
                             hasDecimal = true;
@@ -83,10 +80,20 @@ public class Lexer {
                         expressionLine.append(token);
                         state = "number";
                     }
+                    // First token is "
+                    else if (token == '"') {
+                        expressionLine.append(Token.tokenType.STRINGLITERAL + " (");
+                        state = "stringliteral";
+                    }
+                    else if (token == '{') {
+                        expressionLine.append(Token.tokenType.OPEN_CURLY + " ");
+                        state = "comment";
+                    }
                     else{
                         System.out.print("[" + token + "]");
                         throw new Exception("The token in brackets is not accepted");
                     }
+
 
                 }
                 // Word state
@@ -104,8 +111,6 @@ public class Lexer {
                 // Decimal state
                 case "decimal" -> {
                     if (Character.isDigit(token)) {
-                        //System.out.print(token); testing purposes
-                        //expressionLine.append(token + "!");
                         expressionLine.append(token);
                         state = "decimal";
                     } else if (token == '.') {
@@ -121,7 +126,6 @@ public class Lexer {
                 // Number state
                 case "number" -> {
                     if (Character.isDigit(token)) {
-                        //expressionLine.append(token + "?");
                         expressionLine.append(token);
                         state = "number";
                     } else if (token == '.') {
@@ -133,6 +137,21 @@ public class Lexer {
                         state = "start";
                     }else {
                         state = "start";
+                    }
+                }
+                case "stringliteral" -> {
+                    if(token != '"'){
+                        expressionLine.append(token);
+                        state = "stringliteral";
+                    } else{
+                        state = "start";
+                    }
+
+                }
+                case "comment" ->{
+                    if(token != '}'){
+                        expressionLine.append(token);
+                        state = "comment";
                     }
                 }
             }
