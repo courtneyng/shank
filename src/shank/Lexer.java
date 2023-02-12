@@ -46,7 +46,10 @@ public class Lexer {
         char token;
         String state = "start";
         boolean hasDecimal = false;
+        boolean startComment = false;
+        boolean endComment = false;
         StringBuilder expressionLine = new StringBuilder();
+        StringBuilder checkWord = new StringBuilder();
 
         for(char i : expression){
             token = i;
@@ -70,9 +73,14 @@ public class Lexer {
                     }
                     // First token is letter
                     else if (Character.isLetter(token)) {
-                        expressionLine.append(Token.tokenType.IDENTIFIER + " (");
-                        expressionLine.append(token);
-                        state = "word";
+                        if(!startComment){
+                            expressionLine.append(Token.tokenType.IDENTIFIER + " (");
+                            expressionLine.append(token);
+                            checkWord.append(token);
+                            state = "word";
+                        } else{
+                            state = "comment";
+                        }
                     }
                     // First token is digit
                     else if (Character.isDigit(token)){
@@ -86,12 +94,17 @@ public class Lexer {
                         state = "stringliteral";
                     }
                     else if (token == '{') {
-                        expressionLine.append(Token.tokenType.OPEN_CURLY + " ");
+                        startComment = true;
+                        //expressionLine.append(Token.tokenType.OPEN_CURLY + " ");
                         state = "comment";
                     }
                     else{
-                        System.out.print("[" + token + "]");
-                        throw new Exception("The token in brackets is not accepted");
+                        if(!startComment){
+                            System.out.print("[" + token + "]");
+                            throw new Exception("The token in brackets is not accepted");
+                        } else{
+                            state = "comment";
+                        }
                     }
 
 
@@ -150,15 +163,16 @@ public class Lexer {
                 }
                 case "comment" ->{
                     if(token != '}'){
-                        expressionLine.append(token);
+                        //expressionLine.append(token);
                         state = "comment";
                     }
                 }
             }
 
 
-        }
-        expressionLine.append(") " + Token.tokenType.ENDOFLINE);
+        } // End for loop
+
+        expressionLine.append(" " + Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
     }
 }

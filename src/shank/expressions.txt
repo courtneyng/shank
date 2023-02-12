@@ -1,14 +1,6 @@
-firstword
-second word
-123 456
-321
-123.23
-f0urth
-.22 6.0
-
-word then 222 w00d
-
-?
-
-.333.
-2..2
+{hello}
+hi
+123
+{this is a comment
+that spans another line?}
+ties
