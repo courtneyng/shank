@@ -56,7 +56,7 @@ public class Lexer {
                 case "start" -> {
                     //First decimal case
                     if(token == '.'){
-                        expressionLine.append(Token.tokenType.NUMBER + " (");
+                        expressionLine.append(Token.tokenType.NUMBER + " ");
                         expressionLine.append(token);
                         if (hasDecimal) throw new Exception("Already has decimal");
                         else { // if no decimal already
@@ -71,7 +71,7 @@ public class Lexer {
                     // First token is letter
                     else if (Character.isLetter(token)) {
                         if(!startComment){
-                            expressionLine.append(Token.tokenType.IDENTIFIER + " (");
+                            expressionLine.append(Token.tokenType.IDENTIFIER + " ");
                             expressionLine.append(token);
                             checkWord.append(token);
                             state = "word";
@@ -81,13 +81,13 @@ public class Lexer {
                     }
                     // First token is digit
                     else if (Character.isDigit(token)){
-                        expressionLine.append(Token.tokenType.NUMBER + " (");
+                        expressionLine.append(Token.tokenType.NUMBER + " ");
                         expressionLine.append(token);
                         state = "number";
                     }
                     // First token is "
                     else if (token == '"') {
-                        expressionLine.append(Token.tokenType.STRINGLITERAL + " (");
+                        expressionLine.append(Token.tokenType.STRINGLITERAL + " ");
                         state = "stringliteral";
                     }
                     else if (token == '{') {
