@@ -1,6 +1,7 @@
 package shank;
 
 public class Token {
+    public int lineNumber;
     enum tokenType{
         IDENTIFIER, NUMBER, ENDOFLINE,
         DEFINE, CONSTANTS, VARIABLES, VAR,
