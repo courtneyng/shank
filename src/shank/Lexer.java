@@ -160,6 +160,8 @@ public class Lexer {
                 case "comment" ->{
                     if(token != '}'){
                         state = "comment";
+                    } else{
+                        startComment = false;
                     }
                 }
             }
