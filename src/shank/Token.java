@@ -3,7 +3,7 @@ package shank;
 public class Token {
     enum tokenType{
         IDENTIFIER, NUMBER, ENDOFLINE,
-        DEFINE, CONSTANTS, VARIABLES, OPEN_CURLY, CLOSE_CURLY,
+        DEFINE, CONSTANTS, VARIABLES, VAR,
         INTEGER, REAL, BOOLEAN, CHARACTER, STRING, ARRAY,
         FOR, FROM, TO, WRITE, NOT, OR,
         IF, ELSIF, ELSE, THEN, REPEAT, UNTIL,

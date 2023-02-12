@@ -4,14 +4,13 @@ import java.util.*;
 
 public class Lexer {
     HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
-
+    public boolean startComment = false;
     public void Lex(String inputLine) throws Exception {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
         knownWords.put("constants", Token.tokenType.CONSTANTS);
         knownWords.put("variables", Token.tokenType.VARIABLES);
-        knownWords.put("{", Token.tokenType.OPEN_CURLY);
-        knownWords.put("}", Token.tokenType.CLOSE_CURLY);
+        knownWords.put("var", Token.tokenType.VAR);
         knownWords.put("integer", Token.tokenType.INTEGER);
         knownWords.put("real", Token.tokenType.REAL);
         knownWords.put("boolean", Token.tokenType.BOOLEAN);
@@ -28,7 +27,7 @@ public class Lexer {
         knownWords.put("then", Token.tokenType.THEN);
         knownWords.put("repeat", Token.tokenType.REPEAT);
         knownWords.put("until", Token.tokenType.UNTIL);
-        knownWords.put("='", Token.tokenType.EQUALS);
+        knownWords.put("=", Token.tokenType.EQUALS);
         knownWords.put("<>", Token.tokenType.NOTEQUAL);
         knownWords.put("<", Token.tokenType.LESSTHAN);
         knownWords.put("<=", Token.tokenType.LESSOREQUAL);
@@ -46,8 +45,6 @@ public class Lexer {
         char token;
         String state = "start";
         boolean hasDecimal = false;
-        boolean startComment = false;
-        boolean endComment = false;
         StringBuilder expressionLine = new StringBuilder();
         StringBuilder checkWord = new StringBuilder();
 
@@ -95,7 +92,6 @@ public class Lexer {
                     }
                     else if (token == '{') {
                         startComment = true;
-                        //expressionLine.append(Token.tokenType.OPEN_CURLY + " ");
                         state = "comment";
                     }
                     else{
@@ -163,7 +159,6 @@ public class Lexer {
                 }
                 case "comment" ->{
                     if(token != '}'){
-                        //expressionLine.append(token);
                         state = "comment";
                     }
                 }

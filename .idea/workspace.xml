@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add string literal and comment cases">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="multispanning lines comments attempt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
       <workItem from="1675557990308" duration="4440000" />
       <workItem from="1675562775704" duration="11850000" />
       <workItem from="1675611798841" duration="24802000" />
-      <workItem from="1676040250236" duration="10845000" />
+      <workItem from="1676040250236" duration="13303000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -186,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676140698870</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="multispanning lines comments attempt">
+      <created>1676221839093</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1676221839093</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +223,8 @@
     <MESSAGE value="add reserved words" />
     <MESSAGE value="changed WORD to IDENTIFIER" />
     <MESSAGE value="add string literal and comment cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="add string literal and comment cases" />
+    <MESSAGE value="multispanning lines comments attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="multispanning lines comments attempt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -225,11 +233,6 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/shank/Lexer.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
