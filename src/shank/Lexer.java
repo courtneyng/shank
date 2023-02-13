@@ -7,7 +7,7 @@ public class Lexer {
     // Var outside lex to span across lines
     public boolean startComment = false;
     int lineNumber = 0;
-    public void Lex(String inputLine) throws Exception {
+    public void Lex(String inputLine) throws Exception, SyntaxErrorException {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
         knownWords.put("constants", Token.tokenType.CONSTANTS);
@@ -105,7 +105,7 @@ public class Lexer {
                     else{
                         if(!startComment){
                             System.out.print("[" + token + "]");
-                            throw new Exception("The token in brackets is not accepted");
+                            throw new SyntaxErrorException("The token in brackets is not accepted");
                         } else{
                             state = "comment";
                         }
