@@ -1,7 +1,6 @@
 package shank;
 
 public class Token {
-    public int lineNumber;
     enum tokenType{
         IDENTIFIER, NUMBER, ENDOFLINE,
         DEFINE, CONSTANTS, VARIABLES, VAR,
@@ -15,6 +14,8 @@ public class Token {
 
     private tokenType type;
     private String value;
+
+    public int lineNumber;
 
     /**
      * Public accessor for getting type
@@ -30,6 +31,14 @@ public class Token {
      */
     public String getValue(){
         return this.value;
+    }
+
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
+    public int getLineNumber(){
+        return this.lineNumber;
     }
 
     /**

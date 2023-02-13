@@ -2,3 +2,8 @@
 {small}
 
 define fibonacci
+
+constants variables var
+    integer real boolean character string array
+        for from to write not or
+if elsif else then repeat until

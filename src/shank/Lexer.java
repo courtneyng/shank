@@ -4,7 +4,9 @@ import java.util.*;
 
 public class Lexer {
     HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
+    // Var outside lex to span across lines
     public boolean startComment = false;
+    int lineNumber = 0;
     public void Lex(String inputLine) throws Exception {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
@@ -35,13 +37,19 @@ public class Lexer {
         char token, nextToken;
         String state = "start";
         boolean hasDecimal = false;
-        int indentLevel = 0;
+        int indentLevel = 0, spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
-        String checkWord = "";
+        String checkWord = ""; // check if word is reserved
+        String holdExpression = ""; // holds all characters in between spaces
+
+        lineNumber++;
+        expressionLine.append(lineNumber + " ");
+
 
         for(int i=0; i<expression.length; i++){
             token = expression[i];
             if(i<expression.length-1) nextToken = expression[i+1]; // peek ahead
+            else nextToken = '`'; // placeholder for initialization
 
             // State Machine
             switch (state) {
@@ -59,30 +67,37 @@ public class Lexer {
                     }
                     // white space or emptyline
                     else if (Character.isWhitespace(token)){
-                        state = "start";
+                        if(Character.isWhitespace(nextToken)){
+                            spaceCount++;
+                            state = "indent";
+                        } else{
+                            state = "start";
+                        }
                     }
-                    // First token is letter
+                    // First token is letter for word state
                     else if (Character.isLetter(token)) {
                         if(!startComment){
-                            expressionLine.append(Token.tokenType.IDENTIFIER + " ");
-                            expressionLine.append(token);
+                            //expressionLine.append(Token.tokenType.IDENTIFIER + " ");
+                            //expressionLine.append(token);
                             checkWord += token;
+                            holdExpression += token;
                             state = "word";
                         } else{
                             state = "comment";
                         }
                     }
-                    // First token is digit
+                    // First token is digit for number state
                     else if (Character.isDigit(token)){
                         expressionLine.append(Token.tokenType.NUMBER + " ");
                         expressionLine.append(token);
                         state = "number";
                     }
-                    // First token is "
+                    // First token is " for stringliteral
                     else if (token == '"') {
                         expressionLine.append(Token.tokenType.STRINGLITERAL + " ");
                         state = "stringliteral";
                     }
+                    // for comment state
                     else if (token == '{') {
                         startComment = true;
                         state = "comment";
@@ -101,8 +116,9 @@ public class Lexer {
                 // Word state
                 case "word" -> {
                     if (Character.isLetterOrDigit(token)) {
-                        expressionLine.append(token);
+                        //expressionLine.append(token);
                         checkWord += token;
+                        holdExpression += token;
 
                         //Checking if the word is a reserved word
                         for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
@@ -110,13 +126,16 @@ public class Lexer {
                             if(checkWord.equals(reservedWord)){
                                 Token.tokenType value = set.getValue();
                                 expressionLine.append(String.valueOf(set.getValue()));
-                                expressionLine.append("("+ checkWord + ")");
+                                expressionLine.append("("+ checkWord + ") ");
                             }
                         }
+
+
                             state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
                         checkWord = "";
+                        holdExpression = "";
                         state = "start";
                     }else {
                         state = "start";
@@ -169,12 +188,23 @@ public class Lexer {
                         startComment = false;
                     }
                 }
+                case "indent" -> {
+                    if(spaceCount % 4 == 0){
+                        indentLevel++;
+                        expressionLine.append(" " + Token.tokenType.INDENT + " ");
+                        //expressionLine.append(" ["+ indentLevel + "] ");
+                    }
+                    if(Character.isWhitespace(token)){
+                        spaceCount++;
+                        state = "indent";
+                    } else{
+                        state = "start";
+                    }
+                }
             }
-
-
         } // End for loop
-
         expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
-    }
+        //System.out.print("[THIS IS THE SPACE COUNT: [" + spaceCount + "] ");
+    } // End Lex
 }

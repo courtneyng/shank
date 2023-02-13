@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="added indent and dedent token, cleaned lexer a bit">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="checkpoint, working on identifying reserved words in hashmap">
+      <change afterPath="$PROJECT_DIR$/src/shank/SyntaxErrorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Shank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Shank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +95,7 @@
       <workItem from="1675557990308" duration="4440000" />
       <workItem from="1675562775704" duration="11850000" />
       <workItem from="1675611798841" duration="24802000" />
-      <workItem from="1676040250236" duration="24704000" />
+      <workItem from="1676040250236" duration="31926000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -222,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676234627747</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="checkpoint, working on identifying reserved words in hashmap">
+      <created>1676250324593</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1676250324593</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +265,8 @@
     <MESSAGE value="fixed end comment" />
     <MESSAGE value="added line number to token class" />
     <MESSAGE value="added indent and dedent token, cleaned lexer a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="added indent and dedent token, cleaned lexer a bit" />
+    <MESSAGE value="checkpoint, working on identifying reserved words in hashmap" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkpoint, working on identifying reserved words in hashmap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
