@@ -1,5 +1,6 @@
 package shank;
 
+import java.io.File;
 import java.util.*;
 import java.nio.file.*;
 import java.io.IOException;
@@ -11,7 +12,6 @@ public class Shank {
         // Instantiate Lexer
         Lexer newLexer = new Lexer();
 
-        //Creating file path
         Path filePath = Paths.get("C:\\Users\\court\\Desktop\\cs\\shank\\shank\\src\\shank\\expressions.txt");
         try{
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
@@ -23,5 +23,17 @@ public class Shank {
             //If the file does not go through print error, %s prints the exception error
             System.out.format("Error: %s", exception);
         }
+        /*
+        if(0 < args.length){
+            //Creating file path
+            //Paths.get(args[0])
+
+        } else{
+            // print how to use
+            System.out.println("Try: java Shank [filename]");
+            System.exit(1);
+        }
+        */
+
     }
 }

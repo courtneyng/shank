@@ -27,33 +27,26 @@ public class Lexer {
         knownWords.put("then", Token.tokenType.THEN);
         knownWords.put("repeat", Token.tokenType.REPEAT);
         knownWords.put("until", Token.tokenType.UNTIL);
-        knownWords.put("=", Token.tokenType.EQUALS);
-        knownWords.put("<>", Token.tokenType.NOTEQUAL);
-        knownWords.put("<", Token.tokenType.LESSTHAN);
-        knownWords.put("<=", Token.tokenType.LESSOREQUAL);
-        knownWords.put(">", Token.tokenType.GREATERTHAN);
-        knownWords.put(">=", Token.tokenType.GREATEROREQUAL);
-        knownWords.put("+", Token.tokenType.PLUS);
-        knownWords.put("-", Token.tokenType.MINUS);
-        knownWords.put("*", Token.tokenType.MULTIPLY);
-        knownWords.put("/", Token.tokenType.DIVIDE);
         knownWords.put("mod", Token.tokenType.MOD);
         knownWords.put("not", Token.tokenType.NOT);
         knownWords.put("or", Token.tokenType.OR);
 
         char[] expression = inputLine.toCharArray();
-        char token;
+        char token, nextToken;
         String state = "start";
         boolean hasDecimal = false;
+        int indentLevel = 0;
         StringBuilder expressionLine = new StringBuilder();
-        StringBuilder checkWord = new StringBuilder();
+        String checkWord = "";
 
-        for(char i : expression){
-            token = i;
+        for(int i=0; i<expression.length; i++){
+            token = expression[i];
+            if(i<expression.length-1) nextToken = expression[i+1]; // peek ahead
 
             // State Machine
             switch (state) {
                 case "start" -> {
+
                     //First decimal case
                     if(token == '.'){
                         expressionLine.append(Token.tokenType.NUMBER + " ");
@@ -73,7 +66,7 @@ public class Lexer {
                         if(!startComment){
                             expressionLine.append(Token.tokenType.IDENTIFIER + " ");
                             expressionLine.append(token);
-                            checkWord.append(token);
+                            checkWord += token;
                             state = "word";
                         } else{
                             state = "comment";
@@ -109,9 +102,21 @@ public class Lexer {
                 case "word" -> {
                     if (Character.isLetterOrDigit(token)) {
                         expressionLine.append(token);
-                        state = "word";
+                        checkWord += token;
+
+                        //Checking if the word is a reserved word
+                        for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
+                            String reservedWord = set.getKey();
+                            if(checkWord.equals(reservedWord)){
+                                Token.tokenType value = set.getValue();
+                                expressionLine.append(String.valueOf(set.getValue()));
+                                expressionLine.append("("+ checkWord + ")");
+                            }
+                        }
+                            state = "word";
                     } else if (Character.isWhitespace(token)){
-                        expressionLine.append(") ");
+                        expressionLine.append(" ");
+                        checkWord = "";
                         state = "start";
                     }else {
                         state = "start";
@@ -125,7 +130,7 @@ public class Lexer {
                     } else if (token == '.') {
                         if(hasDecimal) throw new Exception("There's already a decimal in this number");
                     } else if (Character.isWhitespace(token)){
-                        expressionLine.append(") ");
+                        expressionLine.append(" ");
                         state = "start";
                     }else {
                         expressionLine.append(" not a digit ");
@@ -142,7 +147,7 @@ public class Lexer {
                         hasDecimal = true;
                         state = "decimal";
                     } else if (Character.isWhitespace(token)){
-                        expressionLine.append(") ");
+                        expressionLine.append(" ");
                         state = "start";
                     }else {
                         state = "start";
@@ -169,7 +174,7 @@ public class Lexer {
 
         } // End for loop
 
-        expressionLine.append(" " + Token.tokenType.ENDOFLINE);
+        expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
     }
 }

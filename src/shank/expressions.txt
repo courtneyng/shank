@@ -1,6 +1,4 @@
-{hello}
-hi
-123
-{this is a comment
-that spans another line?}
-ties
+{ Courtney Ng }
+{small}
+
+define fibonacci
