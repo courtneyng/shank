@@ -2,6 +2,7 @@
 {small}
 
 define fibonacci
+342
 
 constants variables var
     integer real boolean character string array

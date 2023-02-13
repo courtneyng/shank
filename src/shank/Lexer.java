@@ -40,7 +40,7 @@ public class Lexer {
         int indentLevel = 0, spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
         String checkWord = ""; // check if word is reserved
-        String holdExpression = ""; // holds all characters in between spaces
+        String holdExpression = ""; // holds all characters in between spaces, not used yet
 
         lineNumber++;
         expressionLine.append(lineNumber + " ");
@@ -110,8 +110,6 @@ public class Lexer {
                             state = "comment";
                         }
                     }
-
-
                 }
                 // Word state
                 case "word" -> {
@@ -172,6 +170,7 @@ public class Lexer {
                         state = "start";
                     }
                 }
+                // String literal state
                 case "stringliteral" -> {
                     if(token != '"'){
                         expressionLine.append(token);
@@ -181,6 +180,7 @@ public class Lexer {
                     }
 
                 }
+                // Comment state
                 case "comment" ->{
                     if(token != '}'){
                         state = "comment";
@@ -188,7 +188,10 @@ public class Lexer {
                         startComment = false;
                     }
                 }
+                // Indent state
                 case "indent" -> {
+                    //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
+                    // one or more indents
                     if(spaceCount % 4 == 0){
                         indentLevel++;
                         expressionLine.append(" " + Token.tokenType.INDENT + " ");
