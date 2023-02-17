@@ -12,22 +12,16 @@ public class Shank {
         // Instantiate Lexer
         Lexer newLexer = new Lexer();
 
-        if(0 < args.length){
-            //Creating file path
-            List<String> lines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
-            try{
-                //Goes through each line from file and puts it through lexer
-                for(String line: lines){
-                    newLexer.Lex(line);
-                }
-            } catch(IOException exception){
-                //If the file does not go through print error, %s prints the exception error
-                System.out.format("Error: %s", exception);
+        Path filePath = Paths.get("C:\\Users\\court\\Desktop\\cs\\shank\\shank\\src\\shank\\expressions.txt");
+        try{
+            List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+            //Goes through each line from file and puts it through lexer
+            for(String line: lines){
+                newLexer.Lex(line);
             }
-        } else{
-            // print how to use
-            System.out.println("Try: java Shank [filename]");
-            System.exit(1);
+        } catch(IOException exception){
+            //If the file does not go through print error, %s prints the exception error
+            System.out.format("Error: %s", exception);
         }
 
 

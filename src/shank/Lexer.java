@@ -36,7 +36,7 @@ public class Lexer {
         char[] expression = inputLine.toCharArray();
         char token, nextToken;
         String state = "start";
-        boolean hasDecimal = false;
+        boolean hasDecimal = false, isReservedWord = false;
         int indentLevel = 0, spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
         String checkWord = ""; // check if word is reserved
