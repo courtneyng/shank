@@ -1,10 +1,2 @@
-{ Courtney Ng }
-{small}
-
-define fibonacci
-342
-
-constants variables var
-    integer real boolean character string array
-        for from to write not or
-if elsif else then repeat until
+            3
+                2

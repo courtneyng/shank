@@ -37,7 +37,7 @@ public class Lexer {
         char token, nextToken;
         String state = "start";
         boolean hasDecimal = false, isReservedWord = false;
-        int indentLevel = 0, spaceCount = 0;
+        int currentIndent = 0, prevIndent = 0, spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
         String checkWord = ""; // check if word is reserved
         String holdExpression = ""; // holds all characters in between spaces, not used yet
@@ -190,17 +190,24 @@ public class Lexer {
                 }
                 // Indent state
                 case "indent" -> {
+                    /**
+                     * Indent level [0]
+                     */
+
                     //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
                     // one or more indents
                     if(spaceCount % 4 == 0){
-                        indentLevel++;
-                        expressionLine.append(" " + Token.tokenType.INDENT + " ");
+                        currentIndent++;
+                        //expressionLine.append("curr indent [" + currentIndent + "] ");
+                        //expressionLine.append(" " + Token.tokenType.INDENT + " ");
                         //expressionLine.append(" ["+ indentLevel + "] ");
                     }
-                    if(Character.isWhitespace(token)){
+                    // if current & next are space -> indent state, if next token is not space -> exit
+                    if(Character.isWhitespace(token) && Character.isWhitespace(nextToken)){
                         spaceCount++;
                         state = "indent";
                     } else{
+                        expressionLine.append("Indent level [" + currentIndent + "] ");
                         state = "start";
                     }
                 }
