@@ -198,9 +198,6 @@ public class Lexer {
                     // one or more indents
                     if(spaceCount % 4 == 0){
                         currentIndent++;
-                        //expressionLine.append("curr indent [" + currentIndent + "] ");
-                        //expressionLine.append(" " + Token.tokenType.INDENT + " ");
-                        //expressionLine.append(" ["+ indentLevel + "] ");
                     }
                     // if current & next are space -> indent state, if next token is not space -> exit
                     if(Character.isWhitespace(token) && Character.isWhitespace(nextToken)){
