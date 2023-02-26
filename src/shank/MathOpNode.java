@@ -5,4 +5,9 @@ public class MathOpNode extends Node{
     enum MathOp{
         ADD, SUBTRACT, MULTIPLY, DIVIDE
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }
