@@ -107,7 +107,8 @@ public class Lexer {
                             state = "comment";
                         }
                     }
-                }
+                } //end start state
+
                 // Word state
                 case "word" -> {
                     if (Character.isLetterOrDigit(token)) {
@@ -137,7 +138,8 @@ public class Lexer {
                     }else {
                         state = "start";
                     }
-                }
+                } //end word state
+
                 // Decimal state
                 case "decimal" -> {
                     if (Character.isDigit(token)) {
@@ -152,7 +154,8 @@ public class Lexer {
                         expressionLine.append(" not a digit ");
                         state = "start";
                     }
-                }
+                } // end decimal state
+
                 // Number state
                 case "number" -> {
                     if (Character.isDigit(token)) {
@@ -168,7 +171,8 @@ public class Lexer {
                     }else {
                         state = "start";
                     }
-                }
+                } // end number state
+
                 // String literal state
                 case "stringliteral" -> {
                     if(token != '"'){
@@ -177,8 +181,7 @@ public class Lexer {
                     } else{
                         state = "start";
                     }
-
-                }
+                } //end string literal state
                 // Comment state
                 case "comment" ->{
                     if(token != '}'){
@@ -186,14 +189,15 @@ public class Lexer {
                     } else{
                         startComment = false;
                     }
-                }
+                } //end comment state
+
                 // Indent state
                 case "indent" -> {
+
                     //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
                     // one or more indents
                     if(spaceCount % 4 == 0){
                         currentIndent++;
-                        prevIndent = currentIndent; //set prev to current
                     }
                     // if current & next are space -> indent state, if next token is not space -> exit
                     if(Character.isWhitespace(token) && Character.isWhitespace(nextToken)){
@@ -212,10 +216,9 @@ public class Lexer {
                         }
                         state = "start";
                     }
-                }
+                } //end indent
             }
         } // End for loop
-
 
         currentIndent = 0; //reset current indent for next line
         //expressionLine.append("|").append(prevIndent).append("? "); //Test prev indent line
