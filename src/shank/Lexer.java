@@ -122,12 +122,18 @@ public class Lexer {
                         for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
                             String reservedWord = set.getKey();
                             if(checkWord.equals(reservedWord)){
+                                isReservedWord = true;
                                 Token.tokenType value = set.getValue();
                                 expressionLine.append(String.valueOf(set.getValue()));
                                 expressionLine.append("("+ checkWord + ") ");
                             }
                         }
-                            state = "word";
+                        if((Character.isWhitespace(nextToken) || i == expressionLine.length()+1)&& !isReservedWord){
+                            expressionLine.append(Token.tokenType.IDENTIFIER).append(" (" + checkWord + ") ");
+                        }
+
+                        isReservedWord = false;
+                        state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
                         checkWord = "";
