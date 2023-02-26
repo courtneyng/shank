@@ -3,11 +3,11 @@ package shank;
 import java.util.*;
 
 public class Lexer {
-    HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
+    HashMap<String, Token.tokenType> knownWords = new HashMap<>();
     // Var outside lex to span across lines
     public boolean startComment = false;
     int lineNumber = 0, currentIndent = 0, prevIndent = 0;
-    public void Lex(String inputLine) throws Exception, SyntaxErrorException {
+    public void Lex(String inputLine) throws SyntaxErrorException {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
         knownWords.put("constants", Token.tokenType.CONSTANTS);
@@ -39,11 +39,10 @@ public class Lexer {
         boolean hasDecimal = false, isReservedWord = false;
         int spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
-        String checkWord = ""; // check if word is reserved
-        String holdExpression = ""; // holds all characters in between spaces, not used yet
+        StringBuilder checkWord = new StringBuilder(); // check if word is reserved
 
         lineNumber++;
-        expressionLine.append(lineNumber + " ");
+        expressionLine.append(lineNumber).append(" ");
 
 
         for(int i=0; i<expression.length; i++){
@@ -57,15 +56,15 @@ public class Lexer {
 
                     //First decimal case
                     if(token == '.'){
-                        expressionLine.append(Token.tokenType.NUMBER + " ");
+                        expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
-                        if (hasDecimal) throw new Exception("Already has decimal");
+                        if (hasDecimal) throw new SyntaxErrorException("Already has decimal");
                         else { // if no decimal already
                             hasDecimal = true;
                             state = "decimal";
                         }
                     }
-                    // white space or emptyline
+                    // white space or empty line
                     else if (Character.isWhitespace(token)){
                         if(Character.isWhitespace(nextToken)){
                             spaceCount++;
@@ -77,10 +76,8 @@ public class Lexer {
                     // First token is letter for word state
                     else if (Character.isLetter(token)) {
                         if(!startComment){
-                            //expressionLine.append(Token.tokenType.IDENTIFIER + " ");
-                            //expressionLine.append(token);
-                            checkWord += token;
-                            holdExpression += token;
+                            checkWord.append(token);
+
                             state = "word";
                         } else{
                             state = "comment";
@@ -88,13 +85,13 @@ public class Lexer {
                     }
                     // First token is digit for number state
                     else if (Character.isDigit(token)){
-                        expressionLine.append(Token.tokenType.NUMBER + " ");
+                        expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
                         state = "number";
                     }
                     // First token is " for stringliteral
                     else if (token == '"') {
-                        expressionLine.append(Token.tokenType.STRINGLITERAL + " ");
+                        expressionLine.append(Token.tokenType.STRINGLITERAL).append(" ");
                         state = "stringliteral";
                     }
                     // for comment state
@@ -115,29 +112,27 @@ public class Lexer {
                 case "word" -> {
                     if (Character.isLetterOrDigit(token)) {
                         //expressionLine.append(token);
-                        checkWord += token;
-                        holdExpression += token;
+                        checkWord.append(token);
 
                         //Checking if the word is a reserved word
                         for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
                             String reservedWord = set.getKey();
-                            if(checkWord.equals(reservedWord)){
+                            if(checkWord.toString().equals(reservedWord)){
                                 isReservedWord = true;
-                                Token.tokenType value = set.getValue();
-                                expressionLine.append(String.valueOf(set.getValue()));
-                                expressionLine.append("("+ checkWord + ") ");
+                                //Token.tokenType value = set.getValue();
+                                expressionLine.append(set.getValue());
+                                expressionLine.append("(").append(checkWord).append(") ");
                             }
                         }
-                        if((Character.isWhitespace(nextToken) || i == expressionLine.length()+1)&& !isReservedWord){
-                            expressionLine.append(Token.tokenType.IDENTIFIER).append(" (" + checkWord + ") ");
+                        if(Character.isWhitespace(nextToken)&& !isReservedWord){
+                            expressionLine.append(Token.tokenType.IDENTIFIER).append(" (").append(checkWord).append(") ");
                         }
 
                         isReservedWord = false;
                         state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
-                        checkWord = "";
-                        holdExpression = "";
+                        checkWord = new StringBuilder();
                         state = "start";
                     }else {
                         state = "start";
@@ -149,7 +144,7 @@ public class Lexer {
                         expressionLine.append(token);
                         state = "decimal";
                     } else if (token == '.') {
-                        if(hasDecimal) throw new Exception("There's already a decimal in this number");
+                        if(hasDecimal) throw new SyntaxErrorException("There's already a decimal in this number");
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
                         state = "start";
@@ -205,6 +200,16 @@ public class Lexer {
                         spaceCount++;
                         state = "indent";
                     } else{
+                        if (currentIndent > prevIndent) {
+                            for(int k=0;k<currentIndent;k++){
+                                expressionLine.append(Token.tokenType.INDENT).append(" ");
+                            }
+                        }
+                        if(prevIndent>currentIndent){
+                            for(int j=0;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
                         state = "start";
                     }
                 }

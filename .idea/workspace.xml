@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update to indent, needs work">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update to words/reserved words identifier">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
@@ -107,7 +107,7 @@
       <workItem from="1675562775704" duration="11850000" />
       <workItem from="1675611798841" duration="24802000" />
       <workItem from="1676040250236" duration="39361000" />
-      <workItem from="1676917016181" duration="18915000" />
+      <workItem from="1676917016181" duration="21406000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -298,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677421980583</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="update to words/reserved words identifier">
+      <created>1677451216473</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1677451216473</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +324,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="initial" />
     <MESSAGE value="public accessors to Token.java" />
     <MESSAGE value="working on state machine + outputs" />
     <MESSAGE value="idk" />
@@ -342,7 +348,8 @@
     <MESSAGE value="output indent lvl, not yet in relation to prev line" />
     <MESSAGE value="output indent lvl, not yet in relation to prev line -&gt; rm extraneous comments" />
     <MESSAGE value="update to indent, needs work" />
-    <option name="LAST_COMMIT_MESSAGE" value="update to indent, needs work" />
+    <MESSAGE value="update to words/reserved words identifier" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to words/reserved words identifier" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -351,11 +358,6 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/shank/Lexer.java</url>
-          <line>134</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
