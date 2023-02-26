@@ -6,7 +6,7 @@ public class Lexer {
     HashMap<String, Token.tokenType> knownWords = new HashMap<String, Token.tokenType>();
     // Var outside lex to span across lines
     public boolean startComment = false;
-    int lineNumber = 0;
+    int lineNumber = 0, currentIndent = 0, prevIndent = 0;
     public void Lex(String inputLine) throws Exception, SyntaxErrorException {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
@@ -37,7 +37,7 @@ public class Lexer {
         char token, nextToken;
         String state = "start";
         boolean hasDecimal = false, isReservedWord = false;
-        int currentIndent = 0, prevIndent = 0, spaceCount = 0;
+        int spaceCount = 0;
         StringBuilder expressionLine = new StringBuilder();
         String checkWord = ""; // check if word is reserved
         String holdExpression = ""; // holds all characters in between spaces, not used yet
@@ -127,8 +127,6 @@ public class Lexer {
                                 expressionLine.append("("+ checkWord + ") ");
                             }
                         }
-
-
                             state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
@@ -190,28 +188,27 @@ public class Lexer {
                 }
                 // Indent state
                 case "indent" -> {
-                    /**
-                     * Indent level [0]
-                     */
-
                     //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
                     // one or more indents
                     if(spaceCount % 4 == 0){
                         currentIndent++;
+                        prevIndent = currentIndent; //set prev to current
                     }
                     // if current & next are space -> indent state, if next token is not space -> exit
                     if(Character.isWhitespace(token) && Character.isWhitespace(nextToken)){
                         spaceCount++;
                         state = "indent";
                     } else{
-                        expressionLine.append("Indent level [" + currentIndent + "] ");
                         state = "start";
                     }
                 }
             }
         } // End for loop
+
+
+        currentIndent = 0; //reset current indent for next line
+        //expressionLine.append("|").append(prevIndent).append("? "); //Test prev indent line
         expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
-        //System.out.print("[THIS IS THE SPACE COUNT: [" + spaceCount + "] ");
     } // End Lex
 }
