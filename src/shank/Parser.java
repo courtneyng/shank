@@ -1,6 +1,21 @@
 package shank;
 
+import java.util.ArrayList;
+
 public class Parser {
+    private ArrayList<Token> tokens;
+
+    public Parser(ArrayList<Token> tokens){
+        this.tokens = tokens;
+    }
+
+    public ArrayList<Token> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(ArrayList<Token> tokens) {
+        this.tokens = tokens;
+    }
     public Node Parse() throws SyntaxErrorException {
         Node node = expression();
         if(node == null){
@@ -31,7 +46,7 @@ public class Parser {
     //FACTOR { (times or divide or mod) FACTOR}
     public Node term(){
         Node node = factor();
-
+        Token token = token.getType(0);
         if(node == null){
             return null;
         }
