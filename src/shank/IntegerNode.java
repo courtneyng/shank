@@ -3,7 +3,7 @@ package shank;
 public class IntegerNode extends Node{
     private int value; // private member
 
-    // public accessor
+    // public accessors
     public IntegerNode(int value){
         this.value = value;
     }
