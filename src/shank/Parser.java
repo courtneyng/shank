@@ -38,16 +38,24 @@ public class Parser {
         switch(token){
             case MathOpNode.MathOp.MULTIPLY -> {
                 matchAndRemove(token);
-                node = new MathOpNode(node,term())
+                node = new MathOpNode(node,term(), MathOpNode.MathOp.MULTIPLY);
+            }
+            case MathOpNode.MathOp.DIVIDE -> {
+                matchAndRemove(token);
+                node = new MathOpNode(node, term(), MathOpNode.MathOp.DIVIDE);
+            }
+            case MathOpNode.MathOp.MODULO -> {
+                matchAndRemove(token);
+                node = new MathOpNode(node, term(), MathOpNode.MathOp.MODULO);
             }
         }
         return node;
     }
     //{-} number or lparen EXPRESSION rparen
     public Node factor(){
-        Node node;
+        Node node = expression();
 
-        return node;
+        return new MathOpNode();
     }
 
     /**

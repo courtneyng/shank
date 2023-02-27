@@ -2,14 +2,14 @@ package shank;
 
 public class MathOpNode extends Node{
     private Node left, right;
-    Token.tokenType op;
+    MathOpNode.MathOp op;
 
     //make a constructor that takes token type that converts to enum here?
     enum MathOp{
-        ADD, SUBTRACT, MULTIPLY, DIVIDE
+        ADD, SUBTRACT, MULTIPLY, DIVIDE, MODULO
     }
 
-    public MathOpNode(Node left, Node right, Token.tokenType op){
+    public MathOpNode(Node left, Node right, MathOpNode.MathOp op){
         this.left = left;
         this.right = right;
         this.op = op;
@@ -24,7 +24,7 @@ public class MathOpNode extends Node{
         return right;
     }
 
-    public Token.tokenType getOp() {
+    public MathOp getOp() {
         return op;
     }
 
