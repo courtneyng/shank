@@ -16,6 +16,8 @@ public class Parser {
     public void setTokens(ArrayList<Token> tokens) {
         this.tokens = tokens;
     }
+
+    //returns program node
     public Node Parse() throws SyntaxErrorException {
         Node node = expression();
         if(node == null){
@@ -105,6 +107,15 @@ public class Parser {
      */
     private Token peek(int x){
         return tokens.get(x);
+    }
+
+    public void function(){
+        // creeates a new function node calls suboridinate methods
+
+    }
+
+    public void parameterDeclarations(){
+
     }
 
 }

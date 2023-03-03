@@ -14,6 +14,6 @@ public class StringNode extends Node{
     }
     @Override
     public String toString() {
-        return null;
+        return value;
     }
 }

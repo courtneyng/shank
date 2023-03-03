@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update parse">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init BooleanNode.java, CharacterNode.java, StringNode.java">
+      <change afterPath="$PROJECT_DIR$/src/shank/FunctionNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shank/StatementNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shank/VariableNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/StringNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +111,7 @@
       <workItem from="1675562775704" duration="11850000" />
       <workItem from="1675611798841" duration="24802000" />
       <workItem from="1676040250236" duration="39361000" />
-      <workItem from="1676917016181" duration="28996000" />
+      <workItem from="1676917016181" duration="30216000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -345,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677467462814</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="init BooleanNode.java, CharacterNode.java, StringNode.java">
+      <created>1677853970154</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1677853970154</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +377,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Mostly functioning" />
     <MESSAGE value="Update some comments" />
     <MESSAGE value="add reserved words" />
     <MESSAGE value="changed WORD to IDENTIFIER" />
@@ -389,7 +401,8 @@
     <MESSAGE value="update node with toString," />
     <MESSAGE value="update nodes and add body to exp, term, parse" />
     <MESSAGE value="update parse" />
-    <option name="LAST_COMMIT_MESSAGE" value="update parse" />
+    <MESSAGE value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
