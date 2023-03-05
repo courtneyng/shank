@@ -34,7 +34,7 @@ public class Lexer {
         knownWords.put("or", Token.tokenType.OR);
 
         char[] expression = inputLine.toCharArray();
-        char token, nextToken;
+        char token, nextToken, prevToken;
         String state = "start";
         boolean hasDecimal = false, isReservedWord = false;
         int spaceCount = 0;
@@ -49,6 +49,8 @@ public class Lexer {
             token = expression[i];
             if(i<expression.length-1) nextToken = expression[i+1]; // peek ahead
             else nextToken = '`'; // placeholder for initialization
+            if(i == 0) prevToken = '~'; // peek prev
+            else prevToken = expression[i-1];  // placeholder for init
 
             // State Machine
             switch (state) {
@@ -93,6 +95,41 @@ public class Lexer {
                     else if (token == '"') {
                         expressionLine.append(Token.tokenType.STRINGLITERAL).append(" ");
                         state = "stringliteral";
+                    }
+                    else if (token == '>'){
+                        if(nextToken == '='){
+                            expressionLine.append(Token.tokenType.GREATEROREQUAL).append(" ").append(token);
+                            state = "start";
+                        }
+                        else{
+                            expressionLine.append(Token.tokenType.GREATERTHAN).append(" ");
+                            state = "start";
+                        }
+                    }
+                    else if(token == '<'){
+                        if(nextToken == '='){
+                            expressionLine.append(Token.tokenType.LESSOREQUAL).append(" ").append(token);
+                            state = "start";
+                        }
+                        else{
+                            expressionLine.append(Token.tokenType.LESSTHAN).append(" ");
+                            state = "start";
+                        }
+                    }
+                    else if(token == ':'){
+                        if(nextToken == '='){
+                            expressionLine.append(Token.tokenType.EQUALS).append(" ").append(token);
+                            state = "start";
+                        }
+                        else{
+                            System.out.print("[" + token + "]");
+                            throw new SyntaxErrorException("The token in brackets is not accepted, must be followed by = ");
+                        }
+                    }
+                    else if(token == '='){
+                        if(prevToken == '>' || prevToken == '<' || prevToken == ':'){
+                            expressionLine.append(token);
+                        }
                     }
                     // for comment state
                     else if (token == '{') {

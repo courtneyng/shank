@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="Indent case working, removed parse to work on indent, slight update to node" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="cleaning, comments">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +108,7 @@
       <workItem from="1675611798841" duration="24802000" />
       <workItem from="1676040250236" duration="39361000" />
       <workItem from="1676917016181" duration="30950000" />
-      <workItem from="1678051737415" duration="2797000" />
+      <workItem from="1678051737415" duration="5542000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -365,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678054943124</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="cleaning, comments">
+      <created>1678055300582</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1678055300582</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +395,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed WORD to IDENTIFIER" />
     <MESSAGE value="add string literal and comment cases" />
     <MESSAGE value="multispanning lines comments attempt" />
     <MESSAGE value="multispanning lines comments attempt, removed extraneous token" />
@@ -409,7 +419,8 @@
     <MESSAGE value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
     <MESSAGE value="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java" />
     <MESSAGE value="Indent case working, removed parse to work on indent, slight update to node" />
-    <option name="LAST_COMMIT_MESSAGE" value="Indent case working, removed parse to work on indent, slight update to node" />
+    <MESSAGE value="cleaning, comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning, comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
