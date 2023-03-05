@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init BooleanNode.java, CharacterNode.java, StringNode.java">
-      <change afterPath="$PROJECT_DIR$/src/shank/FunctionNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shank/StatementNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shank/VariableNode.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/FunctionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/FunctionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/StringNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/StringNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/ProgramNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +27,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -111,7 +110,8 @@
       <workItem from="1675562775704" duration="11850000" />
       <workItem from="1675611798841" duration="24802000" />
       <workItem from="1676040250236" duration="39361000" />
-      <workItem from="1676917016181" duration="30216000" />
+      <workItem from="1676917016181" duration="30950000" />
+      <workItem from="1678051737415" duration="2459000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -358,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677853970154</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java">
+      <created>1677858223314</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1677858223314</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +384,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update some comments" />
     <MESSAGE value="add reserved words" />
     <MESSAGE value="changed WORD to IDENTIFIER" />
     <MESSAGE value="add string literal and comment cases" />
@@ -402,7 +408,8 @@
     <MESSAGE value="update nodes and add body to exp, term, parse" />
     <MESSAGE value="update parse" />
     <MESSAGE value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
+    <MESSAGE value="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -193,24 +193,30 @@ public class Lexer {
 
                 // Indent state
                 case "indent" -> {
-
-                    //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
-                    // one or more indents
-                    if(spaceCount % 4 == 0){
-                        currentIndent++;
-                    }
                     // if current & next are space -> indent state, if next token is not space -> exit
                     if(Character.isWhitespace(token) && Character.isWhitespace(nextToken)){
                         spaceCount++;
                         state = "indent";
                     } else{
+                        spaceCount++; // needed to count last space for modulo
+
+                        //1 tab or 4 spaces is an indent, counts the amount of spaces, if no remainder it means it has
+                        // one or more indents
+                        if(spaceCount % 4 == 0){
+                            currentIndent = spaceCount / 4;
+                        }
+
+                        //expressionLine.append("SPACE COUNT : [").append(spaceCount).append("]");
+                        //expressionLine.append("CURRENT INDENT: [").append(currentIndent).append("] ");
+                        //expressionLine.append("PREV INDENT: [").append(prevIndent).append("] ");
+
                         if (currentIndent > prevIndent) {
-                            for(int k=0;k<currentIndent;k++){
+                            for(int k=prevIndent;k<currentIndent;k++){
                                 expressionLine.append(Token.tokenType.INDENT).append(" ");
                             }
                         }
                         if(prevIndent>currentIndent){
-                            for(int j=0;j<prevIndent;j++){
+                            for(int j=currentIndent;j<prevIndent;j++){
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -220,6 +226,7 @@ public class Lexer {
             }
         } // End for loop
 
+        prevIndent = currentIndent;
         currentIndent = 0; //reset current indent for next line
         //expressionLine.append("|").append(prevIndent).append("? "); //Test prev indent line
         expressionLine.append(Token.tokenType.ENDOFLINE);
