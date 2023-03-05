@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/FunctionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/FunctionNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/ProgramNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/expressions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/expressions.txt" afterDir="false" />
-    </list>
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="Indent case working, removed parse to work on indent, slight update to node" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +104,7 @@
       <workItem from="1675611798841" duration="24802000" />
       <workItem from="1676040250236" duration="39361000" />
       <workItem from="1676917016181" duration="30950000" />
-      <workItem from="1678051737415" duration="2459000" />
+      <workItem from="1678051737415" duration="2797000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -365,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677858223314</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Indent case working, removed parse to work on indent, slight update to node">
+      <created>1678054943124</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1678054943124</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,7 +384,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add reserved words" />
     <MESSAGE value="changed WORD to IDENTIFIER" />
     <MESSAGE value="add string literal and comment cases" />
     <MESSAGE value="multispanning lines comments attempt" />
@@ -409,7 +408,8 @@
     <MESSAGE value="update parse" />
     <MESSAGE value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
     <MESSAGE value="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java" />
+    <MESSAGE value="Indent case working, removed parse to work on indent, slight update to node" />
+    <option name="LAST_COMMIT_MESSAGE" value="Indent case working, removed parse to work on indent, slight update to node" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

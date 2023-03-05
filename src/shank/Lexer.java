@@ -206,16 +206,14 @@ public class Lexer {
                             currentIndent = spaceCount / 4;
                         }
 
-                        //expressionLine.append("SPACE COUNT : [").append(spaceCount).append("]");
-                        //expressionLine.append("CURRENT INDENT: [").append(currentIndent).append("] ");
-                        //expressionLine.append("PREV INDENT: [").append(prevIndent).append("] ");
-
                         if (currentIndent > prevIndent) {
+                            //add as many indent greater than prev
                             for(int k=prevIndent;k<currentIndent;k++){
                                 expressionLine.append(Token.tokenType.INDENT).append(" ");
                             }
                         }
                         if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
@@ -228,7 +226,6 @@ public class Lexer {
 
         prevIndent = currentIndent;
         currentIndent = 0; //reset current indent for next line
-        //expressionLine.append("|").append(prevIndent).append("? "); //Test prev indent line
         expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
     } // End Lex
