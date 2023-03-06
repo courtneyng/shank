@@ -55,9 +55,16 @@ public class Lexer {
             // State Machine
             switch (state) {
                 case "start" -> {
-
-                    //First decimal case
+                    // Decimal state
                     if(token == '.'){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
                         if (hasDecimal) throw new SyntaxErrorException("Already has decimal");
@@ -72,11 +79,20 @@ public class Lexer {
                             spaceCount++;
                             state = "indent";
                         } else{
-                            state = "start";
+                            expressionLine.append(token);
+                            //state = "start";
                         }
                     }
                     // First token is letter for word state
                     else if (Character.isLetter(token)) {
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         if(!startComment){
                             checkWord.append(token);
 
@@ -87,39 +103,81 @@ public class Lexer {
                     }
                     // First token is digit for number state
                     else if (Character.isDigit(token)){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
                         state = "number";
                     }
                     // First token is " for stringliteral
                     else if (token == '"') {
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         expressionLine.append(Token.tokenType.STRINGLITERAL).append(" ");
                         state = "stringliteral";
                     }
                     else if (token == '>'){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+                        //////
                         if(nextToken == '='){
+                            // If previous line had indent but newline doesn't
+                            if(prevIndent>currentIndent){
+                                //add as many dedent token greater than curr
+                                for(int j=currentIndent;j<prevIndent;j++){
+                                    expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                                }
+                            }
                             expressionLine.append(Token.tokenType.GREATEROREQUAL).append(" ").append(token);
-                            state = "start";
                         }
                         else{
-                            expressionLine.append(Token.tokenType.GREATERTHAN).append(" ");
-                            state = "start";
+                            expressionLine.append(Token.tokenType.GREATERTHAN).append(" ").append(token);
                         }
                     }
                     else if(token == '<'){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+                        /////
                         if(nextToken == '='){
                             expressionLine.append(Token.tokenType.LESSOREQUAL).append(" ").append(token);
-                            state = "start";
                         }
                         else{
-                            expressionLine.append(Token.tokenType.LESSTHAN).append(" ");
-                            state = "start";
+                            expressionLine.append(Token.tokenType.LESSTHAN).append(" ").append(token);
                         }
                     }
                     else if(token == ':'){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         if(nextToken == '='){
                             expressionLine.append(Token.tokenType.EQUALS).append(" ").append(token);
-                            state = "start";
                         }
                         else{
                             System.out.print("[" + token + "]");
@@ -127,12 +185,28 @@ public class Lexer {
                         }
                     }
                     else if(token == '='){
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+                        ////
                         if(prevToken == '>' || prevToken == '<' || prevToken == ':'){
                             expressionLine.append(token);
                         }
                     }
                     // for comment state
                     else if (token == '{') {
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
                         startComment = true;
                         state = "comment";
                     }
