@@ -128,6 +128,7 @@ public class Lexer {
                         expressionLine.append(Token.tokenType.STRINGLITERAL).append(" ");
                         state = "stringliteral";
                     }
+                    // First token is '>'
                     else if (token == '>'){
                         // If previous line had indent but newline doesn't
                         if(prevIndent>currentIndent){
@@ -137,20 +138,18 @@ public class Lexer {
                             }
                         }
                         //////
+                        if(prevToken == '<'){
+                            expressionLine.append(token);
+                            continue;
+                        }
                         if(nextToken == '='){
-                            // If previous line had indent but newline doesn't
-                            if(prevIndent>currentIndent){
-                                //add as many dedent token greater than curr
-                                for(int j=currentIndent;j<prevIndent;j++){
-                                    expressionLine.append(Token.tokenType.DEDENT).append(" ");
-                                }
-                            }
                             expressionLine.append(Token.tokenType.GREATEROREQUAL).append(" ").append(token);
                         }
                         else{
                             expressionLine.append(Token.tokenType.GREATERTHAN).append(" ").append(token);
                         }
                     }
+                    //first token is '<'
                     else if(token == '<'){
                         // If previous line had indent but newline doesn't
                         if(prevIndent>currentIndent){
@@ -163,10 +162,14 @@ public class Lexer {
                         if(nextToken == '='){
                             expressionLine.append(Token.tokenType.LESSOREQUAL).append(" ").append(token);
                         }
+                        else if(nextToken == '>'){
+                            expressionLine.append(Token.tokenType.NOTEQUAL).append(" ").append(token);
+                        }
                         else{
                             expressionLine.append(Token.tokenType.LESSTHAN).append(" ").append(token);
                         }
                     }
+                    // assignment state first token ':'
                     else if(token == ':'){
                         // If previous line had indent but newline doesn't
                         if(prevIndent>currentIndent){
@@ -177,11 +180,11 @@ public class Lexer {
                         }
 
                         if(nextToken == '='){
-                            expressionLine.append(Token.tokenType.EQUALS).append(" ").append(token);
+                            //assignment?
+                            expressionLine.append(token);
                         }
                         else{
-                            System.out.print("[" + token + "]");
-                            throw new SyntaxErrorException("The token in brackets is not accepted, must be followed by = ");
+                            expressionLine.append(Token.tokenType.COLON).append(" ");
                         }
                     }
                     else if(token == '='){
@@ -195,8 +198,34 @@ public class Lexer {
                         ////
                         if(prevToken == '>' || prevToken == '<' || prevToken == ':'){
                             expressionLine.append(token);
+                        } else{
+                            expressionLine.append(Token.tokenType.EQUALS).append(" ").append(token);
                         }
                     }
+                    //operator case
+                    else if(token == '+' || token == '-' || token == '*' || token == '/'){
+                        char op = token;
+                        // If previous line had indent but newline doesn't
+                        if(prevIndent>currentIndent){
+                            //add as many dedent token greater than curr
+                            for(int j=currentIndent;j<prevIndent;j++){
+                                expressionLine.append(Token.tokenType.DEDENT).append(" ");
+                            }
+                        }
+
+                        switch(op){
+                            case '+': expressionLine.append(Token.tokenType.PLUS).append(" ").append(token); break;
+                            case '-': expressionLine.append(Token.tokenType.MINUS).append(" ").append(token); break;
+                            case '*': expressionLine.append(Token.tokenType.MULTIPLY).append(" ").append(token); break;
+                            case '/': expressionLine.append(Token.tokenType.DIVIDE).append(" ").append(token); break;
+                        }
+
+                    }
+                    else if(token == '[' || token == ']') expressionLine.append(token);
+                    else if(token == ',') expressionLine.append(Token.tokenType.COMMA).append(" ");
+                    else if(token == ';') expressionLine.append(Token.tokenType.SEMICOLON).append(" ");
+                    else if(token == '(') expressionLine.append(Token.tokenType.LPAREN).append(" ");
+                    else if(token == ')') expressionLine.append(Token.tokenType.RPAREN).append(" ");
                     // for comment state
                     else if (token == '{') {
                         // If previous line had indent but newline doesn't
@@ -236,17 +265,27 @@ public class Lexer {
                                 expressionLine.append("(").append(checkWord).append(") ");
                             }
                         }
-                        if(Character.isWhitespace(nextToken)&& !isReservedWord){
+
+                        //if not resetved word AND not whitespace or EOL or Letter/Digit
+                        if(!isReservedWord && (Character.isWhitespace(nextToken) || nextToken == '`' || !Character.isLetterOrDigit(nextToken))){
                             expressionLine.append(Token.tokenType.IDENTIFIER).append(" (").append(checkWord).append(") ");
                         }
 
-                        isReservedWord = false;
+                        isReservedWord = false; // reset before seeing if next is symbol
+
+                        //Checks if punctuation to assess whether to go back to start or not
+                        if(isPunctuation(nextToken)){
+                            state="start";
+                            continue;
+                        }
+
                         state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
                         checkWord = new StringBuilder();
                         state = "start";
                     }else {
+                        expressionLine.append(token);
                         state = "start";
                     }
                 } //end word state
@@ -280,6 +319,7 @@ public class Lexer {
                         expressionLine.append(" ");
                         state = "start";
                     }else {
+                        expressionLine.append(token);
                         state = "start";
                     }
                 } // end number state
@@ -340,4 +380,10 @@ public class Lexer {
         expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
     } // End Lex
+
+    public boolean isPunctuation(char c){
+        // if not a Letter or Digit & not a SPACE
+        if(!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) return true;
+        else return false;
+    }
 }
