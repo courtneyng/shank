@@ -1,6 +1,41 @@
 package shank;
 
+import java.util.*;
 public class FunctionNode extends Node{
+    private String name;
+    private ArrayList<VariableNode> parameters;
+    private ArrayList<VariableNode> constants;
+    private ArrayList<VariableNode> variables;
+    private ArrayList<StatementNode> statements;
+
+    public FunctionNode(String name, ArrayList<VariableNode> variables){
+        this.name = name;
+        this.variables = variables;
+    }
+
+    public ArrayList<VariableNode> getParameters(){
+        return parameters;
+    }
+
+    public void setParameters(ArrayList<VariableNode> parameters){
+        this.parameters = parameters;
+    }
+
+    public ArrayList<VariableNode> getVariables(){
+        return variables;
+    }
+
+    public void setVariables(ArrayList<VariableNode> variables){
+        this.variables = variables;
+    }
+
+    public ArrayList<StatementNode> getStatements(){
+        return statements;
+    }
+
+    public void setStatements(ArrayList<StatementNode> statements){
+        this.statements = statements;
+    }
 
 
     @Override

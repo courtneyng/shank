@@ -92,11 +92,14 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         if(!startComment){
-                            checkWord.append(token);
-
-                            state = "word";
+                            if(Character.isWhitespace(nextToken) || isPunctuation(nextToken)){
+                                expressionLine.append(Token.tokenType.IDENTIFIER).append(" (").append(token).append(") ");
+                                continue;
+                            } else{
+                                checkWord.append(token);
+                                state = "word";
+                            }
                         } else{
                             state = "comment";
                         }
@@ -255,19 +258,21 @@ public class Lexer {
                         //expressionLine.append(token);
                         checkWord.append(token);
 
-                        //Checking if the word is a reserved word
-                        for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
-                            String reservedWord = set.getKey();
-                            if(checkWord.toString().equals(reservedWord)){
-                                isReservedWord = true;
-                                //Token.tokenType value = set.getValue();
-                                expressionLine.append(set.getValue());
-                                expressionLine.append("(").append(checkWord).append(") ");
+                        if(checkWord.toString() == "var" && nextToken != ' '){
+                            //Checking if the word is a reserved word
+                            for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
+                                String reservedWord = set.getKey();
+                                if(checkWord.toString().equals(reservedWord)){
+                                    isReservedWord = true;
+                                    //Token.tokenType value = set.getValue();
+                                    expressionLine.append(set.getValue());
+                                    expressionLine.append("(").append(checkWord).append(") ");
+                                }
                             }
                         }
 
-                        //if not resetved word AND not whitespace or EOL or Letter/Digit
-                        if(!isReservedWord && (Character.isWhitespace(nextToken) || nextToken == '`' || !Character.isLetterOrDigit(nextToken))){
+                        //if not reserved word AND not whitespace or EOL or Letter/Digit
+                        if(!isReservedWord && (Character.isWhitespace(nextToken) || nextToken == '`')){
                             expressionLine.append(Token.tokenType.IDENTIFIER).append(" (").append(checkWord).append(") ");
                         }
 

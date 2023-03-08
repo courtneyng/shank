@@ -8,7 +8,7 @@ public class Token {
         FOR, FROM, TO, WRITE, NOT, OR,
         IF, ELSIF, ELSE, THEN, REPEAT, UNTIL,
         EQUALS, NOTEQUAL, LESSTHAN, LESSOREQUAL, GREATERTHAN, GREATEROREQUAL,
-        PLUS, MINUS, MULTIPLY, DIVIDE, MOD,
+        PLUS, MINUS, TIMES, DIVIDE, MOD,
         STRINGLITERAL, CHARACTERLITERAL, INDENT, DEDENT,
         COMMA, COLON, SEMICOLON, LPAREN, RPAREN
     }
@@ -23,7 +23,7 @@ public class Token {
      * @return - token type
      */
     public tokenType getType(){
-        return this.type;
+        return type;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Token {
      * @return - value
      */
     public String getValue(){
-        return this.value;
+        return value;
     }
 
     public void setLineNumber(int lineNumber) {
@@ -39,7 +39,7 @@ public class Token {
     }
 
     public int getLineNumber(){
-        return this.lineNumber;
+        return lineNumber;
     }
 
     /**

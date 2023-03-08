@@ -1,3 +1,1 @@
-constants pi=3.141
-define start (t : integer; s : real)
-=
+variables a,b,c : integer
