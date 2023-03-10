@@ -79,9 +79,17 @@ public class Parser {
     }
     //{-} number or lparen EXPRESSION rparen
     public Node factor(){
-        Node node;
+        if(tokens.get(0).getType().equals("NUMBER")) {
+            Token numberToken = matchAndRemove(Token.tokenType.NUMBER);
+            //token.getVal.contains "."
+        }
 
-        return new MathOpNode();
+//        } else if(tokens.get(0).getType().equals("LPAREN")){
+//            Node expr = expression();
+//            matchAndRemove(Token.tokenType.RPAREN);
+//        }
+
+        return null;
     }
 
     /**
