@@ -64,7 +64,6 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
                         if (hasDecimal) throw new SyntaxErrorException("Already has decimal");
@@ -113,7 +112,6 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         expressionLine.append(Token.tokenType.NUMBER).append(" ");
                         expressionLine.append(token);
                         state = "number";
@@ -127,7 +125,6 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         expressionLine.append(Token.tokenType.STRINGLITERAL).append(" ");
                         state = "stringliteral";
                     }
@@ -181,7 +178,6 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         if(nextToken == '='){
                             //assignment?
                             expressionLine.append(token);
@@ -215,14 +211,12 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         switch(op){
                             case '+': expressionLine.append(Token.tokenType.PLUS).append(" ").append(token); break;
                             case '-': expressionLine.append(Token.tokenType.MINUS).append(" ").append(token); break;
-                            case '*': expressionLine.append(Token.tokenType.MULTIPLY).append(" ").append(token); break;
+                            case '*': expressionLine.append(Token.tokenType.TIMES).append(" ").append(token); break;
                             case '/': expressionLine.append(Token.tokenType.DIVIDE).append(" ").append(token); break;
                         }
-
                     }
                     else if(token == '[' || token == ']') expressionLine.append(token);
                     else if(token == ',') expressionLine.append(Token.tokenType.COMMA).append(" ");
@@ -238,7 +232,6 @@ public class Lexer {
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-
                         startComment = true;
                         state = "comment";
                     }
@@ -270,20 +263,18 @@ public class Lexer {
                                 }
                             }
                         }
-
                         //if not reserved word AND not whitespace or EOL or Letter/Digit
                         if(!isReservedWord && (Character.isWhitespace(nextToken) || nextToken == '`')){
                             expressionLine.append(Token.tokenType.IDENTIFIER).append(" (").append(checkWord).append(") ");
                         }
 
-                        isReservedWord = false; // reset before seeing if next is symbol
+                        isReservedWord = false; // reset before seeing if next is a symbol
 
                         //Checks if punctuation to assess whether to go back to start or not
                         if(isPunctuation(nextToken)){
                             state="start";
                             continue;
                         }
-
                         state = "word";
                     } else if (Character.isWhitespace(token)){
                         expressionLine.append(" ");
@@ -294,7 +285,6 @@ public class Lexer {
                         state = "start";
                     }
                 } //end word state
-
                 // Decimal state
                 case "decimal" -> {
                     if (Character.isDigit(token)) {
@@ -310,7 +300,6 @@ public class Lexer {
                         state = "start";
                     }
                 } // end decimal state
-
                 // Number state
                 case "number" -> {
                     if (Character.isDigit(token)) {
@@ -328,7 +317,6 @@ public class Lexer {
                         state = "start";
                     }
                 } // end number state
-
                 // String literal state
                 case "stringliteral" -> {
                     if(token != '"'){
@@ -346,7 +334,6 @@ public class Lexer {
                         startComment = false;
                     }
                 } //end comment state
-
                 // Indent state
                 case "indent" -> {
                     // if current & next are space -> indent state, if next token is not space -> exit
