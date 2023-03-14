@@ -81,14 +81,18 @@ public class Parser {
     public Node factor(){
         if(tokens.get(0).getType().equals("NUMBER")) {
             Token numberToken = matchAndRemove(Token.tokenType.NUMBER);
-            //token.getVal.contains "."
+            if(tokens.get(0).getValue().contains(".")){ // if contains "." indicates decimal; float/real node
+                return new RealNode(Float.parseFloat(tokens.get(0).getValue()));
+            }
+            else{
+                return new IntegerNode(Integer.parseInt(tokens.get(0).getValue()));
+            }
         }
 
 //        } else if(tokens.get(0).getType().equals("LPAREN")){
 //            Node expr = expression();
 //            matchAndRemove(Token.tokenType.RPAREN);
 //        }
-
         return null;
     }
 
