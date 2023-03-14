@@ -15,7 +15,7 @@ public class Token {
 
     private tokenType type;
     private String value;
-
+    private String nameIdentifier;
     public int lineNumber;
 
     /**
@@ -34,12 +34,29 @@ public class Token {
         return value;
     }
 
+    /**
+     *
+     * @param lineNumber
+     */
+
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
 
+    /**
+     * Gets the line number
+     * @return line number
+     */
     public int getLineNumber(){
         return lineNumber;
+    }
+
+    /**
+     * Gets the identifier name (function name)
+     * @return the name
+     */
+    public String getNameIdentifier(){
+        return nameIdentifier;
     }
 
     /**

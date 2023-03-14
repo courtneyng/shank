@@ -136,17 +136,38 @@ public class Parser {
         return tokens.get(x);
     }
 
-    public void function(){
+    public FunctionNode function() throws SyntaxErrorException{
         // creates a new function node calls suboridinate methods
+        if(matchAndRemove(Token.tokenType.DEFINE) == null){
+            throw new SyntaxErrorException("[Parser] Expected: define");
+        }
+        Token nameIdentifier = matchAndRemove(Token.tokenType.IDENTIFIER);
+        if(nameIdentifier == null){
+            throw new SyntaxErrorException("[Parser] Expected: identifier name");
+        }
+        String functionName = nameIdentifier.getNameIdentifier();
 
+        if(matchAndRemove(Token.tokenType.LPAREN) == null){
+            throw new SyntaxErrorException("[Parser] Expected: '(' ");
+        }
+
+        if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER){
+
+        }
     }
 
     /**
      * parameterDeclarations() process the parameters and returns a collection of VariableNode.
      * Remember that a parameter may or may not be var. Remember that there may not be any parameters.
      */
-    public void parameterDeclarations(){
+    public ArrayList<VariableNode> parameterDeclarations(){
+        ArrayList<VariableNode> variableNodes = new ArrayList<>();
+        while(peek(0).getType() != Token.tokenType.RPAREN){
+            Token token = matchAndRemove(Token.tokenType.VAR);
+            if(token != null){
 
+            }
+        }
     }
 
 }
