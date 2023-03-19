@@ -13,12 +13,24 @@ public class FunctionNode extends Node{
         this.variables = variables;
     }
 
+    public FunctionNode(String name) {
+        this.name = name;
+    }
+
     public ArrayList<VariableNode> getParameters(){
         return parameters;
     }
 
     public void setParameters(ArrayList<VariableNode> parameters){
         this.parameters = parameters;
+    }
+
+    public ArrayList<VariableNode> getConstants(){
+        return constants;
+    }
+
+    public void setConstants(ArrayList<VariableNode> constants) {
+        this.constants = constants;
     }
 
     public ArrayList<VariableNode> getVariables(){

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update function()">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java">
       <change afterPath="$PROJECT_DIR$/src/shank/BooleanCompareNode.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -108,7 +108,7 @@
       <workItem from="1676040250236" duration="39361000" />
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
-      <workItem from="1678821196832" duration="9242000" />
+      <workItem from="1678821196832" duration="10586000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -432,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678828140850</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java">
+      <created>1679246432062</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1679246432062</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +458,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added comments and adjusted Shank.java to take any input file" />
     <MESSAGE value="fixed SyntaxErrorException" />
     <MESSAGE value="init node files" />
     <MESSAGE value="edit skeleton of parser and node classes" />
@@ -476,7 +482,8 @@
     <MESSAGE value="small update" />
     <MESSAGE value="update factor()" />
     <MESSAGE value="update function()" />
-    <option name="LAST_COMMIT_MESSAGE" value="update function()" />
+    <MESSAGE value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

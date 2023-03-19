@@ -18,16 +18,15 @@ public class Parser {
         this.tokens = tokens;
     }
 
-    //returns program node
+    /**
+     * parse() should call function() in its loop. Every FunctionNode returned should go into the ProgramNode
+     * (there will be only one of these). null should end the parse() loop. parse() should return the ProgramNode.
+     * @return
+     * @throws SyntaxErrorException
+     */
     public ProgramNode Parse() throws SyntaxErrorException {
-        ProgramNode node;
-        function();
-        if(node == null){
-            throw new SyntaxErrorException("Problem initializing node");
-        }
-        else{
-            return node;
-        }
+        ProgramNode node = new ProgramNode();
+        return node;
     }
 
 
@@ -136,24 +135,130 @@ public class Parser {
         return tokens.get(x);
     }
 
+    /**
+     * function() processes a function.
+         * It expects a define token.
+         * Then an identifier (the name).
+         * Then a left paren.
+         * Then a list of 0 or more variable declarations.
+         * Then a right paren.
+         * Then an endOfLine.
+         * Then constants and variables.
+         * Then an indent.
+         * Then statements.
+         * Then a dedent.
+         * It returns a FunctionNode or null.
+     * function() should expect indent, then call expression() until it returns null and print the
+     * resultant expressions (just to make sure that the parsing is still correct) then expect dedent.
+     * Since the expressions are just temporary, we won’t store them in our FunctionNode().
+     *
+     * @return functionNode (function)
+     * @throws SyntaxErrorException - if expected tokens are not met
+     */
     public FunctionNode function() throws SyntaxErrorException{
+        ArrayList<VariableNode> parameters = new ArrayList<>();
+        ArrayList<VariableNode> constants = new ArrayList<>();
+        ArrayList<VariableNode> variables = new ArrayList<>();
+        ArrayList<StatementNode> statements = new ArrayList<>();
+
         // creates a new function node calls suboridinate methods
+        // Expects define token, otherwise throw syntax error
         if(matchAndRemove(Token.tokenType.DEFINE) == null){
             throw new SyntaxErrorException("[Parser] Expected: define");
         }
+
+        // Expects identifier token, otherwise throw syntax error
         Token nameIdentifier = matchAndRemove(Token.tokenType.IDENTIFIER);
         if(nameIdentifier == null){
             throw new SyntaxErrorException("[Parser] Expected: identifier name");
         }
         String functionName = nameIdentifier.getNameIdentifier();
 
+        // Expects left parenthesis token, otherwise throw syntax error
         if(matchAndRemove(Token.tokenType.LPAREN) == null){
             throw new SyntaxErrorException("[Parser] Expected: '(' ");
         }
 
+        // Expects a list of 0 or more variable declarations, otherwise throw syntax error
         if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER){
-
+            parameters = parameters();
         }
+
+        // Expects right parenthesis token, otherwise throw syntax error
+        if(matchAndRemove(Token.tokenType.RPAREN) == null){
+            throw new SyntaxErrorException("[Parser] Expected: ')' ");
+        }
+
+        // Expects EOL token, otherwise throw syntax error
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
+            throw new SyntaxErrorException("[Parser] Expected: End of line");
+        }
+
+        /* start constants check */
+        if(matchAndRemove(Token.tokenType.CONSTANTS) != null){
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
+                throw new SyntaxErrorException("[Parser] Expected: End of Line. Constants should have its own line");
+                constants.add(constants());
+                while(!(tokens.isEmpty()) && tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){
+                    constants.add(constants());
+                }
+            }
+        }
+        /* end constants check */
+
+        /* start variable check */
+        if(matchAndRemove(Token.tokenType.VARIABLES) != null){
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
+                throw new SyntaxErrorException("[Parser] Expected: End of Line. Variables should have its own line");
+            }
+            ArrayList<VariableNode> oneLineVar = variables();
+
+            for(int i=0; i<oneLineVar.size(); i++){
+                variables.add(oneLineVar.get(i));
+            }
+
+            while(tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){
+                oneLineVar = variables();
+                for(int i=0; i<oneLineVar.size(); i++){
+                    oneLineVar.add(oneLineVar.get(i));
+                }
+            }
+        }
+        /* end variable check */
+
+        if(matchAndRemove(Token.tokenType.INDENT) == null){
+            throw new SyntaxErrorException("[Parser] Expected: Indent");
+        }
+
+        statements = body();
+
+        // initialize new function node to return
+        FunctionNode functionNode = new FunctionNode(functionName);
+
+        //Add parameters to function if not null
+        if(parameters != null){
+            functionNode.setParameters(parameters);
+        }
+        //Add constants to function if not null
+        if(constants != null){
+            functionNode.setConstants(constants);
+        }
+        //Add variables to function if not null
+        if(variables != null){
+            functionNode.setVariables(variables);
+        }
+        //Add statements to function if not null
+        if(statements != null){
+            functionNode.setStatements(statements);
+        }
+
+        // Expects dedent token, otherwise throw syntax error
+        if(matchAndRemove(Token.tokenType.DEDENT) == null){
+            throw new SyntaxErrorException("[Parser] Expected: Dedent");
+        }
+
+        System.out.println(functionNode.toString());
+        return functionNode;
     }
 
     /**
