@@ -163,36 +163,27 @@ public class Parser {
 
         // creates a new function node calls suboridinate methods
         // Expects define token, otherwise throw syntax error
-        if(matchAndRemove(Token.tokenType.DEFINE) == null){
-            throw new SyntaxErrorException("[Parser] Expected: define");
-        }
+        if(matchAndRemove(Token.tokenType.DEFINE) == null) throw new SyntaxErrorException("[Parser] Expected: define");
 
         // Expects identifier token, otherwise throw syntax error
         Token nameIdentifier = matchAndRemove(Token.tokenType.IDENTIFIER);
-        if(nameIdentifier == null){
-            throw new SyntaxErrorException("[Parser] Expected: identifier name");
-        }
+        if(nameIdentifier == null) throw new SyntaxErrorException("[Parser] Expected: identifier name");
+
         String functionName = nameIdentifier.getNameIdentifier();
 
         // Expects left parenthesis token, otherwise throw syntax error
-        if(matchAndRemove(Token.tokenType.LPAREN) == null){
-            throw new SyntaxErrorException("[Parser] Expected: '(' ");
-        }
+        if(matchAndRemove(Token.tokenType.LPAREN) == null)  throw new SyntaxErrorException("[Parser] Expected: '(' ");
 
         // Expects a list of 0 or more variable declarations, otherwise throw syntax error
-        if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER){
-            parameters = parameters();
-        }
+        if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER) parameters = parameters();
 
         // Expects right parenthesis token, otherwise throw syntax error
-        if(matchAndRemove(Token.tokenType.RPAREN) == null){
-            throw new SyntaxErrorException("[Parser] Expected: ')' ");
-        }
+        if(matchAndRemove(Token.tokenType.RPAREN) == null) throw new SyntaxErrorException("[Parser] Expected: ')' ");
+
 
         // Expects EOL token, otherwise throw syntax error
-        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
-            throw new SyntaxErrorException("[Parser] Expected: End of line");
-        }
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser] Expected: End of line");
+
 
         /* start constants check */
         if(matchAndRemove(Token.tokenType.CONSTANTS) != null){
@@ -208,9 +199,9 @@ public class Parser {
 
         /* start variable check */
         if(matchAndRemove(Token.tokenType.VARIABLES) != null){
-            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null)
                 throw new SyntaxErrorException("[Parser] Expected: End of Line. Variables should have its own line");
-            }
+
             ArrayList<VariableNode> oneLineVar = variables();
 
             for(int i=0; i<oneLineVar.size(); i++){
@@ -226,9 +217,7 @@ public class Parser {
         }
         /* end variable check */
 
-        if(matchAndRemove(Token.tokenType.INDENT) == null){
-            throw new SyntaxErrorException("[Parser] Expected: Indent");
-        }
+        if(matchAndRemove(Token.tokenType.INDENT) == null) throw new SyntaxErrorException("[Parser] Expected: Indent");
 
         statements = body();
 
@@ -264,12 +253,52 @@ public class Parser {
     /**
      * parameterDeclarations() process the parameters and returns a collection of VariableNode.
      * Remember that a parameter may or may not be var. Remember that there may not be any parameters.
+     * @return all function parameters
      */
     public ArrayList<VariableNode> parameterDeclarations(){
-        ArrayList<VariableNode> variableNodes = new ArrayList<>();
+        ArrayList<VariableNode> variableNodeArrayList = new ArrayList<>();
+        ArrayList<VariableNode> params = new ArrayList<>();
+        while(peek(0).getType() != Token.tokenType.RPAREN){
+            if(matchAndRemove(Token.tokenType.VAR) != null){
+
+            }
+            else{
+
+            }
+        }
+
+        return params;
+    }
+
+    public Node boolCompare() throws SyntaxErrorException {
+        if(!peek(0).getType().equals(Token.tokenType.NUMBER) && !peek(0).getType().equals(Token.tokenType.IDENTIFIER))
+            throw new SyntaxErrorException("[Parser] Expected: Number or Identifier");
+
+        Node leftBool = expression();
+        Token comparator = getComparator();
+
+        if(comparator == null) throw new SyntaxErrorException("[Parser] Expected: Comparator (< , <=, >, >=, =, <>)");
+
 
     }
 
-    private Node boolCompare()
+    // An assignment is an identifier (with possible array index) followed by := followed by a boolCompare.
+    public AssignmentNode assignment() throws SyntaxErrorException{
+        Node target =
+    }
+
+    /**
+     * Condensed version to get comparators for boolCompare
+     * @return token of comparator; null if not a comparator
+     */
+    private Token getComparator(){
+        if(matchAndRemove(Token.tokenType.LESSTHAN) != null) return new Token(Token.tokenType.LESSTHAN);
+        else if (matchAndRemove(Token.tokenType.LESSOREQUAL) != null) return new Token(Token.tokenType.LESSOREQUAL);
+        else if(matchAndRemove(Token.tokenType.GREATERTHAN) != null) return new Token(Token.tokenType.GREATERTHAN);
+        else if(matchAndRemove(Token.tokenType.GREATEROREQUAL) != null) return new Token(Token.tokenType.GREATEROREQUAL);
+        else if(matchAndRemove(Token.tokenType.EQUALS) != null) return new Token(Token.tokenType.EQUALS);
+        else if(matchAndRemove(Token.tokenType.NOTEQUAL) != null) return new Token(Token.tokenType.NOTEQUAL);
+        else return null;
+    }
 
 }

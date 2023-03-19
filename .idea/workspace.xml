@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update BooleanCompareNode.java">
+      <change afterPath="$PROJECT_DIR$/src/shank/AssignmentNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/BooleanCompareNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BooleanCompareNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +110,7 @@
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
-      <workItem from="1679256235211" duration="2108000" />
+      <workItem from="1679256235211" duration="8661000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1675551754835</created>
@@ -445,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679256296492</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="update BooleanCompareNode.java">
+      <created>1679259390094</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1679259390094</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed SyntaxErrorException" />
     <MESSAGE value="init node files" />
     <MESSAGE value="edit skeleton of parser and node classes" />
     <MESSAGE value="output indent lvl, not yet in relation to prev line" />
@@ -489,7 +498,8 @@
     <MESSAGE value="update factor()" />
     <MESSAGE value="update function()" />
     <MESSAGE value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
+    <MESSAGE value="update BooleanCompareNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update BooleanCompareNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

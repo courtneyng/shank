@@ -4,8 +4,6 @@ public class VariableReferenceNode extends Node{
     private String name;
     private Node arrayIndexExpr = null;
 
-    public VariableReferenceNode(){}
-
     public VariableReferenceNode(String name){
         this.name = name;
     }
@@ -18,8 +16,6 @@ public class VariableReferenceNode extends Node{
     public String getName(){
         return name;
     }
-
-
 
     @Override
     public String toString() {

@@ -10,9 +10,6 @@ public class BooleanCompareNode extends Node{
     private Node rightExpr;
     private comparisonType comparator;
 
-    // empty constructor
-    public BooleanCompareNode(){}
-
     /**
      * Constructor for all values
      * @param leftExpr

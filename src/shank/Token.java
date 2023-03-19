@@ -59,6 +59,9 @@ public class Token {
         return nameIdentifier;
     }
 
+    public Token(tokenType tokenFinder){
+        this.value = tokenFinder.toString();
+    }
     /**
      * To String Overload
      * @return
