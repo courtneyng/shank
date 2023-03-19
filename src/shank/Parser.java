@@ -225,26 +225,19 @@ public class Parser {
         FunctionNode functionNode = new FunctionNode(functionName);
 
         //Add parameters to function if not null
-        if(parameters != null){
-            functionNode.setParameters(parameters);
-        }
+        if(parameters != null) functionNode.setParameters(parameters);
+
         //Add constants to function if not null
-        if(constants != null){
-            functionNode.setConstants(constants);
-        }
+        if(constants != null) functionNode.setConstants(constants);
+
         //Add variables to function if not null
-        if(variables != null){
-            functionNode.setVariables(variables);
-        }
+        if(variables != null) functionNode.setVariables(variables);
+
         //Add statements to function if not null
-        if(statements != null){
-            functionNode.setStatements(statements);
-        }
+        if(statements != null) functionNode.setStatements(statements);
 
         // Expects dedent token, otherwise throw syntax error
-        if(matchAndRemove(Token.tokenType.DEDENT) == null){
-            throw new SyntaxErrorException("[Parser] Expected: Dedent");
-        }
+        if(matchAndRemove(Token.tokenType.DEDENT) == null) throw new SyntaxErrorException("[Parser] Expected: Dedent");
 
         System.out.println(functionNode.toString());
         return functionNode;
