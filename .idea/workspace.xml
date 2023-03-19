@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update BooleanCompareNode.java">
-      <change afterPath="$PROJECT_DIR$/src/shank/AssignmentNode.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="condensing if statements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BooleanCompareNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BooleanCompareNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,21 +106,7 @@
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
-      <workItem from="1679256235211" duration="8661000" />
-    </task>
-    <task id="LOCAL-00001" summary="initial">
-      <created>1675551754835</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1675551754835</updated>
-    </task>
-    <task id="LOCAL-00002" summary="public accessors to Token.java">
-      <created>1675552691218</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1675552691218</updated>
+      <workItem from="1679256235211" duration="9977000" />
     </task>
     <task id="LOCAL-00003" summary="working on state machine + outputs">
       <created>1675567712894</created>
@@ -455,7 +437,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679259390094</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="condensing, updating boolCompare functions">
+      <created>1679267194270</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1679267194270</updated>
+    </task>
+    <task id="LOCAL-00051" summary="condensing if statements">
+      <created>1679267279936</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1679267279936</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,8 +470,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="init node files" />
-    <MESSAGE value="edit skeleton of parser and node classes" />
     <MESSAGE value="output indent lvl, not yet in relation to prev line" />
     <MESSAGE value="output indent lvl, not yet in relation to prev line -&gt; rm extraneous comments" />
     <MESSAGE value="update to indent, needs work" />
@@ -499,7 +493,9 @@
     <MESSAGE value="update function()" />
     <MESSAGE value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
     <MESSAGE value="update BooleanCompareNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="update BooleanCompareNode.java" />
+    <MESSAGE value="condensing, updating boolCompare functions" />
+    <MESSAGE value="condensing if statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="condensing if statements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

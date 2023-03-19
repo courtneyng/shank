@@ -78,20 +78,21 @@ public class Parser {
     }
     //{-} number or lparen EXPRESSION rparen
     public Node factor(){
-        if(tokens.get(0).getType().equals("NUMBER")) {
+        if(tokens.get(0).getType().equals(Token.tokenType.NUMBER)) {
             Token numberToken = matchAndRemove(Token.tokenType.NUMBER);
-            if(tokens.get(0).getValue().contains(".")){ // if contains "." indicates decimal; float/real node
+            if(tokens.get(0).getValue().contains(".")) // if contains "." indicates decimal; float/real node
                 return new RealNode(Float.parseFloat(tokens.get(0).getValue()));
+            else if(matchAndRemove(Token.tokenType.LPAREN) != null){
+                Node expr = expression(); // calls until number found
+                matchAndRemove(Token.tokenType.RPAREN);
+                return expr;
             }
             else{
                 return new IntegerNode(Integer.parseInt(tokens.get(0).getValue()));
             }
         }
 
-//        } else if(tokens.get(0).getType().equals("LPAREN")){
-//            Node expr = expression();
-//            matchAndRemove(Token.tokenType.RPAREN);
-//        }
+
         return null;
     }
 
@@ -113,6 +114,7 @@ public class Parser {
             return null;
         }
     }
+
 
     /**
      * uses matchAndRemove to match and discard one or more ENDOFLINE tokens.
@@ -263,16 +265,27 @@ public class Parser {
         return params;
     }
 
+    /**
+     * BOOLCOMPARE = EXPRESSION [ (<,>,<=,>=,=,<>) EXPRESSION] – note this is 0 or 1, not 0 or more
+     * @return
+     * @throws SyntaxErrorException
+     */
     public Node boolCompare() throws SyntaxErrorException {
         if(!peek(0).getType().equals(Token.tokenType.NUMBER) && !peek(0).getType().equals(Token.tokenType.IDENTIFIER))
             throw new SyntaxErrorException("[Parser] Expected: Number or Identifier");
 
         Node leftBool = expression();
-        Token comparator = getComparator();
+        BooleanCompareNode.comparisonType comparator = getComparator();
 
         if(comparator == null) throw new SyntaxErrorException("[Parser] Expected: Comparator (< , <=, >, >=, =, <>)");
 
+        if(!peek(0).getType().equals(Token.tokenType.NUMBER) && !peek(0).getType().equals(Token.tokenType.IDENTIFIER))
+            throw new SyntaxErrorException("[Parser] Expected: Number or Identifier");
 
+        Node rightBool = expression();
+        BooleanCompareNode booleanCompare = new BooleanCompareNode(leftBool, comparator, rightBool);
+
+        return booleanCompare;
     }
 
     // An assignment is an identifier (with possible array index) followed by := followed by a boolCompare.
@@ -282,16 +295,19 @@ public class Parser {
 
     /**
      * Condensed version to get comparators for boolCompare
-     * @return token of comparator; null if not a comparator
+     * @return enum type of comparator; null if not a comparator
      */
-    private Token getComparator(){
-        if(matchAndRemove(Token.tokenType.LESSTHAN) != null) return new Token(Token.tokenType.LESSTHAN);
-        else if (matchAndRemove(Token.tokenType.LESSOREQUAL) != null) return new Token(Token.tokenType.LESSOREQUAL);
-        else if(matchAndRemove(Token.tokenType.GREATERTHAN) != null) return new Token(Token.tokenType.GREATERTHAN);
-        else if(matchAndRemove(Token.tokenType.GREATEROREQUAL) != null) return new Token(Token.tokenType.GREATEROREQUAL);
-        else if(matchAndRemove(Token.tokenType.EQUALS) != null) return new Token(Token.tokenType.EQUALS);
-        else if(matchAndRemove(Token.tokenType.NOTEQUAL) != null) return new Token(Token.tokenType.NOTEQUAL);
+    private BooleanCompareNode.comparisonType getComparator(){
+        BooleanCompareNode.comparisonType comparator;
+        if(matchAndRemove(Token.tokenType.LESSTHAN) != null) return comparator = BooleanCompareNode.comparisonType.LESSTHAN;
+        else if (matchAndRemove(Token.tokenType.LESSOREQUAL) != null) return comparator = BooleanCompareNode.comparisonType.LESSOREQUAL;
+        else if(matchAndRemove(Token.tokenType.GREATERTHAN) != null) return comparator = BooleanCompareNode.comparisonType.GREATERTHAN;
+        else if(matchAndRemove(Token.tokenType.GREATEROREQUAL) != null) return comparator = BooleanCompareNode.comparisonType.GREATEROREQUAL;
+        else if(matchAndRemove(Token.tokenType.EQUALS) != null) return comparator = BooleanCompareNode.comparisonType.EQUAL;
+        else if(matchAndRemove(Token.tokenType.NOTEQUAL) != null) return comparator = BooleanCompareNode.comparisonType.NOTEQUAL;
         else return null;
     }
+
+
 
 }
