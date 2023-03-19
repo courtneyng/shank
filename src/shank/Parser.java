@@ -267,12 +267,9 @@ public class Parser {
      */
     public ArrayList<VariableNode> parameterDeclarations(){
         ArrayList<VariableNode> variableNodes = new ArrayList<>();
-        while(peek(0).getType() != Token.tokenType.RPAREN){
-            Token token = matchAndRemove(Token.tokenType.VAR);
-            if(token != null){
 
-            }
-        }
     }
+
+    private Node boolCompare()
 
 }
