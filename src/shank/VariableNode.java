@@ -2,11 +2,15 @@ package shank;
 
 public class VariableNode extends Node{
     private String name;
-    private Token type;
+    private Token.tokenType type;
     private Node changeable;
 
     // Public Accessors
-    public VariableNode(String name, Token type, Node changeable){
+
+    // empty constructor
+    public VariableNode(){}
+
+    public VariableNode(String name, Token.tokenType type, Node changeable){
         this.name = name;
         this.type = type;
         this.changeable = changeable;
@@ -16,7 +20,7 @@ public class VariableNode extends Node{
         return name;
     }
 
-    public Token getType(){
+    public Token.tokenType getType(){
         return type;
     }
 

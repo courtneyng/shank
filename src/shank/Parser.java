@@ -177,7 +177,7 @@ public class Parser {
         if(matchAndRemove(Token.tokenType.LPAREN) == null)  throw new SyntaxErrorException("[Parser] Expected: '(' ");
 
         // Expects a list of 0 or more variable declarations, otherwise throw syntax error
-        if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER) parameters = parameters();
+        if(tokens.get(0).getType() == Token.tokenType.IDENTIFIER) parameters = parameterDeclarations();
 
         // Expects right parenthesis token, otherwise throw syntax error
         if(matchAndRemove(Token.tokenType.RPAREN) == null) throw new SyntaxErrorException("[Parser] Expected: ')' ");
@@ -189,13 +189,13 @@ public class Parser {
 
         /* start constants check */
         if(matchAndRemove(Token.tokenType.CONSTANTS) != null){
-            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null){
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) // expects EOL after character
                 throw new SyntaxErrorException("[Parser] Expected: End of Line. Constants should have its own line");
-                constants.add(constants());
-                while(!(tokens.isEmpty()) && tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){
-                    constants.add(constants());
-                }
+            constants.add(getConstants());
+            while(!(tokens.isEmpty()) && tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){ // while not empty
+                constants.add(getConstants());
             }
+
         }
         /* end constants check */
 
@@ -204,14 +204,14 @@ public class Parser {
             if(matchAndRemove(Token.tokenType.ENDOFLINE) == null)
                 throw new SyntaxErrorException("[Parser] Expected: End of Line. Variables should have its own line");
 
-            ArrayList<VariableNode> oneLineVar = variables();
+            ArrayList<VariableNode> oneLineVar = getVariables();
 
             for(int i=0; i<oneLineVar.size(); i++){
                 variables.add(oneLineVar.get(i));
             }
 
             while(tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){
-                oneLineVar = variables();
+                oneLineVar = getVariables();
                 for(int i=0; i<oneLineVar.size(); i++){
                     oneLineVar.add(oneLineVar.get(i));
                 }
@@ -221,7 +221,7 @@ public class Parser {
 
         if(matchAndRemove(Token.tokenType.INDENT) == null) throw new SyntaxErrorException("[Parser] Expected: Indent");
 
-        statements = body();
+        //statements
 
         // initialize new function node to return
         FunctionNode functionNode = new FunctionNode(functionName);
@@ -290,7 +290,15 @@ public class Parser {
 
     // An assignment is an identifier (with possible array index) followed by := followed by a boolCompare.
     public AssignmentNode assignment() throws SyntaxErrorException{
-        Node target =
+        if(!peek(0).getType().equals(Token.tokenType.NUMBER) && !peek(0).getType().equals(Token.tokenType.IDENTIFIER))
+            throw new SyntaxErrorException("[Parser: assignment()] Expected: Number");
+
+        Node expr = expression();
+        VariableReferenceNode name = new VariableReferenceNode(peek(0).getNameIdentifier());
+        AssignmentNode assignment = new AssignmentNode(name, expr);
+
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser: assignment()] Expected: End of line");
+        return assignment;
     }
 
     /**
@@ -308,6 +316,77 @@ public class Parser {
         else return null;
     }
 
+    /**
+     * IDENTIFIER := NUMBER
+     * @return constants
+     * @throws SyntaxErrorException - if missing members of definition
+     */
+    private VariableNode getConstants() throws SyntaxErrorException{
+        Token name = matchAndRemove(Token.tokenType.IDENTIFIER);
+        if(name == null) throw new SyntaxErrorException("[Parser: getConstants()] Expected: Identifier");
+        if(matchAndRemove(Token.tokenType.EQUALS) == null) throw new SyntaxErrorException("[Parser: getConstants()] Expected: Equals");
 
+        Token num = matchAndRemove(Token.tokenType.NUMBER);
+        if(num == null) throw new SyntaxErrorException("[Parser: getConstants()] Expected: Number");
+
+        VariableNode constant = new VariableNode();
+
+        if(num.getValue().contains("."))
+            constant = new VariableNode(name.getNameIdentifier(), Token.tokenType.REAL, new RealNode(Float.parseFloat(num.getValue())));
+        else constant = new VariableNode(name.getNameIdentifier(), Token.tokenType.INTEGER, new IntegerNode(Integer.parseInt(num.getValue())));
+
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null)
+            throw new SyntaxErrorException("[Parser: getConstants()] Expected: End of line");
+
+        return constant;
+    }
+
+    /**
+     * Gets the variables for boolCompare
+     * @return variables
+     * @throws SyntaxErrorException
+     */
+    private ArrayList<VariableNode> getVariables() throws SyntaxErrorException{
+        ArrayList<Token> names = new ArrayList<>();
+        ArrayList<VariableNode> variables = new ArrayList<>();
+
+        Token name = matchAndRemove(Token.tokenType.IDENTIFIER);
+        names.add(name);
+
+        // if creating multiple variables on same line, names are separated by commas
+        while(matchAndRemove(Token.tokenType.COMMA) != null){
+            name = matchAndRemove(Token.tokenType.IDENTIFIER);
+            names.add(name);
+        }
+
+        if(matchAndRemove(Token.tokenType.COLON) == null) throw new SyntaxErrorException("[Parser: getVariables()] Expected: ':'");
+
+        if(matchAndRemove(Token.tokenType.INTEGER) != null){
+            for(int i=0; i<names.size(); i++){
+                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.INTEGER, new IntegerNode(0)));
+            }
+        }
+        else if(matchAndRemove(Token.tokenType.REAL) != null){
+            for(int i=0; i<names.size(); i++){
+                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.REAL, new IntegerNode(0)));
+            }
+        }
+        else if(matchAndRemove(Token.tokenType.STRING) != null){
+            for(int i=0; i<names.size(); i++){
+                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.STRING, new StringNode("")));
+            }
+        }
+        else if(matchAndRemove(Token.tokenType.CHARACTER) != null){
+            for(int i=0; i<names.size(); i++){
+                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.CHARACTER, new CharacterNode(' ')));
+            }
+        }
+        else throw new SyntaxErrorException("[Parser: getVariables()] Expected: Data Type (Integer, Real, String, Character)");
+
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null)
+            throw new SyntaxErrorException("[Parser: getVariables] Expected: End of line");
+
+        return variables;
+    }
 
 }
