@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update Parser.java: assignment(), getVariables(), getConstants()">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam(),">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Shank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Shank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +106,7 @@
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
-      <workItem from="1679256235211" duration="15045000" />
-    </task>
-    <task id="LOCAL-00005" summary="removed extraneous lines, working out why decimal is not working">
-      <created>1675576463452</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1675576463452</updated>
+      <workItem from="1679256235211" duration="16024000" />
     </task>
     <task id="LOCAL-00006" summary="adjusted switch cases, decimal not completely fixed">
       <created>1675623193454</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679272382308</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam(),">
+      <created>1679273503251</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1679273503251</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +470,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update to indent, needs work" />
     <MESSAGE value="update to words/reserved words identifier" />
     <MESSAGE value="update append calls" />
     <MESSAGE value="update indent state (not working as expected yet)" />
@@ -495,7 +494,8 @@
     <MESSAGE value="condensing if statements" />
     <MESSAGE value="fixed getComparator, update boolCompare()" />
     <MESSAGE value="update Parser.java: assignment(), getVariables(), getConstants()" />
-    <option name="LAST_COMMIT_MESSAGE" value="update Parser.java: assignment(), getVariables(), getConstants()" />
+    <MESSAGE value="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam()," />
+    <option name="LAST_COMMIT_MESSAGE" value="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam()," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

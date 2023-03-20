@@ -9,21 +9,28 @@ import java.nio.charset.StandardCharsets;
 
 public class Shank {
     public static void main(String[] args) throws Exception{
+        if (args.length != 1) {
+            System.out.println("Inappropriate number of arguments.");
+            System.exit(0);
+        }
+        String fileName = args[0];
+        Path myPath = Paths.get(fileName);
+        List <String> lines = Files.readAllLines(myPath, StandardCharsets.UTF_8);
         // Instantiate Lexer
         Lexer newLexer = new Lexer();
+        ArrayList<Token> input = new ArrayList<>();
 
-        Path filePath = Paths.get("C:\\Users\\court\\Desktop\\cs\\shank\\shank\\src\\shank\\expressions.txt");
-        try{
-            List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
-            //Goes through each line from file and puts it through lexer
-            for(String line: lines){
+        lines.forEach(line -> {
+            try {
                 newLexer.Lex(line);
+                //input.add(newLexer.Lex(line);
+            } catch (SyntaxErrorException e) {
+                //If the file does not go through print error, %s prints the exception error
+                System.out.format("Error: %s", e);
             }
-        } catch(IOException exception){
-            //If the file does not go through print error, %s prints the exception error
-            System.out.format("Error: %s", exception);
-        }
+        });
 
+        Parser parse = new Parser(input);
 
     }
 }
