@@ -77,6 +77,7 @@ public class Parser {
         return firstNode;
     }
     //{-} number or lparen EXPRESSION rparen
+    // or variableReference or variableReference [ EXPRESSION ]
     public Node factor(){
         if(tokens.get(0).getType().equals(Token.tokenType.NUMBER)) {
             Token numberToken = matchAndRemove(Token.tokenType.NUMBER);
@@ -114,7 +115,6 @@ public class Parser {
             return null;
         }
     }
-
 
     /**
      * uses matchAndRemove to match and discard one or more ENDOFLINE tokens.
@@ -250,19 +250,53 @@ public class Parser {
      * Remember that a parameter may or may not be var. Remember that there may not be any parameters.
      * @return all function parameters
      */
-    public ArrayList<VariableNode> parameterDeclarations(){
+    public ArrayList<VariableNode> parameterDeclarations() throws SyntaxErrorException{
         ArrayList<VariableNode> variableNodeArrayList = new ArrayList<>();
         ArrayList<VariableNode> params = new ArrayList<>();
-        while(peek(0).getType() != Token.tokenType.RPAREN){
-            if(matchAndRemove(Token.tokenType.VAR) != null){
 
-            }
-            else{
+        for(int i=0; i<params.size(); i++){
+            variableNodeArrayList.add(params.get(i));
+        }
 
+        // names in parameters are separated using semicolons:
+        // define someFunction(readOnly:integer; var changeable : integer; alsoReadOnly : integer)
+        while(matchAndRemove(Token.tokenType.SEMICOLON) != null){
+            params = multiParam();
+            for(int i=0; i<params.size(); i++){
+                variableNodeArrayList.add(params.get(i));
             }
         }
 
-        return params;
+        return variableNodeArrayList;
+    }
+
+    /**
+     * Identifies multi parameter functions
+     * @return parameter nodes
+     * @throws SyntaxErrorException - missing definition
+     */
+    public ArrayList<VariableNode> multiParam() throws SyntaxErrorException{
+        ArrayList<Token> paramTokens = new ArrayList<>();
+        ArrayList<VariableNode> paramNodes = new ArrayList<>();
+
+        paramTokens.add(matchAndRemove(Token.tokenType.IDENTIFIER));
+
+        while(matchAndRemove(Token.tokenType.COMMA) != null) paramTokens.add(matchAndRemove(Token.tokenType.IDENTIFIER));
+        if(matchAndRemove(Token.tokenType.COLON) != null) throw new SyntaxErrorException("[Parser: multiParam()] Expected: ':'");
+        if(matchAndRemove(Token.tokenType.INTEGER) != null){
+            for(int i=0; i<paramTokens.size(); i++){
+                IntegerNode intVal = new IntegerNode(0);
+                VariableNode varNode = new VariableNode(paramTokens.get(i).getNameIdentifier(), Token.tokenType.INTEGER, intVal);
+                paramNodes.add(varNode);
+            }
+        } else if(matchAndRemove(Token.tokenType.REAL) != null){
+            for(int i=0; i<paramTokens.size(); i++){
+                RealNode realVal = new RealNode(0);
+                VariableNode varNode = new VariableNode(paramTokens.get(i).getNameIdentifier(), Token.tokenType.REAL, realVal);
+            }
+        } else throw new SyntaxErrorException("[Parser: multiParam()] Expected: Data Type (Integer, Real)");
+
+        return paramNodes;
     }
 
     /**
