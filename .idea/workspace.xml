@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="try to add parse to main">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="create ASTNode.java, ForNode.java, RepeatNode.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,14 +105,7 @@
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
-      <workItem from="1679256235211" duration="19827000" />
-    </task>
-    <task id="LOCAL-00007" summary="adjusted switch cases, decimal not completely fixed">
-      <created>1675623213418</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1675623213418</updated>
+      <workItem from="1679256235211" duration="21505000" />
     </task>
     <task id="LOCAL-00008" summary="Mostly functioning">
       <created>1675638155896</created>
@@ -450,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679274516708</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="create ASTNode.java, ForNode.java, RepeatNode.java">
+      <created>1679664473117</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1679664473117</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +469,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update append calls" />
     <MESSAGE value="update indent state (not working as expected yet)" />
     <MESSAGE value="update node with toString," />
     <MESSAGE value="update nodes and add body to exp, term, parse" />
@@ -494,7 +493,8 @@
     <MESSAGE value="update Parser.java: assignment(), getVariables(), getConstants()" />
     <MESSAGE value="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam()," />
     <MESSAGE value="try to add parse to main" />
-    <option name="LAST_COMMIT_MESSAGE" value="try to add parse to main" />
+    <MESSAGE value="create ASTNode.java, ForNode.java, RepeatNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="create ASTNode.java, ForNode.java, RepeatNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
