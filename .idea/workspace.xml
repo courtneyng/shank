@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="remove ASTNode.java">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update ForNode.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/ForNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ForNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/IfNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IfNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +106,7 @@
       <workItem from="1676917016181" duration="30950000" />
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
-      <workItem from="1679256235211" duration="23456000" />
-    </task>
-    <task id="LOCAL-00009" summary="Mostly functioning">
-      <created>1675651584415</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1675651584415</updated>
+      <workItem from="1679256235211" duration="28903000" />
     </task>
     <task id="LOCAL-00010" summary="Update some comments">
       <created>1675788602207</created>
@@ -451,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679775848313</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="update ForNode.java">
+      <created>1679778707307</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1679778707307</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +470,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update node with toString," />
     <MESSAGE value="update nodes and add body to exp, term, parse" />
     <MESSAGE value="update parse" />
     <MESSAGE value="init BooleanNode.java, CharacterNode.java, StringNode.java" />
@@ -495,7 +494,8 @@
     <MESSAGE value="try to add parse to main" />
     <MESSAGE value="create ASTNode.java, ForNode.java, RepeatNode.java" />
     <MESSAGE value="remove ASTNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove ASTNode.java" />
+    <MESSAGE value="update ForNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update ForNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
