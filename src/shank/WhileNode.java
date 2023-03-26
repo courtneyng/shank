@@ -13,6 +13,14 @@ public class WhileNode extends StatementNode{
         this.condition = condition;
     }
 
+    public ArrayList<StatementNode> getStatements() {
+        return statements;
+    }
+
+    public BooleanCompareNode getCondition() {
+        return condition;
+    }
+
     @Override
     public String toString() {
         String str = "[While] Condition: (" + condition.toString() + ") Statements:";
