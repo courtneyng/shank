@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update FunctionCallNode.java, update toString() the rest">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update FunctionCallNode.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/FunctionCallNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/FunctionCallNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,14 +108,7 @@
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
-      <workItem from="1679849342995" duration="499000" />
-    </task>
-    <task id="LOCAL-00015" summary="multispanning lines comments attempt, removed extraneous token">
-      <created>1676224305321</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1676224305321</updated>
+      <workItem from="1679849342995" duration="5128000" />
     </task>
     <task id="LOCAL-00016" summary="fixed end comment">
       <created>1676224390548</created>
@@ -452,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679849224544</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="update FunctionCallNode.java">
+      <created>1679850133782</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1679850133783</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Indent case working, removed parse to work on indent, slight update to node" />
     <MESSAGE value="cleaning, comments" />
     <MESSAGE value="add punctuation" />
     <MESSAGE value="fixed indent for newline with no indent" />
@@ -496,7 +496,8 @@
     <MESSAGE value="update RepeatNode.java" />
     <MESSAGE value="update WhileNode.java" />
     <MESSAGE value="update FunctionCallNode.java, update toString() the rest" />
-    <option name="LAST_COMMIT_MESSAGE" value="update FunctionCallNode.java, update toString() the rest" />
+    <MESSAGE value="update FunctionCallNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update FunctionCallNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

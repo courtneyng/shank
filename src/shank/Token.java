@@ -10,7 +10,8 @@ public class Token {
         EQUALS, NOTEQUAL, LESSTHAN, LESSOREQUAL, GREATERTHAN, GREATEROREQUAL,
         PLUS, MINUS, TIMES, DIVIDE, MOD,
         STRINGLITERAL, CHARACTERLITERAL, INDENT, DEDENT,
-        COMMA, COLON, SEMICOLON, LPAREN, RPAREN
+        COMMA, COLON, SEMICOLON, LPAREN, RPAREN,
+        ASSIGN
     }
 
     private tokenType type;
@@ -58,6 +59,8 @@ public class Token {
     public String getNameIdentifier(){
         return nameIdentifier;
     }
+
+    public Token(){}
 
     public Token(tokenType tokenFinder){
         this.value = tokenFinder.toString();

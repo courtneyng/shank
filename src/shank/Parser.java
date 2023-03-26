@@ -138,6 +138,48 @@ public class Parser {
     }
 
     /**
+     * Handle single statements
+     * @return statement
+     * @throws SyntaxErrorException
+     */
+    private StatementNode statement() throws SyntaxErrorException {
+        AssignmentNode assignment = assignment();
+        if(assignment != null) return assignment;
+
+        IfNode ifStatement = parseIf(false); // looks for if statement
+        if(ifStatement != null) return ifStatement;
+
+        WhileNode whileStatement = parseWhile();
+        if(whileStatement != null) return whileStatement;
+
+        RepeatNode repeatStatement = parseRepeat();
+        if(repeatStatement != null) return repeatStatement;
+
+        ForNode forStatement = parseFor();
+        if(forStatement != null) return forStatement;
+
+        FunctionCallNode functionCallStatement = parseFunctionCalls();
+        if(functionCallStatement != null) return functionCallStatement;
+
+        return null;
+    }
+
+
+    /**
+     *  Handles all statements
+     * @return statement nodes
+     * @throws SyntaxErrorException
+     */
+    private ArrayList<StatementNode> statements() throws SyntaxErrorException {
+        ArrayList<StatementNode> statements = new ArrayList<>();
+        while(!peek(0).toString().equals(Token.tokenType.ENDOFLINE)){
+            StatementNode statementNode = statement();
+            statements.add(statementNode);
+        }
+        return statements;
+    }
+
+    /**
      * function() processes a function.
          * It expects a define token.
          * Then an identifier (the name).
@@ -222,6 +264,7 @@ public class Parser {
         if(matchAndRemove(Token.tokenType.INDENT) == null) throw new SyntaxErrorException("[Parser] Expected: Indent");
 
         //statements
+        statements = statements();
 
         // initialize new function node to return
         FunctionNode functionNode = new FunctionNode(functionName);
@@ -324,10 +367,11 @@ public class Parser {
 
     // An assignment is an identifier (with possible array index) followed by := followed by a boolCompare.
     public AssignmentNode assignment() throws SyntaxErrorException{
+        if(matchAndRemove(Token.tokenType.ASSIGN) == null) throw new SyntaxErrorException("[Parser assignment] Expected: Assign");
         if(!peek(0).getType().equals(Token.tokenType.NUMBER) && !peek(0).getType().equals(Token.tokenType.IDENTIFIER))
             throw new SyntaxErrorException("[Parser: assignment()] Expected: Number");
 
-        Node expr = expression();
+        Node expr = boolCompare();
         VariableReferenceNode name = new VariableReferenceNode(peek(0).getNameIdentifier());
         AssignmentNode assignment = new AssignmentNode(name, expr);
 
@@ -421,6 +465,34 @@ public class Parser {
             throw new SyntaxErrorException("[Parser: getVariables] Expected: End of line");
 
         return variables;
+    }
+
+    public ForNode parseFor() throws SyntaxErrorException{
+        if(matchAndRemove(Token.tokenType.FOR) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: 'for'");
+
+        Token name = matchAndRemove(Token.tokenType.IDENTIFIER);
+
+        if(matchAndRemove(Token.tokenType.IDENTIFIER) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: identifier name");
+        if(matchAndRemove(Token.tokenType.FROM) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: 'from'");
+
+        Token num = matchAndRemove(Token.tokenType.NUMBER);
+        if(num == null) throw new SyntaxErrorException("[Parser: parseFar] Expected: number");
+        Node from = new IntegerNode(Integer.parseInt(num.getValue()));
+        //Node from = expression();
+
+        if(matchAndRemove(Token.tokenType.TO) == null) throw  new SyntaxErrorException("[Parser: parseFor] Expected: 'to'");
+
+        Token secondNum = matchAndRemove(Token.tokenType.NUMBER);
+        if(secondNum == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: number");
+        Node to = new IntegerNode(Integer.parseInt(secondNum.getValue()));
+
+        VariableReferenceNode variableNode = new VariableReferenceNode(name.getNameIdentifier());
+
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: EOL");
+
+        ArrayList<StatementNode> statements = statements();
+
+        return new ForNode(from, to, variableNode, statements);
     }
 
 }

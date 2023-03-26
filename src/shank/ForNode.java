@@ -14,7 +14,7 @@ public class ForNode extends StatementNode{
      */
     public ForNode(){}
 
-    public ForNode(Node from, Node to, ArrayList<StatementNode> statements, VariableReferenceNode variable) {
+    public ForNode(Node from, Node to, VariableReferenceNode variable, ArrayList<StatementNode> statements) {
         this.from = from;
         this.to = to;
         this.statements = statements;
