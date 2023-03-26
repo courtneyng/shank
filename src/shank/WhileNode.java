@@ -25,7 +25,7 @@ public class WhileNode extends StatementNode{
     public String toString() {
         String str = "[While] Condition: (" + condition.toString() + ") Statements:";
         for(int i=0; i<statements.size(); i++){
-            str = str + "\n " + statements.get(i).toString();
+            str += "\n " + statements.get(i).toString();
         }
         str += ")";
 

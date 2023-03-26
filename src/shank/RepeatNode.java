@@ -25,7 +25,7 @@ public class RepeatNode extends StatementNode{
     public String toString() {
         String str = "[RepeatNode] Condition: (" + condition.toString() + ") \nStatements: ";
         for(int i=0; i< statements.size(); i++){
-            str = str + "\n " + statements.get(i).toString();
+            str += "\n " + statements.get(i).toString();
         }
         str += ")";
 

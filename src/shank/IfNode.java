@@ -66,7 +66,7 @@ public class IfNode extends StatementNode{
         else str = "\n IfNode condition: (" + condition.toString() + ") \n statements:";
 
         for(int i=0; i<statements.size(); i++){
-            str = str + "\n " + statements.get(i).toString();
+            str += "\n " + statements.get(i).toString();
         }
 
         if(this.next == null) return str;

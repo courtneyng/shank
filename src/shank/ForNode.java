@@ -26,7 +26,7 @@ public class ForNode extends StatementNode{
         String fullStatement = "From: " + from.toString() + " To: " + to.toString() + " Variable " +
                 variable.toString() + " Statements: " + statements.toString();
         for(int i=0; i<statements.size(); i++){
-            fullStatement = fullStatement + "\n" + statements.get(i).toString();
+            fullStatement += "\n" + statements.get(i).toString();
         }
         return fullStatement;
     }
