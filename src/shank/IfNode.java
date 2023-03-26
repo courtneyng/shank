@@ -58,6 +58,14 @@ public class IfNode extends StatementNode{
         return next;
     }
 
+    /**
+     * Add elseif in next
+     * @param next
+     */
+    public void setNext(IfNode next){
+        this.next = next;
+    }
+
     @Override
     public String toString() {
         String str;

@@ -146,7 +146,7 @@ public class Parser {
         AssignmentNode assignment = assignment();
         if(assignment != null) return assignment;
 
-        IfNode ifStatement = parseIf(false); // looks for if statement
+        IfNode ifStatement = parseIf();
         if(ifStatement != null) return ifStatement;
 
         WhileNode whileStatement = parseWhile();
@@ -494,5 +494,55 @@ public class Parser {
 
         return new ForNode(from, to, variableNode, statements);
     }
+
+    public WhileNode parseWhile() throws SyntaxErrorException{
+        ArrayList<StatementNode> statements = new ArrayList<>();
+        if(matchAndRemove(Token.tokenType.WHILE) == null) throw new SyntaxErrorException("[Parser parseWhile] Expected: 'while'");
+        Node booleanCompare = boolCompare();
+        if(booleanCompare == null) throw new SyntaxErrorException("[Parser parseWhile] Expected: boolean expression");
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseWhile] Expected: EOL");
+        statements = statements();
+
+        WhileNode whileNode = new WhileNode(statements, (BooleanCompareNode) booleanCompare);
+        return whileNode;
+    }
+
+    public IfNode parseIf() throws SyntaxErrorException{
+        IfNode current = new IfNode();
+        if(matchAndRemove(Token.tokenType.IF) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: 'if'");
+        Node booleanCompare = boolCompare();
+
+        if(booleanCompare == null) throw new SyntaxErrorException("[Parser parseIf] Expected: boolean expression");
+        if(matchAndRemove(Token.tokenType.THEN) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: 'then'");
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
+
+        ArrayList<StatementNode> ifStatements = statements();
+        IfNode ifNode = new IfNode(ifStatements, (BooleanCompareNode) booleanCompare);
+        current = ifNode;
+
+        while(matchAndRemove(Token.tokenType.ELSIF) != null){
+            Node elseIf = boolCompare();
+            if(elseIf == null) throw new SyntaxErrorException("[Parser parseIf] Expected: boolean expression");
+            if(matchAndRemove(Token.tokenType.THEN) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: 'then'");
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
+            ArrayList<StatementNode> elseIfStatements = statements();
+            IfNode elseIfNode= new IfNode(elseIfStatements, (BooleanCompareNode) elseIf);
+            current.setNext(elseIfNode);
+            current = elseIfNode;
+        }
+
+        if(matchAndRemove(Token.tokenType.ELSE) != null){
+            if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
+            ArrayList<StatementNode> elseStatements =  statements();
+            IfNode elseNode = new IfNode(elseStatements);
+            current.setNext(elseNode);
+            current = elseNode;
+        }
+
+        return ifNode;
+    }
+
+
+
 
 }

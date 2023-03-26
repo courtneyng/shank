@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update FunctionCallNode.java">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/IfNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IfNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
     </list>
@@ -108,14 +109,7 @@
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
-      <workItem from="1679849342995" duration="5128000" />
-    </task>
-    <task id="LOCAL-00016" summary="fixed end comment">
-      <created>1676224390548</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1676224390548</updated>
+      <workItem from="1679849342995" duration="6343000" />
     </task>
     <task id="LOCAL-00017" summary="added line number to token class">
       <created>1676231291317</created>
@@ -453,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679850133783</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java">
+      <created>1679855847514</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1679855847514</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="cleaning, comments" />
     <MESSAGE value="add punctuation" />
     <MESSAGE value="fixed indent for newline with no indent" />
     <MESSAGE value="fixed identifiers, edit nodes" />
@@ -497,7 +497,8 @@
     <MESSAGE value="update WhileNode.java" />
     <MESSAGE value="update FunctionCallNode.java, update toString() the rest" />
     <MESSAGE value="update FunctionCallNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="update FunctionCallNode.java" />
+    <MESSAGE value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
