@@ -4,24 +4,15 @@ import java.util.ArrayList;
 
 public class Parser {
     private ArrayList<Token> tokens;
-    private Node root;
 
     public Parser(ArrayList<Token> tokens){
-        this.tokens = tokens;
-    }
-
-    public ArrayList<Token> getTokens() {
-        return tokens;
-    }
-
-    public void setTokens(ArrayList<Token> tokens) {
         this.tokens = tokens;
     }
 
     /**
      * parse() should call function() in its loop. Every FunctionNode returned should go into the ProgramNode
      * (there will be only one of these). null should end the parse() loop. parse() should return the ProgramNode.
-     * @return
+     * @return Program Node
      * @throws SyntaxErrorException
      */
     public ProgramNode Parse() throws SyntaxErrorException {
@@ -36,7 +27,7 @@ public class Parser {
         Node secondNode = null;
         MathOpNode.MathOp operator;
         //Then it (in a loop) looks for a + or -
-        while(peek(0).toString() == "PLUS" || peek(0).toString() == "MINUS"){
+        while(peek(0).getType().equals(Token.tokenType.PLUS) || peek(0).getType().equals(Token.tokenType.MINUS)){
             if(matchAndRemove(Token.tokenType.PLUS) != null){
                 operator = MathOpNode.MathOp.ADD;
                 secondNode = term();
@@ -58,7 +49,7 @@ public class Parser {
         Node secondNode = null;
         MathOpNode.MathOp operator;
 
-        while(peek(0).toString() == "TIMES" || peek(0).toString() == "DIVIDE" || peek(0).toString() == "MOD"){
+        while(peek(0).getType().equals(Token.tokenType.TIMES) || peek(0).getType().equals(Token.tokenType.DEFINE) || peek(0).getType().equals(Token.tokenType.MOD)){
             if(matchAndRemove(Token.tokenType.TIMES) != null){
                 operator = MathOpNode.MathOp.MULTIPLY;
                 secondNode = factor();
@@ -100,9 +91,8 @@ public class Parser {
     /**
      * accepts a token type. Looks at the next token in the collection:
      *
-     * @param type
+     * @param type - the type of the token
      * @return If the passed in token type matches the next token’s type, remove that token and return it.
-     * @return If the passed in token type DOES NOT match the next token’s type (or there are no more tokens)
      * return null.
      */
     private Token matchAndRemove(Token.tokenType type){
@@ -119,18 +109,18 @@ public class Parser {
     /**
      * uses matchAndRemove to match and discard one or more ENDOFLINE tokens.
      * Throw a SyntaxErrorException if no ENDOFLINE was found.
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     private void expectsEOL() throws SyntaxErrorException{
         while (!tokens.isEmpty() && tokens.get(0).getType() == Token.tokenType.ENDOFLINE) {
             tokens.remove(0);
         }
-        throw new SyntaxErrorException("No EOL found.");
+        throw new SyntaxErrorException("[Parser expectsEOL] Expected: EOL");
     }
 
     /**
      * peek – accepts an integer and looks ahead that many tokens and returns that token.
-     * @param x
+     * @param x - index
      * @return Returns null if there aren’t enough tokens to fulfill the request.
      */
     private Token peek(int x){
@@ -140,7 +130,7 @@ public class Parser {
     /**
      * Handle single statements
      * @return statement
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     private StatementNode statement() throws SyntaxErrorException {
         AssignmentNode assignment = assignment();
@@ -159,9 +149,7 @@ public class Parser {
         if(forStatement != null) return forStatement;
 
         FunctionCallNode functionCallStatement = parseFunctionCalls();
-        if(functionCallStatement != null) return functionCallStatement;
-
-        return null;
+        return functionCallStatement;
     }
 
 
@@ -205,7 +193,7 @@ public class Parser {
         ArrayList<VariableNode> variables = new ArrayList<>();
         ArrayList<StatementNode> statements = new ArrayList<>();
 
-        // creates a new function node calls suboridinate methods
+        // creates a new function node calls subordinate methods
         // Expects define token, otherwise throw syntax error
         if(matchAndRemove(Token.tokenType.DEFINE) == null) throw new SyntaxErrorException("[Parser] Expected: define");
 
@@ -327,15 +315,15 @@ public class Parser {
         while(matchAndRemove(Token.tokenType.COMMA) != null) paramTokens.add(matchAndRemove(Token.tokenType.IDENTIFIER));
         if(matchAndRemove(Token.tokenType.COLON) != null) throw new SyntaxErrorException("[Parser: multiParam()] Expected: ':'");
         if(matchAndRemove(Token.tokenType.INTEGER) != null){
-            for(int i=0; i<paramTokens.size(); i++){
+            for (Token paramToken : paramTokens) {
                 IntegerNode intVal = new IntegerNode(0);
-                VariableNode varNode = new VariableNode(paramTokens.get(i).getNameIdentifier(), Token.tokenType.INTEGER, intVal);
+                VariableNode varNode = new VariableNode(paramToken.getNameIdentifier(), Token.tokenType.INTEGER, intVal);
                 paramNodes.add(varNode);
             }
         } else if(matchAndRemove(Token.tokenType.REAL) != null){
-            for(int i=0; i<paramTokens.size(); i++){
+            for (Token paramToken : paramTokens) {
                 RealNode realVal = new RealNode(0);
-                VariableNode varNode = new VariableNode(paramTokens.get(i).getNameIdentifier(), Token.tokenType.REAL, realVal);
+                VariableNode varNode = new VariableNode(paramToken.getNameIdentifier(), Token.tokenType.REAL, realVal);
             }
         } else throw new SyntaxErrorException("[Parser: multiParam()] Expected: Data Type (Integer, Real)");
 
@@ -422,7 +410,7 @@ public class Parser {
     /**
      * Gets the variables for boolCompare
      * @return variables
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     private ArrayList<VariableNode> getVariables() throws SyntaxErrorException{
         ArrayList<Token> names = new ArrayList<>();
@@ -440,24 +428,16 @@ public class Parser {
         if(matchAndRemove(Token.tokenType.COLON) == null) throw new SyntaxErrorException("[Parser: getVariables()] Expected: ':'");
 
         if(matchAndRemove(Token.tokenType.INTEGER) != null){
-            for(int i=0; i<names.size(); i++){
-                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.INTEGER, new IntegerNode(0)));
-            }
+            for (Token token : names) variables.add(new VariableNode(token.getNameIdentifier(), Token.tokenType.INTEGER, new IntegerNode(0)));
         }
         else if(matchAndRemove(Token.tokenType.REAL) != null){
-            for(int i=0; i<names.size(); i++){
-                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.REAL, new IntegerNode(0)));
-            }
+            for (Token token : names) variables.add(new VariableNode(token.getNameIdentifier(), Token.tokenType.REAL, new IntegerNode(0)));
         }
         else if(matchAndRemove(Token.tokenType.STRING) != null){
-            for(int i=0; i<names.size(); i++){
-                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.STRING, new StringNode("")));
-            }
+            for (Token token : names) variables.add(new VariableNode(token.getNameIdentifier(), Token.tokenType.STRING, new StringNode("")));
         }
         else if(matchAndRemove(Token.tokenType.CHARACTER) != null){
-            for(int i=0; i<names.size(); i++){
-                variables.add(new VariableNode(names.get(i).getNameIdentifier(), Token.tokenType.CHARACTER, new CharacterNode(' ')));
-            }
+            for (Token token : names) variables.add(new VariableNode(token.getNameIdentifier(), Token.tokenType.CHARACTER, new CharacterNode(' ')));
         }
         else throw new SyntaxErrorException("[Parser: getVariables()] Expected: Data Type (Integer, Real, String, Character)");
 
@@ -471,7 +451,7 @@ public class Parser {
      * Parses for blocks
      * Syntax: for IDENTIFIER from # to # EOL (body)
      * @return ForNode
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     public ForNode parseFor() throws SyntaxErrorException{
         if(matchAndRemove(Token.tokenType.FOR) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: 'for'");
@@ -505,7 +485,7 @@ public class Parser {
      * Parses while blocks
      * Syntax: while BoolExpr EOL (body)
      * @return while node
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     public WhileNode parseWhile() throws SyntaxErrorException{
         ArrayList<StatementNode> statements = new ArrayList<>();
@@ -522,10 +502,10 @@ public class Parser {
     /**
      * Parses if block
      * Syntax if BoolExpr then EOL (body)
-     *      elsif BoolExpr theb EOL (body)
+     *      elsif BoolExpr then EOL (body)
      *      else EOL (body)
      * @return if node
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     public IfNode parseIf() throws SyntaxErrorException{
         IfNode current = new IfNode();
@@ -567,7 +547,7 @@ public class Parser {
      * Parses repeat block
      * Syntax: repeat EOL (body) until BoolExpr EOL
      * @return repeat node
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     public RepeatNode parseRepeat() throws SyntaxErrorException{
         if(matchAndRemove(Token.tokenType.REPEAT) == null) throw new SyntaxErrorException("[Parser parseRepeat] Expected: 'repeat'");
@@ -589,8 +569,8 @@ public class Parser {
          * a := 1
          * b := 2
          * c := 3
-     * @return
-     * @throws SyntaxErrorException
+     * @return parameter node
+     * @throws SyntaxErrorException - if missing expected
      */
     public ParameterNode parseFunctionCall() throws SyntaxErrorException{
         Node param;
@@ -617,11 +597,10 @@ public class Parser {
      * Parses function calls with multiple params
      * Syntax: param {comma, param, ...}
      * @return function call node
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - if missing expected
      */
     public FunctionCallNode parseFunctionCalls() throws SyntaxErrorException{
         ArrayList<ParameterNode> functionCallParams = new ArrayList<>();
-        ParameterNode param;
         String functionName ="";
         Token current = matchAndRemove(Token.tokenType.IDENTIFIER);
         if(current != null) functionName = current.getValue();
