@@ -467,6 +467,12 @@ public class Parser {
         return variables;
     }
 
+    /**
+     * Parses for blocks
+     * Syntax: for IDENTIFIER from # to # EOL (body)
+     * @return ForNode
+     * @throws SyntaxErrorException
+     */
     public ForNode parseFor() throws SyntaxErrorException{
         if(matchAndRemove(Token.tokenType.FOR) == null) throw new SyntaxErrorException("[Parser: parseFor] Expected: 'for'");
 
@@ -495,6 +501,12 @@ public class Parser {
         return new ForNode(from, to, variableNode, statements);
     }
 
+    /**
+     * Parses while blocks
+     * Syntax: while BoolExpr EOL (body)
+     * @return while node
+     * @throws SyntaxErrorException
+     */
     public WhileNode parseWhile() throws SyntaxErrorException{
         ArrayList<StatementNode> statements = new ArrayList<>();
         if(matchAndRemove(Token.tokenType.WHILE) == null) throw new SyntaxErrorException("[Parser parseWhile] Expected: 'while'");
@@ -507,6 +519,14 @@ public class Parser {
         return whileNode;
     }
 
+    /**
+     * Parses if block
+     * Syntax if BoolExpr then EOL (body)
+     *      elsif BoolExpr theb EOL (body)
+     *      else EOL (body)
+     * @return if node
+     * @throws SyntaxErrorException
+     */
     public IfNode parseIf() throws SyntaxErrorException{
         IfNode current = new IfNode();
         if(matchAndRemove(Token.tokenType.IF) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: 'if'");
@@ -520,6 +540,7 @@ public class Parser {
         IfNode ifNode = new IfNode(ifStatements, (BooleanCompareNode) booleanCompare);
         current = ifNode;
 
+        // if contains else if
         while(matchAndRemove(Token.tokenType.ELSIF) != null){
             Node elseIf = boolCompare();
             if(elseIf == null) throw new SyntaxErrorException("[Parser parseIf] Expected: boolean expression");
@@ -531,6 +552,7 @@ public class Parser {
             current = elseIfNode;
         }
 
+        // if contains else
         if(matchAndRemove(Token.tokenType.ELSE) != null){
             if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
             ArrayList<StatementNode> elseStatements =  statements();
@@ -538,11 +560,80 @@ public class Parser {
             current.setNext(elseNode);
             current = elseNode;
         }
-
         return ifNode;
     }
 
+    /**
+     * Parses repeat block
+     * Syntax: repeat EOL (body) until BoolExpr EOL
+     * @return repeat node
+     * @throws SyntaxErrorException
+     */
+    public RepeatNode parseRepeat() throws SyntaxErrorException{
+        if(matchAndRemove(Token.tokenType.REPEAT) == null) throw new SyntaxErrorException("[Parser parseRepeat] Expected: 'repeat'");
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
+        ArrayList<StatementNode> statements = statements();
+        if(matchAndRemove(Token.tokenType.UNTIL) == null) throw new SyntaxErrorException("[Parser parseRepeat] Expected: 'until'");
+        Node booleanCompare = boolCompare();
+        if(booleanCompare == null) throw new SyntaxErrorException("[Parser parseIf] Expected: boolean expression");
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseIf] Expected: EOL");
+        return new RepeatNode(statements, (BooleanCompareNode) booleanCompare);
+    }
 
+    /**
+     * Function Call single param
+     * var | identifier | num
+     * define start (args : array of string)
+     * constants pi=3.141
+     * variables a,b,c : integer
+         * a := 1
+         * b := 2
+         * c := 3
+     * @return
+     * @throws SyntaxErrorException
+     */
+    public ParameterNode parseFunctionCall() throws SyntaxErrorException{
+        Node param;
 
+        if(peek(0).getType() .equals(Token.tokenType.VAR)){
+            if(matchAndRemove(Token.tokenType.VAR) == null) throw new SyntaxErrorException("[Parser parseFunctionCall] Expected: 'var'");
+            Token name = matchAndRemove(Token.tokenType.IDENTIFIER);
+            if(name == null) throw new SyntaxErrorException("[Parser parseFunctionCall] Expected: identifier name");
+            param = new VariableReferenceNode(name.getNameIdentifier());
+        } else if (peek(0).getType().equals(Token.tokenType.NUMBER)) {
+            Token num = matchAndRemove(Token.tokenType.NUMBER);
+            if(num == null) throw new SyntaxErrorException("[Parser parseFunctionCall] Expected: number");
 
+            // Float if contains decimal
+            if(num.getValue().contains(".")) param = new RealNode(Float.parseFloat(num.getValue()));
+            else param = new IntegerNode(Integer.parseInt(num.getValue()));
+        } else{
+            throw new SyntaxErrorException("[Parser parseFunctionCall] Expected: parameters");
+        }
+        return (ParameterNode) param;
+    }
+
+    /**
+     * Parses function calls with multiple params
+     * Syntax: param {comma, param, ...}
+     * @return function call node
+     * @throws SyntaxErrorException
+     */
+    public FunctionCallNode parseFunctionCalls() throws SyntaxErrorException{
+        ArrayList<ParameterNode> functionCallParams = new ArrayList<>();
+        ParameterNode param;
+        String functionName ="";
+        Token current = matchAndRemove(Token.tokenType.IDENTIFIER);
+        if(current != null) functionName = current.getValue();
+
+        functionCallParams.add(parseFunctionCall());
+
+        // multiple parameters, call until all done
+        while(matchAndRemove(Token.tokenType.COMMA) != null) functionCallParams.add(parseFunctionCall());
+
+        if(matchAndRemove(Token.tokenType.ENDOFLINE) == null) throw new SyntaxErrorException("[Parser parseFunctionCall] Expected: EOL");
+        FunctionCallNode functionCallNode = new FunctionCallNode(functionName, functionCallParams);
+
+        return functionCallNode;
+    }
 }

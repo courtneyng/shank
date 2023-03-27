@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update IfNode.java, parseIf in Parser, add while to token">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/IfNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IfNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,14 +107,7 @@
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
-      <workItem from="1679849342995" duration="6343000" />
-    </task>
-    <task id="LOCAL-00017" summary="added line number to token class">
-      <created>1676231291317</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1676231291317</updated>
+      <workItem from="1679849342995" duration="12411000" />
     </task>
     <task id="LOCAL-00018" summary="added indent and dedent token, cleaned lexer a bit">
       <created>1676234627747</created>
@@ -454,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679855847514</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="update IfNode.java, parseIf in Parser, add while to token">
+      <created>1679857094269</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1679857094269</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add punctuation" />
     <MESSAGE value="fixed indent for newline with no indent" />
     <MESSAGE value="fixed identifiers, edit nodes" />
     <MESSAGE value="fix expression(), term()" />
@@ -498,7 +495,8 @@
     <MESSAGE value="update FunctionCallNode.java, update toString() the rest" />
     <MESSAGE value="update FunctionCallNode.java" />
     <MESSAGE value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
+    <MESSAGE value="update IfNode.java, parseIf in Parser, add while to token" />
+    <option name="LAST_COMMIT_MESSAGE" value="update IfNode.java, parseIf in Parser, add while to token" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
