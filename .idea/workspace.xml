@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update parses, parseFunctionCalls mainly">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,14 +106,7 @@
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
-      <workItem from="1679849342995" duration="13385000" />
-    </task>
-    <task id="LOCAL-00019" summary="checkpoint, working on identifying reserved words in hashmap">
-      <created>1676250324593</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1676250324593</updated>
+      <workItem from="1679849342995" duration="16226000" />
     </task>
     <task id="LOCAL-00020" summary="identifies hashmap words, identifies indent">
       <created>1676261377275</created>
@@ -452,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679880243210</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="update comments">
+      <created>1679881043801</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1679881043801</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +470,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed identifiers, edit nodes" />
     <MESSAGE value="fix expression(), term()" />
     <MESSAGE value="update to factor()" />
     <MESSAGE value="small update" />
@@ -496,7 +494,8 @@
     <MESSAGE value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
     <MESSAGE value="update IfNode.java, parseIf in Parser, add while to token" />
     <MESSAGE value="update parses, parseFunctionCalls mainly" />
-    <option name="LAST_COMMIT_MESSAGE" value="update parses, parseFunctionCalls mainly" />
+    <MESSAGE value="update comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="update comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
