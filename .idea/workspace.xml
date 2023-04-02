@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update comments">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init dataTypes">
+      <change afterPath="$PROJECT_DIR$/src/shank/BuiltInRead.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shank/InterpreterDataType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/IntegerDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IntegerDataType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,14 +109,8 @@
       <workItem from="1678051737415" duration="29472000" />
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
-      <workItem from="1679849342995" duration="16226000" />
-    </task>
-    <task id="LOCAL-00020" summary="identifies hashmap words, identifies indent">
-      <created>1676261377275</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1676261377275</updated>
+      <workItem from="1679849342995" duration="16844000" />
+      <workItem from="1680448704162" duration="299000" />
     </task>
     <task id="LOCAL-00021" summary="added comments and adjusted Shank.java to take any input file">
       <created>1676261828828</created>
@@ -451,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679881043801</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="init dataTypes">
+      <created>1680272011088</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1680272011088</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix expression(), term()" />
     <MESSAGE value="update to factor()" />
     <MESSAGE value="small update" />
     <MESSAGE value="update factor()" />
@@ -495,7 +498,8 @@
     <MESSAGE value="update IfNode.java, parseIf in Parser, add while to token" />
     <MESSAGE value="update parses, parseFunctionCalls mainly" />
     <MESSAGE value="update comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="update comments" />
+    <MESSAGE value="init dataTypes" />
+    <option name="LAST_COMMIT_MESSAGE" value="init dataTypes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
