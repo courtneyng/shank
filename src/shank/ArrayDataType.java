@@ -1,7 +1,6 @@
 package shank;
 
 import java.util.*;
-import java.util.ArrayList;
 
 public class ArrayDataType extends InterpreterDataType{
 
@@ -18,6 +17,14 @@ public class ArrayDataType extends InterpreterDataType{
         this.changeable = changeable;
     }
 
+    /**
+     * A method that determines based on the data type inputted
+     * @param type - data type
+     * @param startIndex - starting index number
+     * @param endIndex - the ending index number
+     * @param changeable - boolean
+     * @throws SyntaxErrorException - if no data type was entered
+     */
     public ArrayDataType(arrayDataType type, int startIndex, int endIndex, boolean changeable) throws SyntaxErrorException {
         this.type = type;
         this.startIndex = startIndex;
@@ -59,9 +66,7 @@ public class ArrayDataType extends InterpreterDataType{
                     this.data.add(boolData);
                 }
             }
-            case default -> {
-                throw new SyntaxErrorException("[ArrayDataType] Expected: Data Type {int, real, bool, string, char}");
-            }
+            case default -> throw new SyntaxErrorException("[ArrayDataType] Expected: Data Type {int, real, bool, string, char}");
         }
     }
 
@@ -98,9 +103,25 @@ public class ArrayDataType extends InterpreterDataType{
         this.endIndex = endIndex;
     }
 
+    /**
+     * Get data at index
+     * @param index - the index of the array
+     * @return - the data at index
+     * @throws SyntaxErrorException - if value is null
+     */
+    public InterpreterDataType getIndexData(int index) throws SyntaxErrorException {
+        if(data.get(index) != null) return data.get(index);
+        else throw new SyntaxErrorException("[ArrayDataType: getIndexData] value is null");
+    }
+
     @Override
     public String toString() {
-        return null;
+        StringBuilder str = new StringBuilder("ArrayDataType: [");
+        for(int i=0;i<data.size(); i++){
+            str.append(data.get(i)).append(", ");
+        }
+        str.append("]");
+        return str.toString();
     }
 
     @Override
