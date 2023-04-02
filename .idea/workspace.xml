@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="added body to RealDataType.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/ArrayDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ArrayDataType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/StringDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/StringDataType.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="added body to StringDataType.java, ArrayDataType.java">
+      <change beforePath="$PROJECT_DIR$/src/shank/CharacterDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/CharacterDataType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,14 +107,7 @@
       <workItem from="1678821196832" duration="10586000" />
       <workItem from="1679256235211" duration="33230000" />
       <workItem from="1679849342995" duration="16844000" />
-      <workItem from="1680448704162" duration="4592000" />
-    </task>
-    <task id="LOCAL-00024" summary="edit skeleton of parser and node classes">
-      <created>1676646141204</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1676646141204</updated>
+      <workItem from="1680448704162" duration="5454000" />
     </task>
     <task id="LOCAL-00025" summary="output indent lvl, not yet in relation to prev line">
       <created>1677355953217</created>
@@ -454,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680449329423</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="added body to StringDataType.java, ArrayDataType.java">
+      <created>1680458324143</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1680458324143</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update function()" />
     <MESSAGE value="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java" />
     <MESSAGE value="update BooleanCompareNode.java" />
     <MESSAGE value="condensing, updating boolCompare functions" />
@@ -498,7 +495,8 @@
     <MESSAGE value="init BuiltInRead.java, added body to IntegerDataType.java and InterpreterDataType.java" />
     <MESSAGE value="added body to BooleanDataType.java" />
     <MESSAGE value="added body to RealDataType.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="added body to RealDataType.java" />
+    <MESSAGE value="added body to StringDataType.java, ArrayDataType.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="added body to StringDataType.java, ArrayDataType.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
