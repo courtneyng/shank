@@ -18,7 +18,7 @@ public class ArrayDataType extends InterpreterDataType{
         this.changeable = changeable;
     }
 
-    public ArrayDataType(arrayDataType type, int startIndex, int endIndex, boolean changeable){
+    public ArrayDataType(arrayDataType type, int startIndex, int endIndex, boolean changeable) throws SyntaxErrorException {
         this.type = type;
         this.startIndex = startIndex;
         this.endIndex = endIndex;
@@ -41,20 +41,26 @@ public class ArrayDataType extends InterpreterDataType{
 
             case STRING -> {
                 for(int i=0;i<endIndex; i++){
-                    StringDataType strData = new StringDataType();
+                    StringDataType strData = new StringDataType("");
                     this.data.add(strData);
                 }
             }
 
             case CHARACTER -> {
-
+                for(int i=0;i<endIndex; i++){
+                    CharacterDataType charData = new CharacterDataType(' ');
+                    this.data.add(charData);
+                }
             }
 
             case BOOLEAN -> {
-
+                for(int i=0;i<endIndex; i++){
+                    BooleanDataType boolData = new BooleanDataType(true);
+                    this.data.add(boolData);
+                }
             }
             case default -> {
-
+                throw new SyntaxErrorException("[ArrayDataType] Expected: Data Type {int, real, bool, string, char}");
             }
         }
     }
