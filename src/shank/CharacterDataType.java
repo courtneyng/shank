@@ -3,11 +3,17 @@ package shank;
 public class CharacterDataType extends InterpreterDataType{
 
     private char value;
+    private boolean changeable;
 
     public CharacterDataType(){}
 
     public CharacterDataType(char value){
         this.value = value;
+    }
+
+    public CharacterDataType(char value, boolean changeable){
+        this.value = value;
+        this.changeable = changeable;
     }
 
     @Override

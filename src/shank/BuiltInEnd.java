@@ -3,6 +3,8 @@ package shank;
 import java.util.ArrayList;
 
 public class BuiltInEnd extends FunctionNode{
+
+    ArrayList<VariableNode> paramArray;
     /**
      * Default constructor
      * @param name - name
@@ -12,5 +14,12 @@ public class BuiltInEnd extends FunctionNode{
         super(name, variables);
     }
 
+    public void execute(ArrayList<InterpreterDataType> data){
+        if(data.get(0) instanceof ArrayDataType && data.size() == 1 && ((ArrayDataType) data.get(0)).isChangeable() == true){
+            ArrayDataType dataArr = (ArrayDataType) data.get(0);
+            IntegerDataType endIndex = new IntegerDataType(dataArr.getEndIndex(), false);
+            data.set(0, endIndex);
+        }
+    }
 
 }

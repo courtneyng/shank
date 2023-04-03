@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="init Built in functions">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add body to built in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInIntegerToReal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInIntegerToReal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInRead.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInRealToInteger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInRealToInteger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/BooleanDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BooleanDataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInEnd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/IntegerDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IntegerDataType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,14 +114,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="3021000" />
-    </task>
-    <task id="LOCAL-00029" summary="update append calls">
-      <created>1677454070047</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1677454070047</updated>
+      <workItem from="1680479794479" duration="3695000" />
     </task>
     <task id="LOCAL-00030" summary="update indent state (not working as expected yet)">
       <created>1677454483235</created>
@@ -459,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680481198969</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="add body to built in">
+      <created>1680483175515</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1680483175515</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +478,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed getComparator, update boolCompare()" />
     <MESSAGE value="update Parser.java: assignment(), getVariables(), getConstants()" />
     <MESSAGE value="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam()," />
     <MESSAGE value="try to add parse to main" />
@@ -503,7 +502,8 @@
     <MESSAGE value="update body to ArrayDataType.java" />
     <MESSAGE value="update body to ArrayDataType.java, add comments" />
     <MESSAGE value="init Built in functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="init Built in functions" />
+    <MESSAGE value="add body to built in" />
+    <option name="LAST_COMMIT_MESSAGE" value="add body to built in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
