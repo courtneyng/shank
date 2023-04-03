@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update execute to built in right">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInRead.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update execute to built in read">
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInSquareRoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInSquareRoot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,21 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="8074000" />
-    </task>
-    <task id="LOCAL-00046" summary="update function()">
-      <created>1678828140850</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1678828140850</updated>
-    </task>
-    <task id="LOCAL-00047" summary="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java">
-      <created>1679246432062</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1679246432062</updated>
+      <workItem from="1680479794479" duration="8377000" />
     </task>
     <task id="LOCAL-00048" summary="update function(), FunctionNode.java, init VariableReferenceNode.java, init BooleanCompareNode.java">
       <created>1679256296492</created>
@@ -457,7 +442,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680487373561</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="add execute to built in read">
+      <created>1680488205653</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1680488205654</updated>
+    </task>
+    <task id="LOCAL-00096" summary="update execute to built in read">
+      <created>1680488259982</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1680488259982</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,8 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="init dataTypes" />
-    <MESSAGE value="init BuiltInRead.java, added body to IntegerDataType.java and InterpreterDataType.java" />
     <MESSAGE value="added body to BooleanDataType.java" />
     <MESSAGE value="added body to RealDataType.java" />
     <MESSAGE value="added body to StringDataType.java, ArrayDataType.java" />
@@ -501,7 +498,9 @@
     <MESSAGE value="update execute to built in left" />
     <MESSAGE value="update execute to built in real to int" />
     <MESSAGE value="update execute to built in right" />
-    <option name="LAST_COMMIT_MESSAGE" value="update execute to built in right" />
+    <MESSAGE value="add execute to built in read" />
+    <MESSAGE value="update execute to built in read" />
+    <option name="LAST_COMMIT_MESSAGE" value="update execute to built in read" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,6 +509,11 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/shank/BuiltInRead.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
