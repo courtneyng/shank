@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add execute to built in right">
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInSubstring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInSubstring.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update execute to built in real to int">
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInRight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInRight.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,56 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="6772000" />
-    </task>
-    <task id="LOCAL-00038" summary="cleaning, comments">
-      <created>1678055300582</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1678055300582</updated>
-    </task>
-    <task id="LOCAL-00039" summary="add punctuation">
-      <created>1678059084795</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1678059084795</updated>
-    </task>
-    <task id="LOCAL-00040" summary="fixed indent for newline with no indent">
-      <created>1678060940688</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1678060940688</updated>
-    </task>
-    <task id="LOCAL-00041" summary="fixed identifiers, edit nodes">
-      <created>1678071348394</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1678071348394</updated>
-    </task>
-    <task id="LOCAL-00042" summary="fix expression(), term()">
-      <created>1678310160563</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1678310160563</updated>
-    </task>
-    <task id="LOCAL-00043" summary="update to factor()">
-      <created>1678457852824</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1678457852824</updated>
-    </task>
-    <task id="LOCAL-00044" summary="small update">
-      <created>1678824038313</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1678824038313</updated>
+      <workItem from="1680479794479" duration="7304000" />
     </task>
     <task id="LOCAL-00045" summary="update factor()">
       <created>1678824736867</created>
@@ -456,7 +407,56 @@
       <option name="project" value="LOCAL" />
       <updated>1680486693530</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="add execute to built in substring">
+      <created>1680487069576</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487069576</updated>
+    </task>
+    <task id="LOCAL-00088" summary="update execute to built in substring">
+      <created>1680487127871</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487127871</updated>
+    </task>
+    <task id="LOCAL-00089" summary="update execute to built in end">
+      <created>1680487164442</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487164442</updated>
+    </task>
+    <task id="LOCAL-00090" summary="update execute to built in getrand">
+      <created>1680487189340</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487189340</updated>
+    </task>
+    <task id="LOCAL-00091" summary="update execute to built in int to real">
+      <created>1680487229446</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487229446</updated>
+    </task>
+    <task id="LOCAL-00092" summary="update execute to built in left">
+      <created>1680487263817</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487263817</updated>
+    </task>
+    <task id="LOCAL-00093" summary="update execute to built in real to int">
+      <created>1680487293482</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1680487293482</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,13 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update RepeatNode.java" />
-    <MESSAGE value="update WhileNode.java" />
-    <MESSAGE value="update FunctionCallNode.java, update toString() the rest" />
-    <MESSAGE value="update FunctionCallNode.java" />
-    <MESSAGE value="update statement(), parseFor(), function(), Parser.java, adjusted param order in ForNode.java" />
-    <MESSAGE value="update IfNode.java, parseIf in Parser, add while to token" />
-    <MESSAGE value="update parses, parseFunctionCalls mainly" />
     <MESSAGE value="update comments" />
     <MESSAGE value="init dataTypes" />
     <MESSAGE value="init BuiltInRead.java, added body to IntegerDataType.java and InterpreterDataType.java" />
@@ -500,7 +493,14 @@
     <MESSAGE value="add execute to int to real and real to int" />
     <MESSAGE value="add execute to built in left" />
     <MESSAGE value="add execute to built in right" />
-    <option name="LAST_COMMIT_MESSAGE" value="add execute to built in right" />
+    <MESSAGE value="add execute to built in substring" />
+    <MESSAGE value="update execute to built in substring" />
+    <MESSAGE value="update execute to built in end" />
+    <MESSAGE value="update execute to built in getrand" />
+    <MESSAGE value="update execute to built in int to real" />
+    <MESSAGE value="update execute to built in left" />
+    <MESSAGE value="update execute to built in real to int" />
+    <option name="LAST_COMMIT_MESSAGE" value="update execute to built in real to int" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
