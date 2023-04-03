@@ -23,8 +23,26 @@ public class Parser {
 
         do{
             current = expression();
-            if(current != null)
-        }
+            if(current != null){
+                if(current instanceof MathOpNode){
+                    MathOpNode expr = (MathOpNode) current;
+                    System.out.println(expr.toString());
+                } else if(current instanceof IntegerNode){
+                    IntegerNode integer = (IntegerNode) current;
+                    System.out.println(integer.toString());
+                } else if(current instanceof RealNode) {
+                    RealNode real = (RealNode) current;
+                    System.out.println(real.toString());
+                } else throw new SyntaxErrorException("[Parser: parse] Error");
+            } else{
+                current = function();
+                if(current != null){
+                    FunctionNode functionNode = (FunctionNode) current;
+                    node.addMap(functionNode);
+                }
+            }
+            eolNode = expectsEOL();
+        } while(current != null && eolNode != null);
         return node;
     }
 
@@ -119,7 +137,7 @@ public class Parser {
      * Throw a SyntaxErrorException if no ENDOFLINE was found.
      * @throws SyntaxErrorException - if missing expected
      */
-    private void expectsEOL() throws SyntaxErrorException{
+    private Token expectsEOL() throws SyntaxErrorException{
         while (!tokens.isEmpty() && tokens.get(0).getType() == Token.tokenType.ENDOFLINE) {
             tokens.remove(0);
         }
@@ -244,8 +262,8 @@ public class Parser {
 
             ArrayList<VariableNode> oneLineVar = getVariables();
 
-            for(int i=0; i<oneLineVar.size(); i++){
-                variables.add(oneLineVar.get(i));
+            for (VariableNode variableNode : oneLineVar) {
+                variables.add(variableNode);
             }
 
             while(tokens.get(0).getType().equals(Token.tokenType.IDENTIFIER)){
