@@ -14,7 +14,7 @@ public class BuiltInRealToInteger extends FunctionNode{
     }
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
-        if(data.get(0) instanceof RealDataType && data.size() == 2 && ((RealDataType) data.get(0)).isChangeable() == true){
+        if(data.get(0) instanceof RealDataType && data.size() == 2 && ((RealDataType) data.get(0)).isChangeable()){
             RealDataType realData = (RealDataType) data.get(0);
             float real = realData.getValue();
             int integer = (int) real;
