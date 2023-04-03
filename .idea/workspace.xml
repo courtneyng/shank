@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add execute to int to real and real to int">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInLeft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInLeft.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInRight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInRight.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add execute to built in right">
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInSubstring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInSubstring.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,21 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="6472000" />
-    </task>
-    <task id="LOCAL-00036" summary="init/edit ProgramNode.java, VariableNode.java, StatementNode.java, StringNode.java">
-      <created>1677858223314</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1677858223314</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Indent case working, removed parse to work on indent, slight update to node">
-      <created>1678054943124</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1678054943124</updated>
+      <workItem from="1680479794479" duration="6772000" />
     </task>
     <task id="LOCAL-00038" summary="cleaning, comments">
       <created>1678055300582</created>
@@ -458,7 +442,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680485123704</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="add execute to built in left">
+      <created>1680486607871</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1680486607871</updated>
+    </task>
+    <task id="LOCAL-00086" summary="add execute to built in right">
+      <created>1680486693530</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1680486693530</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,8 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update ForNode.java" />
-    <MESSAGE value="update IfNode.java" />
     <MESSAGE value="update RepeatNode.java" />
     <MESSAGE value="update WhileNode.java" />
     <MESSAGE value="update FunctionCallNode.java, update toString() the rest" />
@@ -502,7 +498,9 @@
     <MESSAGE value="add isChangeable, getValue, setValue" />
     <MESSAGE value="add execute to getRand" />
     <MESSAGE value="add execute to int to real and real to int" />
-    <option name="LAST_COMMIT_MESSAGE" value="add execute to int to real and real to int" />
+    <MESSAGE value="add execute to built in left" />
+    <MESSAGE value="add execute to built in right" />
+    <option name="LAST_COMMIT_MESSAGE" value="add execute to built in right" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
