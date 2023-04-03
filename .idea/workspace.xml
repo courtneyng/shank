@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="stand in">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add isChangeable, getValue, setValue">
       <change beforePath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/IntegerDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IntegerDataType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,14 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="4339000" />
-    </task>
-    <task id="LOCAL-00033" summary="update parse">
-      <created>1677467031415</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1677467031415</updated>
+      <workItem from="1680479794479" duration="4643000" />
     </task>
     <task id="LOCAL-00034" summary="update parse">
       <created>1677467462814</created>
@@ -458,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680484018007</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="add isChangeable, getValue, setValue">
+      <created>1680484588363</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1680484588363</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="try to add parse to main" />
     <MESSAGE value="create ASTNode.java, ForNode.java, RepeatNode.java" />
     <MESSAGE value="remove ASTNode.java" />
     <MESSAGE value="update ForNode.java" />
@@ -502,7 +499,8 @@
     <MESSAGE value="add body to built in" />
     <MESSAGE value="add body to built in, add changeable to data types" />
     <MESSAGE value="stand in" />
-    <option name="LAST_COMMIT_MESSAGE" value="stand in" />
+    <MESSAGE value="add isChangeable, getValue, setValue" />
+    <option name="LAST_COMMIT_MESSAGE" value="add isChangeable, getValue, setValue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
