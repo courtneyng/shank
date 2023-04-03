@@ -3,14 +3,7 @@ package shank;
 import java.util.ArrayList;
 
 public class BuiltInStart extends FunctionNode{
-    /**
-     * Default constructor
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInStart(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInStart(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         if(data.get(0) instanceof ArrayDataType && ((ArrayDataType) data.get(0)).isChangeable()){

@@ -3,14 +3,7 @@ package shank;
 import java.util.ArrayList;
 
 public class BuiltInLeft extends FunctionNode{
-    /**
-     * Default Constructor from function node
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInLeft(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInLeft(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         if(data.get(0) instanceof StringDataType && ((StringDataType) data.get(0)).isChangeable()){

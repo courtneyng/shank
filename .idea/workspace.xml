@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update execute to built in start">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInWrite.java" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update execute to built in write">
+      <change beforePath="$PROJECT_DIR$/src/shank/ProgramNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,14 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="9883000" />
-    </task>
-    <task id="LOCAL-00050" summary="condensing, updating boolCompare functions">
-      <created>1679267194270</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1679267194270</updated>
+      <workItem from="1680479794479" duration="10320000" />
     </task>
     <task id="LOCAL-00051" summary="condensing if statements">
       <created>1679267279936</created>
@@ -457,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680489108885</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="update execute to built in write">
+      <created>1680489993405</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1680489993405</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added body to StringDataType.java, ArrayDataType.java" />
     <MESSAGE value="added body to CharacterDataType.java" />
     <MESSAGE value="update body to ArrayDataType.java" />
     <MESSAGE value="update body to ArrayDataType.java, add comments" />
@@ -501,7 +499,8 @@
     <MESSAGE value="update execute to built in read" />
     <MESSAGE value="update execute to built in sqrt" />
     <MESSAGE value="update execute to built in start" />
-    <option name="LAST_COMMIT_MESSAGE" value="update execute to built in start" />
+    <MESSAGE value="update execute to built in write" />
+    <option name="LAST_COMMIT_MESSAGE" value="update execute to built in write" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,14 +4,7 @@ import java.util.ArrayList;
 
 public class BuiltInRealToInteger extends FunctionNode{
 
-    /**
-     * Default constructor
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInRealToInteger(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInRealToInteger() {}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         if(data.get(0) instanceof RealDataType && data.size() == 2 && ((RealDataType) data.get(0)).isChangeable()){

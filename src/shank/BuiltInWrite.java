@@ -3,14 +3,8 @@ package shank;
 import java.util.ArrayList;
 
 public class BuiltInWrite extends FunctionNode{
-    /**
-     * Default constructor for function node
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInWrite(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+
+    public BuiltInWrite(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         for (InterpreterDataType type : data) {

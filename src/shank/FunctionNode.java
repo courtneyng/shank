@@ -8,6 +8,8 @@ public class FunctionNode extends Node{
     private ArrayList<VariableNode> variables;
     private ArrayList<StatementNode> statements;
 
+    public FunctionNode(){};
+
     public FunctionNode(String name, ArrayList<VariableNode> variables){
         this.name = name;
         this.variables = variables;

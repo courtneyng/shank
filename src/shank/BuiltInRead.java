@@ -5,14 +5,7 @@ import java.util.Scanner;
 
 public class BuiltInRead extends FunctionNode {
 
-    /**
-     * Default constructor
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInRead(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInRead(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         Scanner scan = new Scanner(System.in);

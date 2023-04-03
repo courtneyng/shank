@@ -3,14 +3,7 @@ package shank;
 import java.util.ArrayList;
 
 public class BuiltInSquareRoot extends FunctionNode{
-    /**
-     * Default constructor from function node
-     * @param name - name
-     * @param variables - variables
-     */
-    public BuiltInSquareRoot(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInSquareRoot(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         if(data.get(0) instanceof StringDataType && ((RealDataType) data.get(0)).isChangeable()){

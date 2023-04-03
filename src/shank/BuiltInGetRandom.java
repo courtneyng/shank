@@ -3,9 +3,7 @@ package shank;
 import java.util.*;
 
 public class BuiltInGetRandom extends FunctionNode{
-    public BuiltInGetRandom(String name, ArrayList<VariableNode> variables) {
-        super(name, variables);
-    }
+    public BuiltInGetRandom(){}
 
     public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
         if(data.get(0) instanceof IntegerDataType && data.size() == 1 && ((IntegerDataType) data.get(0)).isChangeable()){
