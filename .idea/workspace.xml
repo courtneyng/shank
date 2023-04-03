@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update program node with function map">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update parse">
       <change beforePath="$PROJECT_DIR$/src/shank/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,14 +111,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="11530000" />
-    </task>
-    <task id="LOCAL-00053" summary="update Parser.java: assignment(), getVariables(), getConstants()">
-      <created>1679272382308</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1679272382308</updated>
+      <workItem from="1680479794479" duration="11935000" />
     </task>
     <task id="LOCAL-00054" summary="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam(),">
       <created>1679273503251</created>
@@ -457,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680491197408</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="update parse">
+      <created>1680491702458</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1680491702458</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update body to ArrayDataType.java, add comments" />
     <MESSAGE value="init Built in functions" />
     <MESSAGE value="add body to built in" />
     <MESSAGE value="add body to built in, add changeable to data types" />
@@ -501,7 +499,8 @@
     <MESSAGE value="update execute to built in write" />
     <MESSAGE value="fix builtin" />
     <MESSAGE value="update program node with function map" />
-    <option name="LAST_COMMIT_MESSAGE" value="update program node with function map" />
+    <MESSAGE value="update parse" />
+    <option name="LAST_COMMIT_MESSAGE" value="update parse" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

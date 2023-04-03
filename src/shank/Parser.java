@@ -12,8 +12,8 @@ public class Parser {
     /**
      * parse() should call function() in its loop. Every FunctionNode returned should go into the ProgramNode
      * (there will be only one of these). null should end the parse() loop. parse() should return the ProgramNode.
-     * @return Program Node
-     * @throws SyntaxErrorException
+     * @return Program Node - program node
+     * @throws SyntaxErrorException - error
      */
     public ProgramNode Parse() throws SyntaxErrorException {
         Node current;
@@ -24,16 +24,12 @@ public class Parser {
         do{
             current = expression();
             if(current != null){
-                if(current instanceof MathOpNode){
-                    MathOpNode expr = (MathOpNode) current;
-                    System.out.println(expr.toString());
-                } else if(current instanceof IntegerNode){
-                    IntegerNode integer = (IntegerNode) current;
-                    System.out.println(integer.toString());
-                } else if(current instanceof RealNode) {
-                    RealNode real = (RealNode) current;
-                    System.out.println(real.toString());
-                } else throw new SyntaxErrorException("[Parser: parse] Error");
+                switch (current) {
+                    case MathOpNode expr -> System.out.println(expr);
+                    case IntegerNode integer -> System.out.println(integer);
+                    case RealNode real -> System.out.println(real);
+                    case null, default -> throw new SyntaxErrorException("[Parser: parse] Error");
+                }
             } else{
                 current = function();
                 if(current != null){
@@ -50,7 +46,7 @@ public class Parser {
     //TERM { (plus or minus) TERM}
     public Node expression(){
         Node firstNode = term();
-        Node secondNode = null;
+        Node secondNode;
         MathOpNode.MathOp operator;
         //Then it (in a loop) looks for a + or -
         while(peek(0).getType().equals(Token.tokenType.PLUS) || peek(0).getType().equals(Token.tokenType.MINUS)){
@@ -72,7 +68,7 @@ public class Parser {
     //FACTOR { (times or divide or mod) FACTOR}
     public Node term(){
         Node firstNode = factor();
-        Node secondNode = null;
+        Node secondNode;
         MathOpNode.MathOp operator;
 
         while(peek(0).getType().equals(Token.tokenType.TIMES) || peek(0).getType().equals(Token.tokenType.DEFINE) || peek(0).getType().equals(Token.tokenType.MOD)){
@@ -123,7 +119,7 @@ public class Parser {
      */
     private Token matchAndRemove(Token.tokenType type){
         Token token = tokens.get(0);
-        if(token.equals(token.getType())){
+        if(type.equals(token.getType())){
             tokens.remove(0);
             return token;
         }
@@ -182,7 +178,7 @@ public class Parser {
     /**
      *  Handles all statements
      * @return statement nodes
-     * @throws SyntaxErrorException
+     * @throws SyntaxErrorException - error
      */
     private ArrayList<StatementNode> statements() throws SyntaxErrorException {
         ArrayList<StatementNode> statements = new ArrayList<>();
@@ -298,7 +294,7 @@ public class Parser {
         // Expects dedent token, otherwise throw syntax error
         if(matchAndRemove(Token.tokenType.DEDENT) == null) throw new SyntaxErrorException("[Parser] Expected: Dedent");
 
-        System.out.println(functionNode.toString());
+        System.out.println(functionNode);
         return functionNode;
     }
 
