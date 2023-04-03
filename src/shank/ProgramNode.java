@@ -3,7 +3,7 @@ package shank;
 import java.util.HashMap;
 
 public class ProgramNode extends Node{
-    HashMap<String, FunctionNode> functionNodeHashmap = new HashMap<>();
+    HashMap<String, FunctionNode> functionNodeMap = new HashMap<>();
 
     private BuiltInRead builtInRead = new BuiltInRead();
     private BuiltInWrite builtInWrite = new BuiltInWrite();
@@ -18,10 +18,42 @@ public class ProgramNode extends Node{
     private BuiltInEnd builtInEnd = new BuiltInEnd();
 
     public ProgramNode(){
-
+        addMap(builtInRead);
+        addMap(builtInWrite);
+        addMap(builtInLeft);
+        addMap(builtInRight);
+        addMap(builtInSubstring);
+        addMap(builtInSquareRoot);
+        addMap(builtInGetRandom);
+        addMap(builtInIntegerToReal);
+        addMap(builtInRealToInteger);
+        addMap(builtInStart);
+        addMap(builtInEnd);
     }
+
+    public void addMap(FunctionNode functionNode){
+        functionNodeMap.put(functionNode.getName(), functionNode);
+    }
+
+    public HashMap<String, FunctionNode> getMap(){
+        return functionNodeMap;
+    }
+
+    /**
+     * is it a function
+     * @param str - the input name
+     * @return true/false if is a function
+     */
+    public boolean isFunction(String str){
+        return functionNodeMap.containsKey(str);
+    }
+
     @Override
     public String toString() {
-        return null;
+        StringBuilder str = new StringBuilder();
+        for(String key: functionNodeMap.keySet()){
+            str.append(functionNodeMap.get(key).toString()).append("\n\n");
+        }
+        return str.toString();
     }
 }

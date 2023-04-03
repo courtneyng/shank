@@ -51,6 +51,10 @@ public class FunctionNode extends Node{
         this.statements = statements;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean isVariadic(){
         if(this.name == "read" || this.name == "write") return true;
         else return false;

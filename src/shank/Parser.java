@@ -16,7 +16,15 @@ public class Parser {
      * @throws SyntaxErrorException
      */
     public ProgramNode Parse() throws SyntaxErrorException {
+        Node current;
         ProgramNode node = new ProgramNode();
+
+        Token eolNode;
+
+        do{
+            current = expression();
+            if(current != null)
+        }
         return node;
     }
 
