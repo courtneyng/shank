@@ -15,6 +15,6 @@ public class BuiltInGetRandom extends FunctionNode{
             intData.setValue(randNum);
             data.set(0, intData);
         }
-        else throw new SyntaxErrorException("[BuiltInEnd: execute] Does not contain the correct arguments for function");
+        else throw new SyntaxErrorException("[BuiltInGetRandom: execute] Does not contain the correct arguments for function");
     }
 }

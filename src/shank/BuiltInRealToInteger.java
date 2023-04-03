@@ -13,9 +13,16 @@ public class BuiltInRealToInteger extends FunctionNode{
         super(name, variables);
     }
 
-    void execute(ArrayList<InterpreterDataType> data){
-        for(int i=0; i<data.size();i=i++){
-            data.set(i, new RealDataType(Float.parseFloat(data.get(i).toString())));
+    public void execute(ArrayList<InterpreterDataType> data) throws SyntaxErrorException{
+        if(data.get(0) instanceof RealDataType && data.size() == 2 && ((RealDataType) data.get(0)).isChangeable() == true){
+            RealDataType realData = (RealDataType) data.get(0);
+            float real = realData.getValue();
+            int integer = (int) real;
+
+            IntegerDataType intData = (IntegerDataType) data.get(1);
+            intData.setValue(integer);
+            data.set(1, intData);
         }
+        else throw new SyntaxErrorException("[BuiltInRealToInteger: execute] Does not contain the correct arguments for function");
     }
 }

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add isChangeable, getValue, setValue">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add execute to getRand">
       <change beforePath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInIntegerToReal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInIntegerToReal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +112,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="4643000" />
-    </task>
-    <task id="LOCAL-00034" summary="update parse">
-      <created>1677467462814</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1677467462814</updated>
+      <workItem from="1680479794479" duration="4981000" />
     </task>
     <task id="LOCAL-00035" summary="init BooleanNode.java, CharacterNode.java, StringNode.java">
       <created>1677853970154</created>
@@ -456,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680484588363</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="add execute to getRand">
+      <created>1680484680254</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1680484680255</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +476,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="create ASTNode.java, ForNode.java, RepeatNode.java" />
     <MESSAGE value="remove ASTNode.java" />
     <MESSAGE value="update ForNode.java" />
     <MESSAGE value="update IfNode.java" />
@@ -500,7 +500,8 @@
     <MESSAGE value="add body to built in, add changeable to data types" />
     <MESSAGE value="stand in" />
     <MESSAGE value="add isChangeable, getValue, setValue" />
-    <option name="LAST_COMMIT_MESSAGE" value="add isChangeable, getValue, setValue" />
+    <MESSAGE value="add execute to getRand" />
+    <option name="LAST_COMMIT_MESSAGE" value="add execute to getRand" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
