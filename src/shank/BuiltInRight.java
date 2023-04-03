@@ -21,12 +21,12 @@ public class BuiltInRight extends FunctionNode{
             int length = dataLength.getValue();
             String str = strData.getValue();
             String finalStr = "";
-            for(int i=0; i<length; i++){
+            for(int i=0; i<str.length(); i++){
                 finalStr += str.charAt(i);
             }
             string.setValue(finalStr);
             data.set(2, string);
         }
-        else throw new SyntaxErrorException("[BuiltInLeft: execute] Does not contain the correct arguments for function");
+        else throw new SyntaxErrorException("[BuiltInRight: execute] Does not contain the correct arguments for function");
     }
 }
