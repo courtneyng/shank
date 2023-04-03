@@ -15,6 +15,19 @@ public class RealDataType extends InterpreterDataType{
         this.value = value;
         this.changeable = changeable;
     }
+
+    public boolean isChangeable() {
+        return changeable;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "RealDataType: [" + value + "] ";

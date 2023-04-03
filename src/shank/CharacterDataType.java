@@ -16,6 +16,18 @@ public class CharacterDataType extends InterpreterDataType{
         this.changeable = changeable;
     }
 
+    public boolean isChangeable() {
+        return changeable;
+    }
+
+    public char getValue() {
+        return value;
+    }
+
+    public void setValue(char value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "CharacterDataType [" + value + "] ";

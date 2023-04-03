@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="add body to built in">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="stand in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BooleanDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BooleanDataType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInEnd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInEnd.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/BuiltInGetRandom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/IntegerDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/IntegerDataType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,28 +113,7 @@
       <workItem from="1679849342995" duration="16844000" />
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
-      <workItem from="1680479794479" duration="3695000" />
-    </task>
-    <task id="LOCAL-00030" summary="update indent state (not working as expected yet)">
-      <created>1677454483235</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1677454483235</updated>
-    </task>
-    <task id="LOCAL-00031" summary="update node with toString,">
-      <created>1677454945814</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1677454945814</updated>
-    </task>
-    <task id="LOCAL-00032" summary="update nodes and add body to exp, term, parse">
-      <created>1677458501471</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1677458501471</updated>
+      <workItem from="1680479794479" duration="4339000" />
     </task>
     <task id="LOCAL-00033" summary="update parse">
       <created>1677467031415</created>
@@ -459,7 +437,28 @@
       <option name="project" value="LOCAL" />
       <updated>1680483175515</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="add body to built in, add changeable to data types">
+      <created>1680483820173</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1680483820173</updated>
+    </task>
+    <task id="LOCAL-00080" summary="add body to built in, add changeable to data types">
+      <created>1680483949658</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1680483949658</updated>
+    </task>
+    <task id="LOCAL-00081" summary="stand in">
+      <created>1680484018007</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1680484018007</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,8 +477,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update Parser.java: assignment(), getVariables(), getConstants()" />
-    <MESSAGE value="update Parser.java: &#10;parameterDeclarations(),&#10;multiParam()," />
     <MESSAGE value="try to add parse to main" />
     <MESSAGE value="create ASTNode.java, ForNode.java, RepeatNode.java" />
     <MESSAGE value="remove ASTNode.java" />
@@ -503,7 +500,9 @@
     <MESSAGE value="update body to ArrayDataType.java, add comments" />
     <MESSAGE value="init Built in functions" />
     <MESSAGE value="add body to built in" />
-    <option name="LAST_COMMIT_MESSAGE" value="add body to built in" />
+    <MESSAGE value="add body to built in, add changeable to data types" />
+    <MESSAGE value="stand in" />
+    <option name="LAST_COMMIT_MESSAGE" value="stand in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

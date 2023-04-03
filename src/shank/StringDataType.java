@@ -15,6 +15,19 @@ public class StringDataType extends InterpreterDataType{
         this.value = value;
         this.changeable = changeable;
     }
+
+    public boolean isChangeable() {
+        return changeable;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "StringDataType: [" + value + "] ";

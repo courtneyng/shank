@@ -16,6 +16,18 @@ public class BooleanDataType extends InterpreterDataType{
         this.changeable = changeable;
     }
 
+    public boolean isChangeable() {
+        return changeable;
+    }
+
+    public boolean getValue() {
+        return value;
+    }
+
+    public void setValue(boolean value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "BooleanDataType: [" + value + "] ";
