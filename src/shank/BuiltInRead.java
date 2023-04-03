@@ -16,7 +16,7 @@ public class BuiltInRead extends FunctionNode {
 
     IntegerDataType execute(){
         Scanner scan = new Scanner(System.in);
-
+        return null;
     }
 
 
