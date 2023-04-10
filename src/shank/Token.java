@@ -11,7 +11,7 @@ public class Token {
         PLUS, MINUS, TIMES, DIVIDE, MOD,
         STRINGLITERAL, CHARACTERLITERAL, INDENT, DEDENT,
         COMMA, COLON, SEMICOLON, LPAREN, RPAREN,
-        ASSIGN
+        ASSIGN, SPACE
     }
 
     private tokenType type;
@@ -37,7 +37,7 @@ public class Token {
 
     /**
      *
-     * @param lineNumber
+     * @param lineNumber - line number
      */
 
     public void setLineNumber(int lineNumber) {
@@ -60,6 +60,10 @@ public class Token {
         return nameIdentifier;
     }
 
+    public void setType(tokenType type) {
+        this.type = type;
+    }
+
     public Token(){}
 
     public Token(tokenType tokenFinder){
@@ -67,7 +71,7 @@ public class Token {
     }
     /**
      * To String Overload
-     * @return
+     * @return - overloaded string
      */
     public String toString(){
         return "";

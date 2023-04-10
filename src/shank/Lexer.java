@@ -4,9 +4,10 @@ import java.util.*;
 
 public class Lexer {
     HashMap<String, Token.tokenType> knownWords = new HashMap<>();
+    private ArrayList<Token> tokens = new ArrayList<>();
     // Var outside lex to span across lines
     public boolean startComment = false;
-    int lineNumber = 0, currentIndent = 0, prevIndent = 0;
+    int lineNumber = 0, currentIndent = 0, prevIndent = 0, arrayIndex = 0;
     public void Lex(String inputLine) throws SyntaxErrorException {
         // Setting up reserved words
         knownWords.put("define", Token.tokenType.DEFINE);
@@ -42,6 +43,7 @@ public class Lexer {
         StringBuilder checkWord = new StringBuilder(); // check if word is reserved
 
         lineNumber++;
+        tokens.get(arrayIndex).setLineNumber(lineNumber);
         expressionLine.append(lineNumber).append(" ");
 
 
@@ -61,6 +63,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -88,6 +91,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -109,6 +113,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -122,6 +127,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -134,6 +140,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -155,6 +162,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -175,6 +183,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -191,6 +200,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -203,19 +213,19 @@ public class Lexer {
                     }
                     //operator case
                     else if(token == '+' || token == '-' || token == '*' || token == '/'){
-                        char op = token;
                         // If previous line had indent but newline doesn't
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
-                        switch(op){
-                            case '+': expressionLine.append(Token.tokenType.PLUS).append(" ").append(token); break;
-                            case '-': expressionLine.append(Token.tokenType.MINUS).append(" ").append(token); break;
-                            case '*': expressionLine.append(Token.tokenType.TIMES).append(" ").append(token); break;
-                            case '/': expressionLine.append(Token.tokenType.DIVIDE).append(" ").append(token); break;
+                        switch (token) {
+                            case '+' -> expressionLine.append(Token.tokenType.PLUS).append(" ").append(token);
+                            case '-' -> expressionLine.append(Token.tokenType.MINUS).append(" ").append(token);
+                            case '*' -> expressionLine.append(Token.tokenType.TIMES).append(" ").append(token);
+                            case '/' -> expressionLine.append(Token.tokenType.DIVIDE).append(" ").append(token);
                         }
                     }
                     else if(token == '[' || token == ']') expressionLine.append(token);
@@ -229,6 +239,7 @@ public class Lexer {
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -251,7 +262,7 @@ public class Lexer {
                         //expressionLine.append(token);
                         checkWord.append(token);
 
-                        if(checkWord.toString() == "var" && nextToken != ' '){
+                        if(checkWord.toString().equals("var") && nextToken != ' '){
                             //Checking if the word is a reserved word
                             for(Map.Entry<String, Token.tokenType> set: knownWords.entrySet()){
                                 String reservedWord = set.getKey();
@@ -352,12 +363,14 @@ public class Lexer {
                         if (currentIndent > prevIndent) {
                             //add as many indent greater than prev
                             for(int k=prevIndent;k<currentIndent;k++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.INDENT);
                                 expressionLine.append(Token.tokenType.INDENT).append(" ");
                             }
                         }
                         if(prevIndent>currentIndent){
                             //add as many dedent token greater than curr
                             for(int j=currentIndent;j<prevIndent;j++){
+                                tokens.get(arrayIndex).setType(Token.tokenType.DEDENT);
                                 expressionLine.append(Token.tokenType.DEDENT).append(" ");
                             }
                         }
@@ -365,17 +378,23 @@ public class Lexer {
                     }
                 } //end indent
             }
+            arrayIndex++;
         } // End for loop
 
         prevIndent = currentIndent;
         currentIndent = 0; //reset current indent for next line
+        tokens.get(arrayIndex).setType(Token.tokenType.ENDOFLINE);
         expressionLine.append(Token.tokenType.ENDOFLINE);
         System.out.println(expressionLine);
     } // End Lex
 
     public boolean isPunctuation(char c){
         // if not a Letter or Digit & not a SPACE
-        if(!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)) return true;
-        else return false;
+        return !Character.isLetterOrDigit(c) && !Character.isWhitespace(c);
     }
+
+    public ArrayList<Token> createArray(){
+        return tokens;
+    }
+
 }

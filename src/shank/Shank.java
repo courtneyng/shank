@@ -18,7 +18,7 @@ public class Shank {
         List <String> lines = Files.readAllLines(myPath, StandardCharsets.UTF_8);
         // Instantiate Lexer
         Lexer newLexer = new Lexer();
-        ArrayList<Token> input = new ArrayList<>();
+        ArrayList<Token> tokenList = new ArrayList<>();
 
         lines.forEach(line -> {
             try {
@@ -30,7 +30,9 @@ public class Shank {
             }
         });
 
-        Parser parse = new Parser(input);
+        Parser parse = new Parser(tokenList);
+        ProgramNode programNode = (ProgramNode) parse.Parse();
+
 
     }
 }

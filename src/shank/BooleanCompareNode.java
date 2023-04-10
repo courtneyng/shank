@@ -12,9 +12,9 @@ public class BooleanCompareNode extends Node{
 
     /**
      * Constructor for all values
-     * @param leftExpr
-     * @param comparator
-     * @param rightExpr
+     * @param leftExpr - left expr
+     * @param comparator - comparator
+     * @param rightExpr - right expr
      */
     public BooleanCompareNode(Node leftExpr, comparisonType comparator, Node rightExpr){
         this.leftExpr = leftExpr;
