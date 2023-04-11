@@ -77,7 +77,7 @@ public class VariableNode extends Node{
     }
 
     public void setValue(Node value) {
-        if(changeable == true) this.value = value;
+        if(changeable) this.value = value;
     }
 
     public int getFromInt() {
