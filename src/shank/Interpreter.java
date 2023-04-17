@@ -16,12 +16,20 @@ public class Interpreter {
      */
     public void interpretFunction(FunctionNode node, HashMap<String, InterpreterDataType> map) throws SyntaxErrorException {
         ArrayList<VariableNode> params = node.getParameters();
-        ArrayList<VariableNode> constants = node.getConstants();
         ArrayList<VariableNode> variables = node.getVariables();
         ArrayList<StatementNode> statements = node.getStatements();
 
-
+        parameterMap(map, params);
+        constantsAndVariablesMap(map, variables);
         interpretBlock(map, statements);
+        if(params != null){
+            ArrayList<InterpreterDataType> arguments = new ArrayList<>();
+            for(int i=0; i<params.size(); i++){
+                InterpreterDataType varData = map.get(params.get(i).getName());
+                arguments.add(varData);
+            }
+            node.updateArguments(arguments);
+        }
     }
 
     /**
@@ -50,7 +58,7 @@ public class Interpreter {
         }
     }
 
-    private void parameterMap(ArrayList<VariableNode> params, HashMap<String, InterpreterDataType> paramMap) throws SyntaxErrorException {
+    private void parameterMap(HashMap<String, InterpreterDataType> paramMap, ArrayList<VariableNode> params) throws SyntaxErrorException {
         if(params != null){
             for (VariableNode current : params) {
                 String name = current.getName();
@@ -190,7 +198,7 @@ public class Interpreter {
         if(arr != null){
             for(int i=0; i<arr.size();i++){
                 VariableNode current = arr.get(i);
-                if(current.isChangeable())
+
 
             }
         }
