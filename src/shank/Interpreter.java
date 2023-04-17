@@ -14,14 +14,14 @@ public class Interpreter {
      * interpretBlock().
      * @param node - function node
      */
-    public void interpretFunction(FunctionNode node, HashMap<String, InterpreterDataType> map){
+    public void interpretFunction(FunctionNode node, HashMap<String, InterpreterDataType> map) throws SyntaxErrorException {
         ArrayList<VariableNode> params = node.getParameters();
         ArrayList<VariableNode> constants = node.getConstants();
         ArrayList<VariableNode> variables = node.getVariables();
         ArrayList<StatementNode> statements = node.getStatements();
 
 
-        interpretBlock();
+        interpretBlock(map, statements);
     }
 
     /**
@@ -30,7 +30,25 @@ public class Interpreter {
      * will vary in return type and parameters. InterpretBlock is a little bit of recursive magic – you
      * will be in the middle of this and call it again for loops or conditionals of any kind.
      */
-    public void interpretBlock(){}
+    public void interpretBlock(HashMap<String, InterpreterDataType> map, ArrayList<StatementNode> statementNodeArrayList) throws SyntaxErrorException{
+        if(statementNodeArrayList != null){
+            for (StatementNode statementNode : statementNodeArrayList) {
+                if (statementNode instanceof IfNode ifNode) {
+                    ifNodeFunction(map, ifNode);
+                } else if (statementNode instanceof ForNode forNode) {
+                    forNodeFunction(map, forNode);
+                } else if (statementNode instanceof RepeatNode repeatNode) {
+                    repeatNodeFunction(map, repeatNode);
+                } else if (statementNode instanceof WhileNode whileNode) {
+                    whileNodeFunction(map, whileNode);
+                } else if (statementNode instanceof AssignmentNode assignmentNode) {
+                    assignmentNodeFunction(map, assignmentNode);
+                } else if (statementNode instanceof FunctionCallNode functionCallNode) {
+                    functionCallNodeFunction(map, functionCallNode);
+                }
+            }
+        }
+    }
 
     private void parameterMap(ArrayList<VariableNode> params, HashMap<String, InterpreterDataType> paramMap) throws SyntaxErrorException {
         if(params != null){
@@ -182,13 +200,11 @@ public class Interpreter {
         return null;
     }
 
-    private void booleanCompareNodeFunction(HashMap<String, InterpreterDataType> map, BooleanCompareNode boolCompareNode) throws SyntaxErrorException {
+    private BooleanDataType booleanCompareNodeFunction(HashMap<String, InterpreterDataType> map, BooleanCompareNode boolCompareNode) throws SyntaxErrorException {
         Node left = expression(map, boolCompareNode.getLeftExpr()), right = expression(map, boolCompareNode.getRightExpr());
         boolean val = false;
-        if(left instanceof IntegerNode){
-            IntegerNode leftInt = (IntegerNode) left;
-            if(right instanceof IntegerNode){
-                IntegerNode rightInt = (IntegerNode) right;
+        if(left instanceof IntegerNode leftInt){
+            if(right instanceof IntegerNode rightInt){
 
                 if(boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.EQUAL){
                     if(leftInt.getValue() == rightInt.getValue()) val = true;
@@ -202,10 +218,8 @@ public class Interpreter {
                     if(leftInt.getValue() <= rightInt.getValue()) val = true;
                 } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect operator syntax");
             } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect right data syntax");
-        } else if (left instanceof RealNode) {
-            RealNode leftReal = (RealNode) left;
-            if(right instanceof RealNode){
-                RealNode rightReal = (RealNode) right;
+        } else if (left instanceof RealNode leftReal) {
+            if(right instanceof RealNode rightReal){
 
                 if(boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.EQUAL){
                     if(leftReal.getValue() == rightReal.getValue()) val = true;
@@ -220,32 +234,26 @@ public class Interpreter {
                 } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect operator syntax");
             } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect right data syntax");
         } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect left data syntax");
-        return new BooleanDataType(value, false);
+        return new BooleanDataType(val, false);
     }
     private InterpreterDataType variableReferenceNodeFunction(HashMap<String, InterpreterDataType> map, VariableReferenceNode varRefNode) throws SyntaxErrorException {
         if(varRefNode.getIndex() != null){
             Node arrIndex = varRefNode.getIndex();
             String name = varRefNode.getName();
             InterpreterDataType arrData =  map.get(name);
-            if(arrData instanceof ArrayDataType){
-                ArrayDataType arrayDataType = (ArrayDataType) arrData;
-                if(arrIndex instanceof IntegerNode){
-                    IntegerNode intNode = (IntegerNode) arrIndex;
+            if(arrData instanceof ArrayDataType arrayDataType){
+                if(arrIndex instanceof IntegerNode intNode){
                     return arrayDataType.getIndexData(intNode.getValue());
-                } else if (arrIndex instanceof MathOpNode) {
-                    MathOpNode mathOpNode = (MathOpNode) arrIndex;
+                } else if (arrIndex instanceof MathOpNode mathOpNode) {
                     InterpreterDataType data = mathOpNodeFunction(map, mathOpNode);
-                    if(data instanceof IntegerDataType){
-                        IntegerDataType intData = (IntegerDataType) data;
+                    if(data instanceof IntegerDataType intData){
                         return arrayDataType.getIndexData(intData.getValue());
                     } else{
                         throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Couldn't recognize data type");
                     }
-                } else if (arrIndex instanceof VariableReferenceNode) {
-                    VariableReferenceNode variableReferenceNode = (VariableReferenceNode) arrIndex;
+                } else if (arrIndex instanceof VariableReferenceNode variableReferenceNode) {
                     InterpreterDataType data = variableReferenceNodeFunction(map, variableReferenceNode);
-                    if(data instanceof IntegerDataType){
-                        IntegerDataType intData = (IntegerDataType) data;
+                    if(data instanceof IntegerDataType intData){
                         return arrayDataType.getIndexData(intData.getValue());
                     } else{
                         throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Couldn't recognize data type");
@@ -274,7 +282,7 @@ public class Interpreter {
                 IntegerNode rightReal = (IntegerNode) right;
                 int leftVal = leftReal.getValue();
                 int rightVal = rightReal.getValue();
-                int finalVal = 0;
+                int finalVal;
 
                 switch (opNode.getOp()) {
                     case ADD -> finalVal = leftVal + rightVal;
@@ -291,7 +299,7 @@ public class Interpreter {
                 RealNode rightReal = (RealNode) right;
                 float leftVal = leftReal.getValue();
                 float rightVal = rightReal.getValue();
-                float finalVal = 0;
+                float finalVal;
 
                 switch (opNode.getOp()) {
                     case ADD -> finalVal = leftVal + rightVal;
@@ -309,15 +317,23 @@ public class Interpreter {
             }
         }
     }
-    private void ifNodeFunction(HashMap<String, InterpreterDataType> map, IfNode ifNode){
-        BooleanCompareNode ifCondition = ifNode.getCondition();
-
+    private void ifNodeFunction(HashMap<String, InterpreterDataType> map, IfNode ifNode) throws SyntaxErrorException {
+        BooleanCompareNode ifNodeCondition = ifNode.getCondition();
+        BooleanDataType ifCondition = booleanCompareNodeFunction(map, ifNodeCondition);
+        while(!ifCondition.getValue()){
+            ifNode = ifNode.getNext();
+            if(ifNode == null || ifNode.getCondition() == null) break;
+            ifNodeCondition = ifNode.getCondition();
+            ifCondition = booleanCompareNodeFunction(map, ifNodeCondition);
+        }
+        if(ifNode != null) interpretBlock(map, ifNode.getStatements());
     }
-    private void repeatNodeFunction(){}
-    private void forNodeFunction(){}
+    private void repeatNodeFunction(HashMap<String, InterpreterDataType> map, RepeatNode repeatNode){}
+    private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode){}
     private void constantNodesFunction(){}
-    private void whileNodeFunction(){}
-    private void assignmentNodeFunction(){}
+    private void whileNodeFunction(HashMap<String, InterpreterDataType> map, WhileNode whileNode){}
+    private void assignmentNodeFunction(HashMap<String, InterpreterDataType> map, AssignmentNode assignmentNode){}
+    private void functionCallNodeFunction(HashMap<String, InterpreterDataType> map, FunctionCallNode functionCallNode){}
 
 
 
