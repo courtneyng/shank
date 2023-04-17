@@ -3,6 +3,7 @@ package shank;
 public class ParameterNode extends StatementNode{
     private VariableReferenceNode variableIdentifier;
     private Node expression;
+    private boolean isChangeable;
 
     public ParameterNode(){}
 
@@ -14,6 +15,10 @@ public class ParameterNode extends StatementNode{
     public ParameterNode(Node expression){
         this.expression = expression;
         this.variableIdentifier = null;
+    }
+
+    public boolean isChangeable() {
+        return isChangeable;
     }
 
     @Override

@@ -1,9 +1,10 @@
 package shank;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class ProgramNode extends Node{
-    HashMap<String, FunctionNode> functionNodeMap = new HashMap<>();
+    private HashMap<String, FunctionNode> functionNodeMap = new HashMap<>();
+    private ArrayList<AssignmentNode> nodeArray = new ArrayList<>();
 
     private BuiltInRead builtInRead = new BuiltInRead();
     private BuiltInWrite builtInWrite = new BuiltInWrite();
@@ -46,6 +47,10 @@ public class ProgramNode extends Node{
      */
     public boolean isFunction(String str){
         return functionNodeMap.containsKey(str);
+    }
+
+    public ArrayList<AssignmentNode> getNodeArray(){
+        return nodeArray;
     }
 
     @Override

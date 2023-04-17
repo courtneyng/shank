@@ -162,4 +162,163 @@ public class Interpreter {
             }
         }
     }
+
+    public void varMap(HashMap<String, InterpreterDataType> varMap, VariableNode varNode){
+        String name = varNode.getName();
+
+    }
+
+    public void constantsAndVariablesMap(HashMap<String, InterpreterDataType> varConstMap, ArrayList<VariableNode> arr){
+        if(arr != null){
+            for(int i=0; i<arr.size();i++){
+                VariableNode current = arr.get(i);
+                if(current.isChangeable())
+
+            }
+        }
+    }
+
+    private Node expression(HashMap<String, InterpreterDataType> map, Node node){
+        return null;
+    }
+
+    private void booleanCompareNodeFunction(HashMap<String, InterpreterDataType> map, BooleanCompareNode boolCompareNode) throws SyntaxErrorException {
+        Node left = expression(map, boolCompareNode.getLeftExpr()), right = expression(map, boolCompareNode.getRightExpr());
+        boolean val = false;
+        if(left instanceof IntegerNode){
+            IntegerNode leftInt = (IntegerNode) left;
+            if(right instanceof IntegerNode){
+                IntegerNode rightInt = (IntegerNode) right;
+
+                if(boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.EQUAL){
+                    if(leftInt.getValue() == rightInt.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.GREATERTHAN) {
+                    if(leftInt.getValue() > rightInt.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.GREATEROREQUAL) {
+                    if(leftInt.getValue() >= rightInt.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.LESSTHAN) {
+                    if(leftInt.getValue() < rightInt.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.LESSOREQUAL) {
+                    if(leftInt.getValue() <= rightInt.getValue()) val = true;
+                } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect operator syntax");
+            } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect right data syntax");
+        } else if (left instanceof RealNode) {
+            RealNode leftReal = (RealNode) left;
+            if(right instanceof RealNode){
+                RealNode rightReal = (RealNode) right;
+
+                if(boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.EQUAL){
+                    if(leftReal.getValue() == rightReal.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.GREATERTHAN) {
+                    if(leftReal.getValue() > rightReal.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.GREATEROREQUAL) {
+                    if(leftReal.getValue() >= rightReal.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.LESSTHAN) {
+                    if(leftReal.getValue() < rightReal.getValue()) val = true;
+                } else if (boolCompareNode.getComparator() == BooleanCompareNode.comparisonType.LESSOREQUAL) {
+                    if(leftReal.getValue() <= rightReal.getValue()) val = true;
+                } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect operator syntax");
+            } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect right data syntax");
+        } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect left data syntax");
+        return new BooleanDataType(value, false);
+    }
+    private InterpreterDataType variableReferenceNodeFunction(HashMap<String, InterpreterDataType> map, VariableReferenceNode varRefNode) throws SyntaxErrorException {
+        if(varRefNode.getIndex() != null){
+            Node arrIndex = varRefNode.getIndex();
+            String name = varRefNode.getName();
+            InterpreterDataType arrData =  map.get(name);
+            if(arrData instanceof ArrayDataType){
+                ArrayDataType arrayDataType = (ArrayDataType) arrData;
+                if(arrIndex instanceof IntegerNode){
+                    IntegerNode intNode = (IntegerNode) arrIndex;
+                    return arrayDataType.getIndexData(intNode.getValue());
+                } else if (arrIndex instanceof MathOpNode) {
+                    MathOpNode mathOpNode = (MathOpNode) arrIndex;
+                    InterpreterDataType data = mathOpNodeFunction(map, mathOpNode);
+                    if(data instanceof IntegerDataType){
+                        IntegerDataType intData = (IntegerDataType) data;
+                        return arrayDataType.getIndexData(intData.getValue());
+                    } else{
+                        throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Couldn't recognize data type");
+                    }
+                } else if (arrIndex instanceof VariableReferenceNode) {
+                    VariableReferenceNode variableReferenceNode = (VariableReferenceNode) arrIndex;
+                    InterpreterDataType data = variableReferenceNodeFunction(map, variableReferenceNode);
+                    if(data instanceof IntegerDataType){
+                        IntegerDataType intData = (IntegerDataType) data;
+                        return arrayDataType.getIndexData(intData.getValue());
+                    } else{
+                        throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Couldn't recognize data type");
+                    }
+                }
+            } else{
+                throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Couldn't recognize data type");
+            }
+        } else{
+            throw new SyntaxErrorException("[Interpreter variableReferenceNodeFunction] Exception: Index is not an array data type");
+        }
+        return null;
+    }
+
+    private InterpreterDataType mathOpNodeFunction(HashMap<String, InterpreterDataType> variableMap, MathOpNode opNode) throws SyntaxErrorException{
+        Node left = expression(variableMap, opNode.getLeft()), right = expression(variableMap, opNode.getRight());
+        switch (left) {
+            case StringNode leftStr when right instanceof StringNode -> {
+                if (opNode.getOp() != MathOpNode.MathOp.ADD)
+                    throw new SyntaxErrorException("[Interpreter mathOpNodeFunction] null");
+                StringNode rightStr = (StringNode) right;
+                String finalStr = leftStr.getValue() + rightStr.getValue();
+                return new StringDataType(finalStr, false);
+            }
+            case IntegerNode leftReal when right instanceof IntegerNode -> {
+                IntegerNode rightReal = (IntegerNode) right;
+                int leftVal = leftReal.getValue();
+                int rightVal = rightReal.getValue();
+                int finalVal = 0;
+
+                switch (opNode.getOp()) {
+                    case ADD -> finalVal = leftVal + rightVal;
+                    case SUBTRACT -> finalVal = leftVal - rightVal;
+                    case MULTIPLY -> finalVal = leftVal * rightVal;
+                    case DIVIDE -> finalVal = leftVal / rightVal;
+                    case MODULO -> finalVal = leftVal % rightVal;
+                    default -> throw new SyntaxErrorException("[Interpreter mathOpNodeFunction] Unknown operator");
+                }
+
+                return new IntegerDataType(finalVal, false);
+            }
+            case RealNode leftReal when right instanceof RealNode -> {
+                RealNode rightReal = (RealNode) right;
+                float leftVal = leftReal.getValue();
+                float rightVal = rightReal.getValue();
+                float finalVal = 0;
+
+                switch (opNode.getOp()) {
+                    case ADD -> finalVal = leftVal + rightVal;
+                    case SUBTRACT -> finalVal = leftVal - rightVal;
+                    case MULTIPLY -> finalVal = leftVal * rightVal;
+                    case DIVIDE -> finalVal = leftVal / rightVal;
+                    case MODULO -> finalVal = leftVal % rightVal;
+                    default -> throw new SyntaxErrorException("[Interpreter mathOpNodeFunction] Unknown operator");
+                }
+
+                return new RealDataType(finalVal, false);
+            }
+            case null, default -> {
+                return null;
+            }
+        }
+    }
+    private void ifNodeFunction(HashMap<String, InterpreterDataType> map, IfNode ifNode){
+        BooleanCompareNode ifCondition = ifNode.getCondition();
+
+    }
+    private void repeatNodeFunction(){}
+    private void forNodeFunction(){}
+    private void constantNodesFunction(){}
+    private void whileNodeFunction(){}
+    private void assignmentNodeFunction(){}
+
+
+
 }

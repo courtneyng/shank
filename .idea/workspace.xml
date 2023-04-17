@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/src/shank/SemanticAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/MathOpNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/MathOpNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/ParameterNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ParameterNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/ProgramNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/ProgramNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,14 +118,8 @@
       <workItem from="1680448704162" duration="9542000" />
       <workItem from="1680479353045" duration="425000" />
       <workItem from="1680479794479" duration="12878000" />
-      <workItem from="1680874302386" duration="12169000" />
-    </task>
-    <task id="LOCAL-00056" summary="create ASTNode.java, ForNode.java, RepeatNode.java">
-      <created>1679664473117</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1679664473117</updated>
+      <workItem from="1680874302386" duration="15646000" />
+      <workItem from="1681685734449" duration="7255000" />
     </task>
     <task id="LOCAL-00057" summary="remove ASTNode.java">
       <created>1679775848313</created>
@@ -458,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681171164657</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="update">
+      <created>1681181903447</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1681181903447</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
