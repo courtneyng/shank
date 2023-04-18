@@ -336,8 +336,20 @@ public class Interpreter {
         }
         if(ifNode != null) interpretBlock(map, ifNode.getStatements());
     }
-    private void repeatNodeFunction(HashMap<String, InterpreterDataType> map, RepeatNode repeatNode){}
-    private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode){}
+    private void repeatNodeFunction(HashMap<String, InterpreterDataType> map, RepeatNode repeatNode) throws SyntaxErrorException {
+        BooleanDataType boolCompare = booleanCompareNodeFunction(map, repeatNode.getCondition());
+        do{
+            interpretBlock(map, repeatNode.getStatements());
+            boolCompare = booleanCompareNodeFunction(map, repeatNode.getCondition());
+        } while (boolCompare.getValue() == false);
+    }
+    private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode){
+        Node fromNode = expression(map, forNode.getFrom());
+        Node toNode = expression(map, forNode.getTo());
+        if(!(fromNode instanceof IntegerNode && toNode instanceof IntegerNode)){
+            
+        }
+    }
     private void constantNodesFunction(){}
     private void whileNodeFunction(HashMap<String, InterpreterDataType> map, WhileNode whileNode){}
     private void assignmentNodeFunction(HashMap<String, InterpreterDataType> map, AssignmentNode assignmentNode){}

@@ -21,6 +21,22 @@ public class ForNode extends StatementNode{
         this.variable = variable;
     }
 
+    public Node getFrom() {
+        return from;
+    }
+
+    public Node getTo() {
+        return to;
+    }
+
+    public void setFrom(Node from) {
+        this.from = from;
+    }
+
+    public void setTo(Node to) {
+        this.to = to;
+    }
+
     @Override
     public String toString() {
         String fullStatement = "From: " + from.toString() + " To: " + to.toString() + " Variable " +
