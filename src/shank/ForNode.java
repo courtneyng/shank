@@ -37,6 +37,14 @@ public class ForNode extends StatementNode{
         this.to = to;
     }
 
+    public VariableReferenceNode getVariable() {
+        return variable;
+    }
+
+    public ArrayList<StatementNode> getStatements() {
+        return statements;
+    }
+
     @Override
     public String toString() {
         String fullStatement = "From: " + from.toString() + " To: " + to.toString() + " Variable " +

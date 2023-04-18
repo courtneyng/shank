@@ -343,11 +343,26 @@ public class Interpreter {
             boolCompare = booleanCompareNodeFunction(map, repeatNode.getCondition());
         } while (boolCompare.getValue() == false);
     }
-    private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode){
+    private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode) throws SyntaxErrorException{
         Node fromNode = expression(map, forNode.getFrom());
         Node toNode = expression(map, forNode.getTo());
-        if(!(fromNode instanceof IntegerNode && toNode instanceof IntegerNode)){
-            
+        if(!(fromNode instanceof IntegerNode && toNode instanceof IntegerNode)) throw new SyntaxErrorException("[Interpreter forNodeFunction] Exception: For loop value invalid");
+        if(!(map.containsKey(forNode.getVariable().getName()))) throw new SyntaxErrorException("[Interpreter forNodeFunction] Exception: Int variable not declared");
+
+        IntegerNode from = (IntegerNode) fromNode;
+        IntegerNode to = (IntegerNode) toNode;
+        int fromVal = from.getValue();
+        int toVal = to.getValue();
+        if(fromVal > toVal) throw new SyntaxErrorException("[Interpreter forNodeFunction] Exception: Starting index greater than end index");
+
+        IntegerDataType fromData = new IntegerDataType(fromVal, true);
+        String name = forNode.getVariable().getName();
+        map.put(name, fromData);
+        InterpreterDataType varData = map.get(name);
+        IntegerDataType intVarData = (IntegerDataType) varData;
+        while(intVarData.getValue() <= toVal){
+            interpretBlock(map, forNode.getStatements());
+            intVarData.setValue(intVarData.getValue() + 1);
         }
     }
     private void constantNodesFunction(){}
