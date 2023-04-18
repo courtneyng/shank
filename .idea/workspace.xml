@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update fornodefunction">
+    <list default="true" id="8e03dcfa-e2b3-48fe-b717-18df2a02f651" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/FunctionCallNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/FunctionCallNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/FunctionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/FunctionNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shank/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/InterpreterDataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/InterpreterDataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shank/VariableReferenceNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,14 +119,7 @@
       <workItem from="1680479794479" duration="12878000" />
       <workItem from="1680874302386" duration="15646000" />
       <workItem from="1681685734449" duration="11848000" />
-      <workItem from="1681776848337" duration="3744000" />
-    </task>
-    <task id="LOCAL-00062" summary="update WhileNode.java">
-      <created>1679846958452</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1679846958453</updated>
+      <workItem from="1681776848337" duration="8640000" />
     </task>
     <task id="LOCAL-00063" summary="update FunctionCallNode.java, update toString() the rest">
       <created>1679849224544</created>
@@ -460,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681778751735</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="update">
+      <created>1681780684964</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1681780684964</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,9 +506,9 @@
     <MESSAGE value="update parse" />
     <MESSAGE value="cutting some fat" />
     <MESSAGE value="update syntax" />
-    <MESSAGE value="update" />
     <MESSAGE value="update fornodefunction" />
-    <option name="LAST_COMMIT_MESSAGE" value="update fornodefunction" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

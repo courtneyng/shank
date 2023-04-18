@@ -7,8 +7,10 @@ public class FunctionNode extends Node{
     private ArrayList<VariableNode> constants;
     private ArrayList<VariableNode> variables;
     private ArrayList<StatementNode> statements;
+    private ArrayList<InterpreterDataType> arguments;
+    private boolean isBuiltIn = false;
 
-    public FunctionNode(){};
+    public FunctionNode(){}
 
     public FunctionNode(String name, ArrayList<VariableNode> variables){
         this.name = name;
@@ -91,6 +93,18 @@ public class FunctionNode extends Node{
     public boolean isVariadic(){
         if(this.name == "read" || this.name == "write") return true;
         else return false;
+    }
+
+    public boolean isBuiltIn() {
+        return isBuiltIn;
+    }
+
+    public ArrayList<InterpreterDataType> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(ArrayList<InterpreterDataType> arguments) {
+        this.arguments = arguments;
     }
 
     @Override

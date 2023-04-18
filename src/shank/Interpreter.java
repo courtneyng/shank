@@ -58,6 +58,12 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Creates a map of parameters
+     * @param paramMap - the parameter map
+     * @param params - the params to put in
+     * @throws SyntaxErrorException - throws exceptions
+     */
     private void parameterMap(HashMap<String, InterpreterDataType> paramMap, ArrayList<VariableNode> params) throws SyntaxErrorException {
         if(params != null){
             for (VariableNode current : params) {
@@ -189,11 +195,12 @@ public class Interpreter {
         }
     }
 
-    public void varMap(HashMap<String, InterpreterDataType> varMap, VariableNode varNode){
-        String name = varNode.getName();
-
-    }
-
+    /**
+     * Adds constants and variables to the map
+     * @param map - the var map
+     * @param arr - the arraylsit of var nodes
+     * @throws SyntaxErrorException - if theres a type error
+     */
     public void constantsAndVariablesMap(HashMap<String, InterpreterDataType> map, ArrayList<VariableNode> arr) throws SyntaxErrorException {
         if(arr != null){
             for (VariableNode current : arr) {
@@ -203,6 +210,12 @@ public class Interpreter {
         }
     }
 
+    /**
+     * Adds constatns to map
+     * @param map - the var map
+     * @param varNode - the var node to add
+     * @throws SyntaxErrorException - if theres a type error
+     */
     private void constantMap(HashMap<String, InterpreterDataType> map, VariableNode varNode) throws SyntaxErrorException {
         String name = varNode.getName();
         switch(varNode.getType()){
@@ -247,6 +260,13 @@ public class Interpreter {
             default -> throw new SyntaxErrorException("[Interpreter constantNodesFunction] Exception: No variable type");
         }
     }
+
+    /**
+     * Adds variables to map
+     * @param map - the var map
+     * @param varNode - the var node to add
+     * @throws SyntaxErrorException = if theres a type error
+     */
     private void variableMap(HashMap<String, InterpreterDataType> map, VariableNode varNode) throws SyntaxErrorException{
         String name = varNode.getName();
         switch(varNode.getType()){
@@ -291,6 +311,13 @@ public class Interpreter {
         return null;
     }
 
+    /**
+     * handles boolean compare nodes
+     * @param map = the hashmap
+     * @param boolCompareNode - bool compare node
+     * @return - boolean data type
+     * @throws SyntaxErrorException - exceptions
+     */
     private BooleanDataType booleanCompareNodeFunction(HashMap<String, InterpreterDataType> map, BooleanCompareNode boolCompareNode) throws SyntaxErrorException {
         Node left = expression(map, boolCompareNode.getLeftExpr()), right = expression(map, boolCompareNode.getRightExpr());
         boolean val = false;
@@ -327,6 +354,14 @@ public class Interpreter {
         } else throw new SyntaxErrorException("[Interpreter booleanCompareNodeFunction] Incorrect left data syntax");
         return new BooleanDataType(val, false);
     }
+
+    /**
+     * handles variable reference nodee
+     * @param map - the hashmap
+     * @param varRefNode - var reference node
+     * @return - interepreter data type
+     * @throws SyntaxErrorException - exceptions
+     */
     private InterpreterDataType variableReferenceNodeFunction(HashMap<String, InterpreterDataType> map, VariableReferenceNode varRefNode) throws SyntaxErrorException {
         if(varRefNode.getIndex() != null){
             Node arrIndex = varRefNode.getIndex();
@@ -359,6 +394,13 @@ public class Interpreter {
         return null;
     }
 
+    /**
+     * handles mathop nodes
+     * @param variableMap - the hashmap
+     * @param opNode - the mathop node
+     * @return - interpreter data type
+     * @throws SyntaxErrorException - exceptions
+     */
     private InterpreterDataType mathOpNodeFunction(HashMap<String, InterpreterDataType> variableMap, MathOpNode opNode) throws SyntaxErrorException{
         Node left = expression(variableMap, opNode.getLeft()), right = expression(variableMap, opNode.getRight());
         switch (left) {
@@ -408,6 +450,13 @@ public class Interpreter {
             }
         }
     }
+
+    /**
+     * handles if case
+     * @param map - the hashmap
+     * @param ifNode = if nodes
+     * @throws SyntaxErrorException - exceptions
+     */
     private void ifNodeFunction(HashMap<String, InterpreterDataType> map, IfNode ifNode) throws SyntaxErrorException {
         BooleanCompareNode ifNodeCondition = ifNode.getCondition();
         BooleanDataType ifCondition = booleanCompareNodeFunction(map, ifNodeCondition);
@@ -419,6 +468,13 @@ public class Interpreter {
         }
         if(ifNode != null) interpretBlock(map, ifNode.getStatements());
     }
+
+    /**
+     * handles repeat nodes
+     * @param map - the hashmap
+     * @param repeatNode - repeat nodes
+     * @throws SyntaxErrorException - exceptions
+     */
     private void repeatNodeFunction(HashMap<String, InterpreterDataType> map, RepeatNode repeatNode) throws SyntaxErrorException {
         BooleanDataType boolCompare = booleanCompareNodeFunction(map, repeatNode.getCondition());
         do{
@@ -426,6 +482,13 @@ public class Interpreter {
             boolCompare = booleanCompareNodeFunction(map, repeatNode.getCondition());
         } while (!boolCompare.getValue());
     }
+
+    /**
+     * handles for nodes
+     * @param map - the hashmap
+     * @param forNode = for nodes
+     * @throws SyntaxErrorException - exception
+     */
     private void forNodeFunction(HashMap<String, InterpreterDataType> map, ForNode forNode) throws SyntaxErrorException{
         Node fromNode = expression(map, forNode.getFrom());
         Node toNode = expression(map, forNode.getTo());
@@ -449,9 +512,124 @@ public class Interpreter {
         }
     }
 
-    private void whileNodeFunction(HashMap<String, InterpreterDataType> map, WhileNode whileNode){}
-    private void assignmentNodeFunction(HashMap<String, InterpreterDataType> map, AssignmentNode assignmentNode){}
-    private void functionCallNodeFunction(HashMap<String, InterpreterDataType> map, FunctionCallNode functionCallNode){}
+    /**
+     * handles while
+     * @param map - the hashmap
+     * @param whileNode - while nodes
+     * @throws SyntaxErrorException - exceptions
+     */
+    private void whileNodeFunction(HashMap<String, InterpreterDataType> map, WhileNode whileNode) throws SyntaxErrorException {
+        BooleanDataType boolCompare = booleanCompareNodeFunction(map, whileNode.getCondition());
+        while(boolCompare.getValue()){
+            interpretBlock(map, whileNode.getStatements());
+            boolCompare = booleanCompareNodeFunction(map, whileNode.getCondition());
+        }
+    }
+    private void assignmentNodeFunction(HashMap<String, InterpreterDataType> map, AssignmentNode assignmentNode) throws SyntaxErrorException {
+        String target = assignmentNode.getTarget().getName();
+        Node value = assignmentNode.getValue();
+        InterpreterDataType assignVar = map.get(target);
+        if(!(assignVar.isChangeable())) throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Value is a constant");
+        if(value instanceof VariableReferenceNode){
+            VariableReferenceNode varRefNode = (VariableReferenceNode) value;
+            InterpreterDataType varRefData = variableReferenceNodeFunction(map, varRefNode);
+            if(varRefData instanceof IntegerDataType){
+                IntegerDataType intData = (IntegerDataType) varRefData;
+                IntegerNode intNode = new IntegerNode(intData.getValue());
+                value = intNode;
+            } else if (varRefData instanceof RealDataType) {
+                RealDataType realData = (RealDataType) varRefData;
+                RealNode realNode = new RealNode(realData.getValue());
+                value = realNode;
+            } else if (varRefData instanceof StringDataType) {
+                StringDataType stringData = (StringDataType)  varRefData;
+                StringNode stringNode = new StringNode(stringData.getValue());
+                value = stringNode;
+            } else if (varRefData instanceof CharacterDataType) {
+                CharacterDataType charData = (CharacterDataType) varRefData;
+                CharacterNode charNode = new CharacterNode(charData.getValue());
+                value = charNode;
+            }
+        }
+        if(assignmentNode.getTarget().getIndex() != null){
+            if(assignVar instanceof ArrayDataType){
+                ArrayDataType arr = (ArrayDataType) assignVar;
+                int arrIndex = 0;
+                if(assignmentNode.getTarget().getIndex() instanceof IntegerNode){
+                    IntegerNode indexNode = (IntegerNode) assignmentNode.getTarget().getIndex();
+                    arrIndex = indexNode.getValue();
+                } else if (assignmentNode.getTarget().getIndex() instanceof MathOpNode) {
+                    MathOpNode mathOpIndex = (MathOpNode)  assignmentNode.getTarget().getIndex();
+                    InterpreterDataType indexData = mathOpNodeFunction(map, mathOpIndex);
+                    if(indexData instanceof IntegerDataType){
+                        IntegerDataType intIndex = (IntegerDataType) indexData;
+                        arrIndex = intIndex.getValue();
+                        IntegerNode arrIndexNode = new IntegerNode(arrIndex);
+                        assignmentNode.getTarget().setIndex(arrIndexNode);
+                    } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Incorrect data type");
+                } else if (assignmentNode.getTarget().getIndex() instanceof VariableReferenceNode) {
+                    VariableReferenceNode varRefIndex = (VariableReferenceNode) assignmentNode.getTarget().getIndex();
+                    if(map.containsKey(varRefIndex.getName())){
+                        InterpreterDataType refData = map.get(varRefIndex.getName());
+                        if (refData instanceof InterpreterDataType) {
+                            IntegerDataType indexData = (IntegerDataType) refData;
+                            arrIndex = indexData.getValue();
+                        } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Incorrect data type");
+                    }
+                } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Incorrect data type");
+                if(value instanceof MathOpNode){
+                    MathOpNode mathOpNode = (MathOpNode) value;
+                    InterpreterDataType mathExpr = mathOpNodeFunction(map, mathOpNode);
+                    if(mathExpr instanceof IntegerDataType && arr.getType() == ArrayDataType.arrayDataType.INTEGER){
+                        IntegerDataType intData = (IntegerDataType) mathExpr;
+                        arr.setIndex(arrIndex, intData);
+                        map.put(target, arr);
+                    } else if (mathExpr instanceof RealDataType && arr.getType() == ArrayDataType.arrayDataType.REAL) {
+                        RealDataType realData = (RealDataType)  mathExpr;
+                        arr.setIndex(arrIndex, realData);
+                        map.put(target, arr);
+                    } else if (mathExpr instanceof StringDataType && arr.getType() == ArrayDataType.arrayDataType.STRING) {
+                        StringDataType stringData = (StringDataType) mathExpr;
+                        arr.setIndex(arrIndex, stringData);
+                        map.put(target, arr);
+                    } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Incorrect data type");
+                } else if (value instanceof IntegerNode && arr.getType() == ArrayDataType.arrayDataType.INTEGER) {
+                    IntegerNode assignIntVal = (IntegerNode) value;
+                    int intVal = assignIntVal.getValue();
+                    IntegerDataType intData = new IntegerDataType(intVal, false);
+                    arr.setIndex(arrIndex, intData);
+                    map.put(target, arr);
+                } else if (value instanceof RealNode && arr.getType() == ArrayDataType.arrayDataType.REAL) {
+                    RealNode assignRealVal = (RealNode) value;
+                    float realVal = assignRealVal.getValue();
+                    RealDataType realData = new RealDataType(realVal, false);
+                    arr.setIndex(arrIndex, realData);
+                    map.put(target, arr);
+                } else if (value instanceof StringNode && arr.getType() == ArrayDataType.arrayDataType.STRING) {
+                    StringNode assignStringVal = (StringNode) value;
+                    String stringVal = assignStringVal.getValue();
+                    StringDataType stringData = new StringDataType(stringVal, false);
+                    arr.setIndex(arrIndex, stringData);
+                    map.put(target, arr);
+                } else if (value instanceof CharacterNode && arr.getType() == ArrayDataType.arrayDataType.CHARACTER) {
+                    CharacterNode assignCharVal = (CharacterNode) value;
+                    char charVal = assignCharVal.getValue();
+                    CharacterDataType charData = new CharacterDataType(charVal, false);
+                    arr.setIndex(arrIndex, charData);
+                    map.put(target, arr);
+                } else if (value instanceof BooleanNode && arr.getType() == ArrayDataType.arrayDataType.BOOLEAN) {
+                    BooleanNode assignBoolVal = (BooleanNode) value;
+                    boolean boolVal = assignBoolVal.getValue();
+                    BooleanDataType boolData = new BooleanDataType(boolVal, false);
+                    arr.setIndex(arrIndex, boolData);
+                    map.put(target, arr);
+                } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Does not match array type");
+            } else throw new SyntaxErrorException("[Interpreter assignmentNodeFunction] Exception: Index for non-array type");
+        }
+    }
+    private void functionCallNodeFunction(HashMap<String, InterpreterDataType> map, FunctionCallNode functionCallNode){
+        ArrayList<InterpreterDataType> functionCallArr = new ArrayList<>();
+    }
 
 
 

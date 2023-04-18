@@ -33,6 +33,10 @@ public class VariableReferenceNode extends Node{
         return null;
     }
 
+    public void setIndex(IntegerNode intNode){
+        arrayIndexExpr = intNode;
+    }
+
     public VariableNode getReferencedVariable(){
         return referencedNode;
     }

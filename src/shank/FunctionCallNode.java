@@ -14,6 +14,10 @@ public class FunctionCallNode extends StatementNode{
         this.parameters = parameters;
     }
 
+    public String getName() {
+        return functionName;
+    }
+
     @Override
     public String toString() {
         String str = "\n[FunctionCallNode] Function name: " + functionName + "\n Parameters: \n";
